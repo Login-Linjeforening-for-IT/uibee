@@ -3,4 +3,6 @@ declare module 'login-linjeforeningen-for-it/hooks' {
         onVisible: () => void,
         rootMargin?: string
     ): { ref: RefObject<T>; isVisible: boolean }
+
+    export function useDarkModeObserver(): boolean
 }

@@ -17,9 +17,7 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
-    "./hooks": "./dist/hooks/index.js",
-    "./hooks/useVisibility": "./dist/hooks/useVisibility.js",
-    "./hooks/useDarkMode": "./dist/hooks/useDarkMode.js"
+    "./hooks": "./dist/hooks/index.js"
   },
   "files": [
     "dist"
