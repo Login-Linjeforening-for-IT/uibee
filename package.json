@@ -1,0 +1,31 @@
+{
+  "name": "login-linjeforeningen-for-it",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Login-Linjeforening-for-IT/login-linjeforeningen-for-it#readme",
+  "bugs": {
+    "url": "https://github.com/Login-Linjeforening-for-IT/login-linjeforeningen-for-it/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Login-Linjeforening-for-IT/login-linjeforeningen-for-it.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "react": "^19.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.13",
+    "typescript": "^5.9.2"
+  }
+}
