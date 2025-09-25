@@ -1,2 +1,2 @@
 export * from './hooks/useVisibility'
-export * from './hooks/useDarkModeObserver'
+export * from './hooks/useDarkMode'
