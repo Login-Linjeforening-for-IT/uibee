@@ -15,11 +15,16 @@
   "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./hooks": "./dist/hooks/index.js",
+    "./hooks/useVisibility": "./dist/hooks/useVisibility.js"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "tsc"
+    "build": "tsc --declaration"
   },
   "peerDependencies": {
     "react": "^19.1.1"
