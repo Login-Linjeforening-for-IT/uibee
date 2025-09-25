@@ -4,5 +4,5 @@ declare module 'login-linjeforeningen-for-it/hooks' {
         rootMargin?: string
     ): { ref: RefObject<T>; isVisible: boolean }
 
-    export function useDarkModeObserver(): boolean
+    export function useDarkMode(): boolean
 }
