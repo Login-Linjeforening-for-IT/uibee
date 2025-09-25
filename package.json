@@ -1,14 +1,14 @@
 {
-  "name": "login-linjeforeningen-for-it",
+  "name": "uibee",
   "version": "1.1.5",
   "description": "Shared components, functions and hooks for reuse across Login projects",
-  "homepage": "https://github.com/Login-Linjeforening-for-IT/login-linjeforeningen-for-it#readme",
+  "homepage": "https://github.com/Login-Linjeforening-for-IT/uibee#readme",
   "bugs": {
-    "url": "https://github.com/Login-Linjeforening-for-IT/login-linjeforeningen-for-it/issues"
+    "url": "https://github.com/Login-Linjeforening-for-IT/uibee/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Login-Linjeforening-for-IT/login-linjeforeningen-for-it.git"
+    "url": "git+https://github.com/Login-Linjeforening-for-IT/uibee.git"
   },
   "license": "ISC",
   "author": "",
