@@ -1,7 +1,7 @@
 {
   "name": "login-linjeforeningen-for-it",
   "version": "1.1.5",
-  "description": "",
+  "description": "Shared components, functions and hooks for reuse across Login projects",
   "homepage": "https://github.com/Login-Linjeforening-for-IT/login-linjeforeningen-for-it#readme",
   "bugs": {
     "url": "https://github.com/Login-Linjeforening-for-IT/login-linjeforeningen-for-it/issues"
