@@ -17,19 +17,33 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
-    "./hooks": "./dist/hooks/index.js"
+    "./hooks": "./dist/hooks/index.js",
+    "./components": "./dist/components/index.js",
+    "./styles": "./src/globals.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "src/globals.css"
   ],
   "scripts": {
-    "build": "tsc --declaration"
+    "build": "tsc --declaration",
+    "lint": "eslint --fix ./src"
   },
   "peerDependencies": {
+    "next": "^15.0.0",
     "react": "^19.1.1"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@next/eslint-plugin-next": "^15.5.4",
+    "@stylistic/eslint-plugin": "^5.3.1",
     "@types/react": "^19.1.13",
-    "typescript": "^5.9.2"
+    "eslint": "^9.36.0",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.44.0"
+  },
+  "dependencies": {
+    "lucide-react": "^0.544.0"
   }
 }
