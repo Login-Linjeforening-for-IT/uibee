@@ -14,7 +14,7 @@ async function buildCss() {
     });
     mkdirSync(path.dirname(outputPath), { recursive: true });
     writeFileSync(outputPath, result.css);
-    console.log('🐝 dist/styles.css generated successfully');
+    console.log('🐝 dist/globals.css generated successfully');
 }
 buildCss().catch(err => {
     console.error(err);
