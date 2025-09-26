@@ -1,7 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import * as path from 'path';
 import postcss from 'postcss';
-async function buildCss() {
+export default async function buildCss() {
     const tailwindModule = await import(new URL('../../tailwind.config.ts', import.meta.url).href);
     const tailwindConfig = tailwindModule.default ?? tailwindModule;
     const tailwindPostcss = (await import('@tailwindcss/postcss')).default;
