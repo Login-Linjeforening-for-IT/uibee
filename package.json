@@ -27,10 +27,12 @@
     "src/globals.css"
   ],
   "scripts": {
-    "build:clean": "rm -r dist",
+    "build:clean": "rm -rf dist",
     "build:css": "node --loader ts-node/esm src/scripts/buildCss.ts",
+    "build:assets": "cp -r images dist/images",
+    "build:alias": "tsc-alias",
     "build:ts": "tsc --declaration",
-    "build": "npm run build:clean && npm run build:css && npm run build:ts",
+    "build": "npm run build:clean && npm run build:css && npm run build:ts && npm run build:alias && npm run build:assets",
     "lint": "eslint --fix ./src"
   },
   "peerDependencies": {
@@ -48,6 +50,7 @@
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.13",
     "ts-node": "^10.9.2",
+    "tsc-alias": "^1.8.16",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.44.1"
   },
