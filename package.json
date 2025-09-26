@@ -19,14 +19,16 @@
     ".": "./dist/index.js",
     "./hooks": "./dist/hooks/index.js",
     "./components": "./dist/components/index.js",
-    "./styles": "./src/globals.css"
+    "./styles": "./dist/globals.css"
   },
   "files": [
     "dist",
     "src/globals.css"
   ],
   "scripts": {
-  "build": "tsc && tailwindcss -o src/globals.css",
+    "build:css": "node --loader ts-node/esm src/scripts/buildcss.ts",
+    "build:ts": "tsc --declaration",
+    "build": "npm run build:css && npm run build:ts",
     "lint": "eslint --fix ./src"
   },
   "peerDependencies": {
@@ -37,10 +39,13 @@
     "@eslint/eslintrc": "^3.3.1",
     "@next/eslint-plugin-next": "^15.5.4",
     "@stylistic/eslint-plugin": "^5.3.1",
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
     "eslint": "^9.36.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.13",
+    "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.44.0"
   },
