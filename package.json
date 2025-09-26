@@ -26,7 +26,7 @@
     "src/globals.css"
   ],
   "scripts": {
-    "build": "tsc --declaration",
+  "build": "tsc && tailwindcss -o src/globals.css",
     "lint": "eslint --fix ./src"
   },
   "peerDependencies": {
