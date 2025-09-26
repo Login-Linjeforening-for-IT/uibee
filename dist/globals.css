@@ -29,6 +29,7 @@
     --color-login-900: #121212;
     --color-login-600: #212121;
     --color-login-100: #b0b0b0;
+    --color-login-50: #ededed;
   }
 }
 @layer base {
@@ -294,6 +295,9 @@
   }
   .text-login {
     color: var(--color-login);
+  }
+  .text-login-50 {
+    color: var(--color-login-50);
   }
   .text-login-100 {
     color: var(--color-login-100);
