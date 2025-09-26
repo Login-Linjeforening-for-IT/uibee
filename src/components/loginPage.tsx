@@ -32,7 +32,11 @@ export default function LoginPage({title, description, redirectURI, version, btg
                 {btg ? (
                     <form
                         className='w-full flex flex-col gap-3 max-w-xs'
-                        onSubmit={e => { handleSubmit?.(new FormData(e.currentTarget)) }}
+                        onSubmit={e => {
+                            e.preventDefault()
+                            handleSubmit?.(new FormData(e.currentTarget))
+                            e.currentTarget.reset()
+                        }}
                     >
                         <input
                             type='text'
