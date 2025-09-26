@@ -1,7 +1,6 @@
 import { LoginPageProps } from 'uibee/components'
 import { LogIn } from 'lucide-react'
 import Link from 'next/link'
-import React from 'react'
 import Image from 'next/image'
 
 export default function LoginPage({title, description, redirectURI, version}: LoginPageProps) {

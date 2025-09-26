@@ -7,7 +7,6 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-orange-500: oklch(70.5% 0.213 47.604);
     --spacing: 0.25rem;
     --container-xs: 20rem;
     --container-md: 28rem;
@@ -15,16 +14,12 @@
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-lg: 1.125rem;
     --text-lg--line-height: calc(1.75 / 1.125);
-    --text-2xl: 1.5rem;
-    --text-2xl--line-height: calc(2 / 1.5);
     --text-3xl: 1.875rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
     --font-weight-medium: 500;
-    --font-weight-semibold: 600;
     --font-weight-bold: 700;
     --font-weight-extrabold: 800;
     --tracking-tight: -0.025em;
-    --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -33,7 +28,6 @@
     --color-login: #fd8738;
     --color-login-900: #121212;
     --color-login-600: #212121;
-    --color-login-300: #5e5e5e;
     --color-login-100: #b0b0b0;
   }
 }
@@ -198,23 +192,14 @@
   .flex {
     display: flex;
   }
-  .grid {
-    display: grid;
-  }
   .aspect-\[3\/1\] {
     aspect-ratio: 3/1;
   }
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
-  .h-full {
-    height: 100%;
-  }
   .min-h-screen {
     min-height: 100vh;
-  }
-  .w-5 {
-    width: calc(var(--spacing) * 5);
   }
   .w-6 {
     width: calc(var(--spacing) * 6);
@@ -231,9 +216,6 @@
   .flex-col {
     flex-direction: column;
   }
-  .place-items-center {
-    place-items: center;
-  }
   .items-center {
     align-items: center;
   }
@@ -245,9 +227,6 @@
   }
   .gap-4 {
     gap: calc(var(--spacing) * 4);
-  }
-  .rounded-lg {
-    border-radius: var(--radius-lg);
   }
   .rounded-xl {
     border-radius: var(--radius-xl);
@@ -264,9 +243,6 @@
   .object-contain {
     object-fit: contain;
   }
-  .p-4 {
-    padding: calc(var(--spacing) * 4);
-  }
   .p-8 {
     padding: calc(var(--spacing) * 8);
   }
@@ -276,12 +252,6 @@
   .px-6 {
     padding-inline: calc(var(--spacing) * 6);
   }
-  .px-8 {
-    padding-inline: calc(var(--spacing) * 8);
-  }
-  .py-1 {
-    padding-block: calc(var(--spacing) * 1);
-  }
   .py-3 {
     padding-block: calc(var(--spacing) * 3);
   }
@@ -290,13 +260,6 @@
   }
   .text-center {
     text-align: center;
-  }
-  .align-middle {
-    vertical-align: middle;
-  }
-  .text-2xl {
-    font-size: var(--text-2xl);
-    line-height: var(--tw-leading, var(--text-2xl--line-height));
   }
   .text-3xl {
     font-size: var(--text-3xl);
@@ -322,10 +285,6 @@
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
   }
-  .font-semibold {
-    --tw-font-weight: var(--font-weight-semibold);
-    font-weight: var(--font-weight-semibold);
-  }
   .tracking-tight {
     --tw-tracking: var(--tracking-tight);
     letter-spacing: var(--tracking-tight);
@@ -335,9 +294,6 @@
   }
   .text-login-100 {
     color: var(--color-login-100);
-  }
-  .text-login-300 {
-    color: var(--color-login-300);
   }
   .transition-all {
     transition-property: all;
@@ -355,13 +311,6 @@
         @supports (color: color-mix(in lab, red, red)) {
           background-color: color-mix(in oklab, var(--color-login) 80%, transparent);
         }
-      }
-    }
-  }
-  .hover\:bg-orange-500 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-orange-500);
       }
     }
   }

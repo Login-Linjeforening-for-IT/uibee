@@ -1,5 +1,3 @@
-import { JSX } from 'react'
-
 declare module 'uibee/components' {
     export interface LoginPageProps {
         title: string
