@@ -16,7 +16,7 @@ export default async function buildCss() {
 
     mkdirSync(path.dirname(outputPath), { recursive: true })
     writeFileSync(outputPath, result.css)
-    console.log('🐝 dist/globals.css generated successfully')
+    console.log('🐝 CSS generated successfully')
 }
 
 buildCss().catch(err => {

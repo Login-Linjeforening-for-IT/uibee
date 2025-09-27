@@ -33,4 +33,5 @@ jsFiles.forEach((file) => {
     fs.writeFileSync(file, content, 'utf-8')
 })
 
-console.log('🐝 Image imports rewritten.')
+console.log('🐝 Image imports rewritten')
+console.log('🐝 Build complete')
