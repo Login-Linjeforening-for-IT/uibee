@@ -66,7 +66,7 @@ export default function Toaster() {
         >
             {toasts.slice().reverse().map((toast, idx) => (
                 <div
-                    key={toast.id}
+                    key={`${toast.id}-${idx}`}
                     className={
                         'p-2 rounded-lg text-login-50 animate-fade-in-down transition-all w-sm flex items-center gap-2 ' +
                         (bgClasses[idx] || bgClasses[2])
@@ -84,7 +84,9 @@ export default function Toaster() {
                     </span>
                     <div className='pr-1 pb-1'>
                         <span className='font-bold'>{toast.title}</span>
-                        <span className='text-sm line-clamp-3'>{toast.description}</span>
+                        {(idx === 0 || isHovered) &&
+                            <span className='text-sm line-clamp-3'>{toast.description}</span>
+                        }
                     </div>
                 </div>
             ))}
