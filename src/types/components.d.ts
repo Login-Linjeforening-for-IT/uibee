@@ -1,3 +1,4 @@
+/* eslint-disable @stylistic/semi */
 declare module 'uibee/components' {
     export interface LoginPageProps {
         title: string
@@ -7,8 +8,6 @@ declare module 'uibee/components' {
         btg?: boolean
         handleSubmit?: (formData: FormData) => void
     }
-
-    export default function LoginPage(props: LoginPageProps): JSX.Element
 
     export interface ToastProps {
         id: number
@@ -25,5 +24,6 @@ declare module 'uibee/components' {
         (event: ToastEventProps): void
     }
 
-    export default function Toaster(props: { toasts: ToastProps[] }): JSX.Element
+    export default function LoginPage(props: LoginPageProps): JSX.Element;
+    export default function Toaster(props: { toasts: ToastProps[] }): JSX.Element;
 }

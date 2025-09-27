@@ -1,3 +1,4 @@
+/* eslint-disable @stylistic/semi */
 declare module 'uibee/utils' {
     export interface SlowQueryProps {
         application: string
@@ -14,5 +15,20 @@ declare module 'uibee/utils' {
         timestamp: string
     }
 
-    export default async function alertSlowQuery(props: SlowQueryProps): Promise<void>
+    export interface Data {
+        content?: string
+        embeds: Embed[]
+    }
+
+    export interface DiscordAlertProps {
+        application: string
+        description: string
+        type: 'get' | 'post' | ''
+        ping: boolean
+        criticalRole: string
+        webhookURL: string
+    }
+
+    export default async function alertSlowQuery(props: SlowQueryProps): Promise<void>;
+    export default async function discordAlert(props: DiscordAlertProps): Promise<number>;
 }

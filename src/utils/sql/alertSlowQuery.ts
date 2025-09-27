@@ -1,9 +1,4 @@
-import { Embed, SlowQueryProps } from 'uibee/utils'
-
-type SlowQueryData = {
-    content?: string
-    embeds: Embed[]
-}
+import { Data, SlowQueryProps } from 'uibee/utils'
 
 export default async function alertSlowQuery({
     application,
@@ -16,7 +11,7 @@ export default async function alertSlowQuery({
     const lowerCaseName = name.toLowerCase()
     const firstUpperCaseName = `${name.slice(0, 1).toUpperCase()}${name.slice(1).toLowerCase()}`
     if (duration > cacheTTL / 2 && webhookURL) {
-        const data: SlowQueryData = {
+        const data: Data = {
             embeds: [
                 {
                     title: `🐝 ${application} ${firstUpperCaseName} Query Timing 🐝`,
