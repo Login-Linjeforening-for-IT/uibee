@@ -13,4 +13,6 @@ declare module 'uibee/utils' {
         color: number
         timestamp: string
     }
+
+    export default function alertSlowQuery(props: SlowQueryProps): Promise<void>
 }

@@ -12,7 +12,7 @@ export default async function alertSlowQuery({
     cacheTTL,
     webhookURL,
     criticalRole
-}: SlowQueryProps) {
+}: SlowQueryProps): Promise<void> {
     const lowerCaseName = name.toLowerCase()
     const firstUpperCaseName = `${name.slice(0, 1).toUpperCase()}${name.slice(1).toLowerCase()}`
     if (duration > cacheTTL / 2 && webhookURL) {
