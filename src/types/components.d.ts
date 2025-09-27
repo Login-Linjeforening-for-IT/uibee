@@ -8,9 +8,7 @@ declare module 'uibee/components' {
         handleSubmit?: (formData: FormData) => void
     }
 
-
     export default function LoginPage(props: LoginPageProps): JSX.Element
-
 
     export interface ToastProps {
         id: number
