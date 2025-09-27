@@ -20,6 +20,7 @@
     "./hooks": "./dist/src/hooks/index.js",
     "./components": "./dist/src/components/index.js",
     "./scripts": "./dist/src/scripts/index.js",
+    "./utils": "./dist/src/utils/index.js",
     "./styles": "./dist/globals.css"
   },
   "files": [
