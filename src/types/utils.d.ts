@@ -14,5 +14,5 @@ declare module 'uibee/utils' {
         timestamp: string
     }
 
-    export default function alertSlowQuery(props: SlowQueryProps): Promise<void>
+    export default async function alertSlowQuery(props: SlowQueryProps): Promise<void>
 }
