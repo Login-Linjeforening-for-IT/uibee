@@ -23,10 +23,6 @@
     "./utils": "./dist/src/utils/index.js",
     "./styles": "./dist/globals.css"
   },
-  "files": [
-    "dist",
-    "src/globals.css"
-  ],
   "scripts": {
     "build:clean": "rm -rf dist",
     "build:css": "node --loader ts-node/esm src/scripts/buildCss.ts",
