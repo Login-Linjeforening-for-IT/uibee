@@ -52,8 +52,7 @@
     "tailwindcss": "^4.1.13",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.44.1",
-    "typescript-transform-paths": "^3.5.5"
+    "typescript-eslint": "^8.44.1"
   },
   "dependencies": {
     "lucide-react": "^0.544.0"
