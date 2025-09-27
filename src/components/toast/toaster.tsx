@@ -16,6 +16,8 @@ export default function Toaster() {
     const timers = useRef<{ [id: number]: NodeJS.Timeout }>({})
     const [isHovered, setIsHovered] = useState(false)
     const pauseTimes = useRef<{ [id: number]: number }>({})
+    const mainToastRef = useRef<HTMLDivElement>(null)
+    const [mainToastPosition, setMainToastPosition] = useState<{ top: number; right: number } | null>(null)
 
     useEffect(() => {
         const listener: ToastObserverProps = ({ type, title, description }) => {
@@ -57,6 +59,17 @@ export default function Toaster() {
         }
     }, [isHovered, toasts])
 
+    // Track main toast position for stacking
+    useEffect(() => {
+        if (mainToastRef.current && toasts.length > 0) {
+            const rect = mainToastRef.current.getBoundingClientRect()
+            setMainToastPosition({
+                top: rect.top,
+                right: window.innerWidth - rect.right
+            })
+        }
+    }, [toasts, isHovered])
+
     const bgClasses = ['bg-login-600', 'bg-login-700', 'bg-login-800']
     return (
         <div
@@ -67,15 +80,17 @@ export default function Toaster() {
             {toasts.slice().reverse().map((toast, idx) => (
                 <div
                     key={`${toast.id}-${idx}`}
+                    ref={idx === 0 ? mainToastRef : null}
                     className={
                         'p-2 rounded-lg text-login-50 animate-fade-in-down transition-all w-sm flex items-center gap-2 ' +
                         (bgClasses[idx] || bgClasses[2])
                     }
-                    style={isHovered ? {} : {
-                        position: 'absolute',
-                        right: 0,
+                    style={isHovered ? {} : idx === 0 ? {
+                        zIndex: 100,
+                    } : {
+                        position: 'fixed',
+                        top: mainToastPosition ? `${mainToastPosition.top - idx * 8}px` : 'auto',
                         zIndex: 100 - idx,
-                        bottom: `${idx * 8}px`,
                         transform: `scale(${1 - idx * 0.05})`,
                     }}
                 >
