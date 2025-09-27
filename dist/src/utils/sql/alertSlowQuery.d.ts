@@ -1,9 +1,2 @@
-type SlowQueryProps = {
-    duration: number;
-    name: string;
-    cacheTTL: number;
-    webhookURL: string;
-    criticalRole: string;
-};
-export default function alertSlowQuery({ duration, name, cacheTTL, webhookURL, criticalRole }: SlowQueryProps): Promise<void>;
-export {};
+import { SlowQueryProps } from 'uibee/utils';
+export default function alertSlowQuery({ application, duration, name, cacheTTL, webhookURL, criticalRole }: SlowQueryProps): Promise<void>;
