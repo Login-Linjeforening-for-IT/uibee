@@ -14,11 +14,14 @@
     "jsx": "react-jsx",
     "resolveJsonModule": true,
     "paths": {
-      "@images/*": ["images/*"]
+      "@images/*": [
+        "images/*"
+      ]
     }
   },
   "include": [
     "src",
-    "tailwind.config.ts"
+    "tailwind.config.ts",
+    "index.d.ts"
   ]
 }
