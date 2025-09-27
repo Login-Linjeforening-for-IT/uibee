@@ -27,6 +27,7 @@
     --default-mono-font-family: var(--font-mono);
     --color-login: #fd8738;
     --color-login-900: #121212;
+    --color-login-700: #1a1a1a;
     --color-login-600: #212121;
     --color-login-100: #b0b0b0;
     --color-login-50: #ededed;
@@ -181,8 +182,23 @@
   }
 }
 @layer utilities {
+  .absolute {
+    position: absolute;
+  }
+  .fixed {
+    position: fixed;
+  }
   .relative {
     position: relative;
+  }
+  .right-4 {
+    right: calc(var(--spacing) * 4);
+  }
+  .bottom-4 {
+    bottom: calc(var(--spacing) * 4);
+  }
+  .z-50 {
+    z-index: 50;
   }
   .mt-2 {
     margin-top: calc(var(--spacing) * 2);
@@ -207,6 +223,9 @@
   }
   .w-full {
     width: 100%;
+  }
+  .w-xs {
+    width: var(--container-xs);
   }
   .max-w-md {
     max-width: var(--container-md);
@@ -246,6 +265,9 @@
   }
   .bg-login-600 {
     background-color: var(--color-login-600);
+  }
+  .bg-login-700 {
+    background-color: var(--color-login-700);
   }
   .bg-login-900 {
     background-color: var(--color-login-900);
