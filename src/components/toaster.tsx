@@ -1,7 +1,9 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { CircleAlert, CircleCheck, CircleX, Info } from 'lucide-react'
+import { useEffect, useState, useRef } from 'react'
 import { ToastProps, ToastObserverProps } from 'uibee/components'
+
 
 const observers: ToastObserverProps[] = []
 
@@ -10,86 +12,92 @@ export function addToast(message: string, type?: ToastProps['type']) {
 }
 
 export default function Toaster() {
-    const [toasts, setToasts] = useState<ToastProps[]>([])
-    const [hovered, setHovered] = useState(false)
-    const MAX_TOASTS = 3
-
-    const timeoutsRef = useState<{ [id: number]: NodeJS.Timeout }>({})[0]
+    const [toasts, setToasts] = useState<Array<ToastProps & { id: number; remaining: number; created: number }>>([])
+    const timers = useRef<{ [id: number]: NodeJS.Timeout }>({})
+    const [isHovered, setIsHovered] = useState(false)
+    const pauseTimes = useRef<{ [id: number]: number }>({})
 
     useEffect(() => {
         const listener: ToastObserverProps = ({ message, type }) => {
-            const toast = { id: Date.now(), message, type }
-            setToasts((prev) => {
-                const updated = [...prev, toast].slice(-MAX_TOASTS)
-                return updated
+            const id = Date.now()
+            setToasts(prev => {
+                const newToasts = prev.concat({ id, message, type, remaining: 3000, created: Date.now() }).slice(-3)
+                return newToasts
             })
-            if (!hovered) {
-                const timeoutId = setTimeout(() => {
-                    setToasts((prev) => prev.filter((t) => t.id !== toast.id))
-                    delete timeoutsRef[toast.id]
-                }, 3000)
-                timeoutsRef[toast.id] = timeoutId
-            }
         }
         observers.push(listener)
         return () => {
             const idx = observers.indexOf(listener)
             if (idx > -1) observers.splice(idx, 1)
-            Object.values(timeoutsRef).forEach(clearTimeout)
+            Object.values(timers.current).forEach(clearTimeout)
         }
-    }, [hovered])
+    }, [])
 
     useEffect(() => {
-        if (hovered) {
-            Object.values(timeoutsRef).forEach(clearTimeout)
+        if (isHovered) {
+            toasts.forEach(toast => {
+                if (timers.current[toast.id]) {
+                    clearTimeout(timers.current[toast.id])
+                    const elapsed = Date.now() - toast.created
+                    pauseTimes.current[toast.id] = toast.remaining - elapsed > 0 ? toast.remaining - elapsed : 0
+                    setToasts(prev => prev.map(t => t.id === toast.id ? { ...t, remaining: pauseTimes.current[toast.id] } : t))
+                    delete timers.current[toast.id]
+                }
+            })
         } else {
-            toasts.forEach((toast) => {
-                if (!timeoutsRef[toast.id]) {
-                    const timeoutId = setTimeout(() => {
-                        setToasts((prev) => prev.filter((t) => t.id !== toast.id))
-                        delete timeoutsRef[toast.id]
-                    }, 3000)
-                    timeoutsRef[toast.id] = timeoutId
+            toasts.forEach(toast => {
+                if (!timers.current[toast.id] && toast.remaining > 0) {
+                    timers.current[toast.id] = setTimeout(() => {
+                        setToasts(prev => prev.filter(t => t.id !== toast.id))
+                        delete timers.current[toast.id]
+                    }, toast.remaining)
+                    setToasts(prev => prev.map(t => t.id === toast.id ? { ...t, created: Date.now() } : t))
                 }
             })
         }
-        return () => {
-            Object.values(timeoutsRef).forEach(clearTimeout)
-        }
-    }, [hovered, toasts, timeoutsRef])
+    }, [isHovered, toasts])
 
+    const bgClasses = ['bg-login-600', 'bg-login-700', 'bg-login-800']
     return (
         <div
-            className={`fixed bottom-4 right-4 z-50 flex flex-col items-end${hovered ? ' gap-2' : ''}`}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
+            className={`fixed bottom-4 right-4 z-50 flex ${isHovered ? 'flex-col-reverse items-end gap-2' : 'flex-col items-end'}`}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
         >
-            {(hovered ? [...toasts] : [...toasts].reverse()).map((toast, idx) => (
+            {toasts.slice().reverse().map((toast, idx) => (
                 <div
                     key={toast.id}
                     className={
-                        'px-4 py-2 rounded text-login-50 animate-fade-in-down transition-all w-xs bg-login-700'
+                        'p-2 rounded-lg text-login-50 animate-fade-in-down transition-all w-sm flex items-center gap-2 ' +
+                        (bgClasses[idx] || bgClasses[2])
                     }
-                    style={
-                        hovered ? {
-                            position: 'relative',
-                            marginTop: 0,
-                            marginBottom: 0,
-                            zIndex: 100 - idx,
-                            transform: 'scale(1)',
-                            bottom: '0',
-                        } : {
-                            position: 'absolute',
-                            right: 0,
-                            zIndex: 100 - idx,
-                            bottom: `${idx * 8}px`,
-                            transform: `scale(${1 - idx * 0.05})`,
-                        }
-                    }
+                    style={isHovered ? {} : {
+                        position: 'absolute',
+                        right: 0,
+                        zIndex: 100 - idx,
+                        bottom: `${idx * 8}px`,
+                        transform: `scale(${1 - idx * 0.05})`,
+                    }}
                 >
-                    {toast.message}
+                    <span className='flex-shrink-0 w-10 h-10 flex items-center justify-center'>
+                        <ToastIcon type={toast.type} />
+                    </span>
+                    <span>{toast.message}</span>
                 </div>
             ))}
         </div>
     )
+}
+
+function ToastIcon({ type }: { type?: ToastProps['type'] }) {
+    switch (type) {
+        case 'success':
+            return <CircleCheck />
+        case 'warning':
+            return <CircleAlert />
+        case 'error':
+            return <CircleX />
+        case 'info':
+            return <Info />
+    }
 }
