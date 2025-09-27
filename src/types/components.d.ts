@@ -9,15 +9,18 @@ declare module 'uibee/components' {
         handleSubmit?: (formData: FormData) => void
     }
 
+    export type ToastType = 'success' | 'error' | 'info' | 'warning'
     export interface ToastProps {
         id: number
-        message: string
-        type?: 'success' | 'error' | 'info' | 'warning'
+        type: ToastType
+        title: string
+        description?: string
     }
 
     export interface ToastEventProps {
-        message: string
-        type?: ToastProps['type']
+        type: ToastType
+        title: string
+        description?: string
     }
 
     export interface ToastObserverProps {

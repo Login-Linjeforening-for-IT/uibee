@@ -3,8 +3,8 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { CircleAlert, CircleCheck, CircleX, Info } from 'lucide-react';
 import { useEffect, useState, useRef } from 'react';
 const observers = [];
-export function addToast(message, type) {
-    observers.forEach((observer) => observer({ message, type }));
+export function addToast(type, title, description = '') {
+    observers.forEach((observer) => observer({ title, description, type }));
 }
 export default function Toaster() {
     const [toasts, setToasts] = useState([]);
@@ -12,10 +12,10 @@ export default function Toaster() {
     const [isHovered, setIsHovered] = useState(false);
     const pauseTimes = useRef({});
     useEffect(() => {
-        const listener = ({ message, type }) => {
+        const listener = ({ type, title, description }) => {
             const id = Date.now();
             setToasts(prev => {
-                const newToasts = prev.concat({ id, message, type, remaining: 3000, created: Date.now() }).slice(-3);
+                const newToasts = prev.concat({ id, type, title, description, remaining: 3000, created: Date.now() }).slice(-3);
                 return newToasts;
             });
         };
@@ -59,17 +59,17 @@ export default function Toaster() {
                 zIndex: 100 - idx,
                 bottom: `${idx * 8}px`,
                 transform: `scale(${1 - idx * 0.05})`,
-            }, children: [_jsx("span", { className: 'flex-shrink-0 w-10 h-10 flex items-center justify-center', children: _jsx(ToastIcon, { type: toast.type }) }), _jsx("span", { children: toast.message })] }, toast.id))) }));
+            }, children: [_jsx("span", { className: 'flex-shrink-0 w-10 h-10 flex items-center justify-center', children: _jsx(ToastIcon, { type: toast.type }) }), _jsxs("div", { className: 'pr-1 pb-1', children: [_jsx("span", { className: 'font-bold', children: toast.title }), _jsx("span", { className: 'text-sm line-clamp-3', children: toast.description })] })] }, toast.id))) }));
 }
 function ToastIcon({ type }) {
     switch (type) {
         case 'success':
-            return _jsx(CircleCheck, {});
+            return _jsx(CircleCheck, { className: 'text-green-300/70' });
         case 'warning':
-            return _jsx(CircleAlert, {});
+            return _jsx(CircleAlert, { className: 'text-yellow-300/70' });
         case 'error':
-            return _jsx(CircleX, {});
+            return _jsx(CircleX, { className: 'text-red-300/70' });
         case 'info':
-            return _jsx(Info, {});
+            return _jsx(Info, { className: 'text-blue-300/70' });
     }
 }

@@ -2,26 +2,26 @@
 
 import { CircleAlert, CircleCheck, CircleX, Info } from 'lucide-react'
 import { useEffect, useState, useRef } from 'react'
-import { ToastProps, ToastObserverProps } from 'uibee/components'
+import { ToastProps, ToastType, ToastObserverProps } from 'uibee/components'
 
 
 const observers: ToastObserverProps[] = []
 
-export function addToast(message: string, type?: ToastProps['type']) {
-    observers.forEach((observer) => observer({ message, type }))
+export function addToast(type: ToastType, title: string, description: string = '') {
+    observers.forEach((observer) => observer({ title, description, type }))
 }
 
 export default function Toaster() {
-    const [toasts, setToasts] = useState<Array<ToastProps & { id: number; remaining: number; created: number }>>([])
+    const [toasts, setToasts] = useState<Array<ToastProps & { remaining: number; created: number }>>([])
     const timers = useRef<{ [id: number]: NodeJS.Timeout }>({})
     const [isHovered, setIsHovered] = useState(false)
     const pauseTimes = useRef<{ [id: number]: number }>({})
 
     useEffect(() => {
-        const listener: ToastObserverProps = ({ message, type }) => {
+        const listener: ToastObserverProps = ({ type, title, description }) => {
             const id = Date.now()
             setToasts(prev => {
-                const newToasts = prev.concat({ id, message, type, remaining: 3000, created: Date.now() }).slice(-3)
+                const newToasts = prev.concat({ id, type, title, description, remaining: 3000, created: Date.now() }).slice(-3)
                 return newToasts
             })
         }
@@ -82,22 +82,25 @@ export default function Toaster() {
                     <span className='flex-shrink-0 w-10 h-10 flex items-center justify-center'>
                         <ToastIcon type={toast.type} />
                     </span>
-                    <span>{toast.message}</span>
+                    <div className='pr-1 pb-1'>
+                        <span className='font-bold'>{toast.title}</span>
+                        <span className='text-sm line-clamp-3'>{toast.description}</span>
+                    </div>
                 </div>
             ))}
         </div>
     )
 }
 
-function ToastIcon({ type }: { type?: ToastProps['type'] }) {
+function ToastIcon({ type }: { type?: ToastType }) {
     switch (type) {
         case 'success':
-            return <CircleCheck />
+            return <CircleCheck className='text-green-300/70' />
         case 'warning':
-            return <CircleAlert />
+            return <CircleAlert className='text-yellow-300/70' />
         case 'error':
-            return <CircleX />
+            return <CircleX className='text-red-300/70' />
         case 'info':
-            return <Info />
+            return <Info className='text-blue-300/70' />
     }
 }

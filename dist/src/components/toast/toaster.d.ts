@@ -1,3 +1,3 @@
-import { ToastProps } from 'uibee/components';
-export declare function addToast(message: string, type?: ToastProps['type']): void;
+import { ToastType } from 'uibee/components';
+export declare function addToast(type: ToastType, title: string, description?: string): void;
 export default function Toaster(): import("react/jsx-runtime").JSX.Element;
