@@ -1,2 +1,2 @@
-export { default as LoginPage } from './loginPage';
-export { default as Toaster, addToast } from './toaster';
+export { default as LoginPage } from './login/loginPage';
+export { default as Toaster, addToast } from './toast/toaster';

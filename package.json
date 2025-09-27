@@ -30,9 +30,9 @@
     "build:clean": "rm -rf dist",
     "build:css": "node --loader ts-node/esm src/scripts/buildCss.ts",
     "build:assets": "cp -r images dist/images",
-    "build:alias": "tsc-alias",
+    "build:rewrite": "node dist/src/scripts/rewriteAlias.js",
     "build:ts": "tsc --declaration",
-    "build": "npm run build:clean && npm run build:css && npm run build:ts && npm run build:alias && npm run build:assets",
+    "build": "npm run build:clean && npm run build:css && npm run build:ts && npm run build:assets && npm run build:rewrite",
     "lint": "eslint --fix ./src"
   },
   "peerDependencies": {
@@ -47,12 +47,13 @@
     "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
     "eslint": "^9.36.0",
+    "glob": "^11.0.3",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.13",
     "ts-node": "^10.9.2",
-    "tsc-alias": "^1.8.16",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.44.1"
+    "typescript-eslint": "^8.44.1",
+    "typescript-transform-paths": "^3.5.5"
   },
   "dependencies": {
     "lucide-react": "^0.544.0"
