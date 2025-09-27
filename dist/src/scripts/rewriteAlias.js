@@ -7,7 +7,6 @@ const jsFiles = globSync(`${DIST_DIR}/**/*.js`, { nodir: true });
 jsFiles.forEach((file) => {
     let content = fs.readFileSync(file, 'utf-8');
     const fileDir = path.dirname(file);
-    // Rewrite @images imports to relative paths
     content = content.replace(/from ['"]@images\/(.*?)['"]/g, (_, p1) => {
         const targetPath = path.join(IMAGES_DIR, p1);
         const relative = path.relative(fileDir, targetPath).replace(/\\/g, '/');
