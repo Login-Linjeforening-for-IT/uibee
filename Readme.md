@@ -3,21 +3,13 @@
 
 This package includes shared components, functions and hooks for reuse across Login projects.
 
-## Installation
+## Getting Started
 
 ```bash
-# Clone the repository
-git clone git@github.com:Login-Linjeforening-for-IT/uibee.git
-cd uibee
-
 # Install dependencies
 npm install
-```
 
-## Usage
-
-```bash
-# Start the development server
+# Build the project
 npm run build
 ```
 
