@@ -21,7 +21,7 @@ export default async function AuthToken({ req, frontendURL, redirectPath }: Auth
     const userName = url.searchParams.get('user_name')!
     const userRoles = url.searchParams.get('user_roles')!
 
-    const response = NextResponse.redirect(new URL('/dashboard', frontendURL))
+    const response = NextResponse.redirect(new URL(redirectPath || '/', frontendURL))
     response.cookies.set('access_token', accessToken)
     response.cookies.set('access_token_expires', accessTokenExpires)
     response.cookies.set('refresh_token', refreshToken)
