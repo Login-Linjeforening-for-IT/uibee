@@ -48,7 +48,7 @@ declare module 'uibee/utils' {
     }
 
     export interface AuthTokenProps {
-        request: NextRequest
+        req: NextRequest
         frontendURL: string
     }
     export interface AuthLogoutProps {

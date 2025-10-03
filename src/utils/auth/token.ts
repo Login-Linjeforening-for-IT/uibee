@@ -1,8 +1,8 @@
 import { NextResponse } from 'next/server'
 import type { AuthTokenProps } from 'uibee/utils'
 
-export default async function AuthToken({ request, frontendURL }: AuthTokenProps) {
-    const url = new URL(request.url)
+export default async function AuthToken({ req, frontendURL }: AuthTokenProps) {
+    const url = new URL(req.url)
     const token = url.searchParams.get('access_token')
     const btg = url.searchParams.get('btg')
     if (!token) {
