@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-export default async function AuthToken({ request, frontendURL }) {
-    const url = new URL(request.url);
+export default async function AuthToken({ req, frontendURL }) {
+    const url = new URL(req.url);
     const token = url.searchParams.get('access_token');
     const btg = url.searchParams.get('btg');
     if (!token) {
