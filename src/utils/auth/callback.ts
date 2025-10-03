@@ -13,7 +13,7 @@ export default async function authCallback({
     tokenURL,
     clientID,
     clientSecret,
-    redirectURI,
+    redirectURL,
     userInfoURL,
     tokenRedirectURL
 }: AuthCallbackProps) {
@@ -37,7 +37,7 @@ export default async function authCallback({
                 client_id: clientID,
                 client_secret: clientSecret,
                 code: code as string,
-                redirect_uri: redirectURI,
+                redirect_url: redirectURL,
                 grant_type: 'authorization_code',
             }).toString()
         })

@@ -33,7 +33,7 @@ declare module 'uibee/utils' {
 
     export interface AuthLoginProps {
         clientID: string
-        redirectURI: string
+        redirectURL: string
         authURL: string
     }
 
@@ -42,7 +42,7 @@ declare module 'uibee/utils' {
         tokenURL: string
         clientID: string
         clientSecret: string
-        redirectURI: string
+        redirectURL: string
         userInfoURL: string
         tokenRedirectURL: string
     }

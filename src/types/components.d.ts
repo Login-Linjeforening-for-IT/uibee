@@ -3,7 +3,7 @@ declare module 'uibee/components' {
     export interface LoginPageProps {
         title: string
         description?: string
-        redirectURI: string
+        redirectURL: string
         version: string
         btg?: boolean
         handleSubmit?: (formData: FormData) => void

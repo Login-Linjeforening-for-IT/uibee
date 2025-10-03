@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-export default async function authCallback({ req, tokenURL, clientID, clientSecret, redirectURI, userInfoURL, tokenRedirectURL }) {
+export default async function authCallback({ req, tokenURL, clientID, clientSecret, redirectURL, userInfoURL, tokenRedirectURL }) {
     const searchParams = new URL(req.url).searchParams;
     if (!searchParams) {
         return NextResponse.json({ error: 'No search parameters found.' }, { status: 400 });
@@ -17,7 +17,7 @@ export default async function authCallback({ req, tokenURL, clientID, clientSecr
                 client_id: clientID,
                 client_secret: clientSecret,
                 code: code,
-                redirect_uri: redirectURI,
+                redirect_url: redirectURL,
                 grant_type: 'authorization_code',
             }).toString()
         });

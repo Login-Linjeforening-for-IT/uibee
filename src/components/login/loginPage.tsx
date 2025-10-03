@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import logo from '@images/logo-tekst-white.svg'
 
-export default function LoginPage({title, description, redirectURI, version, btg, handleSubmit}: LoginPageProps) {
+export default function LoginPage({title, description, redirectURL, version, btg, handleSubmit}: LoginPageProps) {
     return (
         <main className='min-h-screen flex items-center justify-center bg-login-900 p-8'>
             <div
@@ -62,7 +62,7 @@ export default function LoginPage({title, description, redirectURI, version, btg
                         </button>
                     </form>
                 ) : (
-                    <Link href={redirectURI} className='w-full flex justify-center'>
+                    <Link href={redirectURL} className='w-full flex justify-center'>
                         <button
                             className={
                                 'flex items-center justify-center gap-2 w-full max-w-xs py-3 px-6 rounded-xl bg-login font-bold text-lg ' +
