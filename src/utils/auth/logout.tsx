@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { AuthLogoutProps } from 'uibee/utils'
 
-export default async function AuthLogout({ request, frontendURL }: AuthLogoutProps) {
-    console.log(request.url)
+export default async function AuthLogout({ frontendURL }: AuthLogoutProps) {
     const response = NextResponse.redirect(new URL('/', frontendURL))
 
     // Remove all authentication cookies
