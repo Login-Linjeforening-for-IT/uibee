@@ -17,7 +17,7 @@ export default async function authCallback({ req, tokenURL, clientID, clientSecr
                 client_id: clientID,
                 client_secret: clientSecret,
                 code: code,
-                redirect_url: redirectURL,
+                redirect_uri: redirectURL,
                 grant_type: 'authorization_code',
             }).toString()
         });
