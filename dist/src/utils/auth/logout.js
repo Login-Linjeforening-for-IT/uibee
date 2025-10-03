@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-export default async function AuthLogout({ request, frontendURL }) {
-    console.log(request.url);
+export default async function AuthLogout({ frontendURL }) {
     const response = NextResponse.redirect(new URL('/', frontendURL));
     // Remove all authentication cookies
     const cookiesToRemove = [
