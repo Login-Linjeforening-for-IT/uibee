@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-export default async function AuthToken({ req, frontendURL }) {
+export default async function AuthToken({ req, frontendURL, redirectPath }) {
     const url = new URL(req.url);
     const token = url.searchParams.get('access_token');
     const btg = url.searchParams.get('btg');
@@ -7,7 +7,7 @@ export default async function AuthToken({ req, frontendURL }) {
         return NextResponse.json({ error: 'No access token provided' }, { status: 400 });
     }
     if (btg) {
-        return NextResponse.redirect(new URL('/dashboard', frontendURL));
+        return NextResponse.redirect(new URL(redirectPath || '/', frontendURL));
     }
     const accessToken = url.searchParams.get('access_token');
     const accessTokenExpires = url.searchParams.get('access_token_expires');

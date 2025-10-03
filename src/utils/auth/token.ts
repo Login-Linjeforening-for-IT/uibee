@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import type { AuthTokenProps } from 'uibee/utils'
 
-export default async function AuthToken({ req, frontendURL }: AuthTokenProps) {
+export default async function AuthToken({ req, frontendURL, redirectPath }: AuthTokenProps) {
     const url = new URL(req.url)
     const token = url.searchParams.get('access_token')
     const btg = url.searchParams.get('btg')
@@ -10,7 +10,7 @@ export default async function AuthToken({ req, frontendURL }: AuthTokenProps) {
     }
 
     if (btg) {
-        return NextResponse.redirect(new URL('/dashboard', frontendURL))
+        return NextResponse.redirect(new URL(redirectPath || '/', frontendURL))
     }
 
     const accessToken = url.searchParams.get('access_token')!
