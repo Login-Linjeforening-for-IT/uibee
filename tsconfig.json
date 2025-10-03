@@ -6,7 +6,6 @@
     "declaration": true,
     "outDir": "dist",
     "rootDir": ".",
-    "baseUrl": ".",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -15,7 +14,7 @@
     "resolveJsonModule": true,
     "paths": {
       "@images/*": [
-        "images/*"
+        "./images/*"
       ]
     }
   },

@@ -1,4 +1,6 @@
 /* eslint-disable @stylistic/semi */
+import { NextRequest } from 'next/server'
+
 declare module 'uibee/utils' {
     export interface SlowQueryProps {
         application: string
@@ -29,6 +31,35 @@ declare module 'uibee/utils' {
         webhookURL: string
     }
 
+    export interface AuthLoginProps {
+        clientID: string
+        redirectURI: string
+        authURL: string
+    }
+
+    export interface AuthCallbackProps {
+        req: Request
+        tokenURL: string
+        clientID: string
+        clientSecret: string
+        redirectURI: string
+        userInfoURL: string
+        tokenRedirectURL: string
+    }
+
+    export interface AuthTokenProps {
+        request: NextRequest
+        frontendURL: string
+    }
+    export interface AuthLogoutProps {
+        request: NextRequest
+        frontendURL: string
+    }
+
     export default async function alertSlowQuery(props: SlowQueryProps): Promise<void>;
     export default async function discordAlert(props: DiscordAlertProps): Promise<number>;
+    export default async function authLogin(props: AuthLoginProps): Promise<Response>;
+    export default async function authCallback(props: AuthCallbackProps): Promise<Response>;
+    export default async function authToken(props: AuthTokenProps): Promise<Response>;
+    export default async function authLogout(props: AuthLogoutProps): Promise<Response>;
 }
