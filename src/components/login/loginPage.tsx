@@ -6,7 +6,7 @@ import logo from '@images/logo-tekst-white.svg'
 
 export default function LoginPage({title, description, redirectURL, version, btg, handleSubmit}: LoginPageProps) {
     return (
-        <main className='w-full h-full flex items-center justify-center bg-login-900 p-8'>
+        <main className='w-full h-full flex items-center justify-center bg-login-800 p-8'>
             <div
                 className={
                     'flex flex-col justify-center items-center bg-login-600 px-4 py-12 rounded-xl w-full max-w-md gap-4 md:gap-6'
