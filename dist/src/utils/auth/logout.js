@@ -4,12 +4,10 @@ export default async function AuthLogout({ frontendURL }) {
     // Remove all authentication cookies
     const cookiesToRemove = [
         'access_token',
-        'access_token_expires',
-        'refresh_token',
-        'refresh_token_expires',
         'user_id',
         'user_name',
-        'user_roles'
+        'user_email',
+        'user_groups'
     ];
     cookiesToRemove.forEach(cookieName => {
         response.cookies.delete(cookieName);

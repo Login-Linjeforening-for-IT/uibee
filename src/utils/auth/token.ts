@@ -14,21 +14,17 @@ export default async function AuthToken({ req, frontendURL, redirectPath }: Auth
     }
 
     const accessToken = url.searchParams.get('access_token')!
-    const accessTokenExpires = url.searchParams.get('access_token_expires')!
-    const refreshToken = url.searchParams.get('refresh_token')!
-    const refreshTokenExpires = url.searchParams.get('refresh_token_expires')!
-    const userId = url.searchParams.get('user_id')!
-    const userName = url.searchParams.get('user_name')!
-    const userRoles = url.searchParams.get('user_roles')!
+    const userID = url.searchParams.get('id')!
+    const username = url.searchParams.get('name')!
+    const userEmail = url.searchParams.get('email')!
+    const userGroups = url.searchParams.get('groups')!
 
     const response = NextResponse.redirect(new URL(redirectPath || '/', frontendURL))
     response.cookies.set('access_token', accessToken)
-    response.cookies.set('access_token_expires', accessTokenExpires)
-    response.cookies.set('refresh_token', refreshToken)
-    response.cookies.set('refresh_token_expires', refreshTokenExpires)
-    response.cookies.set('user_id', userId)
-    response.cookies.set('user_name', userName)
-    response.cookies.set('user_roles', userRoles)
+    response.cookies.set('user_id', userID)
+    response.cookies.set('user_name', username)
+    response.cookies.set('user_email', userEmail)
+    response.cookies.set('user_groups', userGroups)
 
     return response
 }
