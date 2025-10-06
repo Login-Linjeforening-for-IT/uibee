@@ -22,6 +22,7 @@
     --container-xs: 20rem;
     --container-sm: 24rem;
     --container-md: 28rem;
+    --container-2xl: 42rem;
     --text-sm: 0.875rem;
     --text-sm--line-height: calc(1.25 / 0.875);
     --text-base: 1rem;
@@ -266,6 +267,9 @@
   .z-50 {
     z-index: 50;
   }
+  .mx-auto {
+    margin-inline: auto;
+  }
   .-mt-0\.5 {
     margin-top: calc(var(--spacing) * -0.5);
   }
@@ -349,6 +353,9 @@
   }
   .w-sm {
     width: var(--container-sm);
+  }
+  .max-w-2xl {
+    max-width: var(--container-2xl);
   }
   .max-w-3xs {
     max-width: var(--container-3xs);
@@ -531,11 +538,23 @@
   .fill-black {
     fill: var(--color-black);
   }
+  .fill-login {
+    fill: var(--color-login);
+  }
+  .fill-none {
+    fill: none;
+  }
   .fill-white {
     fill: var(--color-white);
   }
+  .stroke-\[var\(--color-login\)\] {
+    stroke: var(--color-login);
+  }
   .stroke-3 {
     stroke-width: 3;
+  }
+  .stroke-\[3\.5px\] {
+    stroke-width: 3.5px;
   }
   .object-contain {
     object-fit: contain;
