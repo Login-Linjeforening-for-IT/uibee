@@ -82,3 +82,13 @@ body {
     background: var(--background);
     font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes jump {
+    40% {
+        transform: translateY(-0.3rem);
+    }
+}
+
+@utility animate-jump {
+    animation: jump 0.4s 1;
+}
