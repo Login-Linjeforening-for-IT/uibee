@@ -58,7 +58,6 @@
     --color-login-600: #212121;
     --color-login-300: #5e5e5e;
     --color-login-200: #727272;
-    --color-login-100: #b0b0b0;
     --color-login-50: #ededed;
   }
 }
@@ -867,9 +866,6 @@
   }
   .text-login-50 {
     color: var(--color-login-50);
-  }
-  .text-login-100 {
-    color: var(--color-login-100);
   }
   .text-red-300\/70 {
     color: color-mix(in srgb, oklch(80.8% 0.114 19.571) 70%, transparent);
