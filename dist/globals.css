@@ -355,9 +355,6 @@
   .hidden {
     display: none;
   }
-  .inline {
-    display: inline;
-  }
   .aspect-\[3\/1\] {
     aspect-ratio: 3/1;
   }

@@ -1,8 +1,7 @@
 import { LoginPageProps } from 'uibee/components'
 import { LogIn } from 'lucide-react'
 import Link from 'next/link'
-import Image from 'next/image'
-import logo from '@images/logo-tekst-white.svg'
+import Logo from '@components/logo/logo'
 
 export default function LoginPage({title, description, redirectURL, version, btg, handleSubmit}: LoginPageProps) {
     return (
@@ -13,12 +12,7 @@ export default function LoginPage({title, description, redirectURL, version, btg
                 }
             >
                 <div className='relative aspect-[3/1] w-full'>
-                    <Image
-                        src={logo}
-                        alt='Logo'
-                        fill
-                        className='object-contain sm:px-12'
-                    />
+                    <Logo className='object-contain px-6 sm:px-12' />
                 </div>
                 <h1 className='text-3xl font-extrabold text-login text-center tracking-tight'>
                     {title} {btg ? ' - Break the Glass' : ''}

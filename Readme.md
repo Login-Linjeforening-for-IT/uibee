@@ -23,7 +23,6 @@ npm run build
 │   ├── types/           # TypeScript type definitions
 │   ├── utils/           # Utility functions
 │   └── globals.css      # Global styles
-├── images/              # Project images and SVGs
 ├── package.json         # Project metadata and scripts
 ├── tailwind.config.ts   # Tailwind CSS configuration
 ├── tsconfig.json        # TypeScript configuration

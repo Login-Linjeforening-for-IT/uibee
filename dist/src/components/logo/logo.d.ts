@@ -1,1 +1,5 @@
-export default function Logo(): import("react/jsx-runtime").JSX.Element;
+interface LogoProps {
+    className?: string;
+}
+export default function Logo({ className }: LogoProps): import("react/jsx-runtime").JSX.Element;
+export {};
