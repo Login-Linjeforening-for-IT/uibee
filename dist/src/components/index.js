@@ -12,5 +12,6 @@ export { default as LanguageToggle } from './toggle/language';
 export { default as Navbar } from './navbar/navbar';
 export { default as NavItem } from './navbar/navbarItem';
 export { default as NavDropdown } from './navbar/navbarDropdown';
+export { default as VersionTag } from './version/version';
 export { default as LoginPage } from './login/loginPage';
 export { default as Toaster, addToast } from './toast/toaster';
