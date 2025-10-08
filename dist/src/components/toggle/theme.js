@@ -3,7 +3,7 @@ import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useState } from 'react';
 import { getCookie, setCookie } from '../../utils/cookies/cookies';
 import { useRouter } from 'next/navigation';
-export default function ThemeSwitch({ className }) {
+export default function ThemeToggle({ className }) {
     const router = useRouter();
     const [theme, setTheme] = useState('dark');
     useEffect(() => {

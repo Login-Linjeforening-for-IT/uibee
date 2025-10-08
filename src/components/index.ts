@@ -11,5 +11,10 @@ export { default as LogoSmall } from './logo/logoSmall'
 export { default as ThemeToggle } from './toggle/theme'
 export { default as LanguageToggle } from './toggle/language'
 
+// Navbar
+export { default as Navbar } from './navbar/navbar'
+export { default as NavItem } from './navbar/navbarItem'
+export { default as NavDropdown } from './navbar/navbarDropdown'
+
 export { default as LoginPage } from './login/loginPage'
 export { default as Toaster, addToast } from './toast/toaster'

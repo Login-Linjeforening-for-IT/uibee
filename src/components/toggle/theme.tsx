@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { getCookie, setCookie } from '@utils/cookies/cookies'
 import { useRouter } from 'next/navigation'
 
-export default function ThemeSwitch({className}: {className?: string}) {
+export default function ThemeToggle({className}: {className?: string}) {
     const router = useRouter()
     const [theme, setTheme] = useState<'dark' | 'light'>('dark')
 
