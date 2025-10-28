@@ -19,13 +19,24 @@ function hamburgerStyle (isOpen: boolean, isSecond?: boolean) {
 
 export type NavbarProps = {
     lang: Language
+    disableLanguageToggle?: boolean
     onlyLogo?: boolean
     theme: string
+    disableThemeToggle?: boolean
     token: string | null
+    disableAuthButton?: boolean
     children: React.ReactNode
 }
 
-export default function Navbar({ lang, onlyLogo, token, children }: NavbarProps) {
+export default function Navbar({
+    lang,
+    onlyLogo,
+    token,
+    children,
+    disableLanguageToggle,
+    disableThemeToggle,
+    disableAuthButton
+}: NavbarProps) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     return (
@@ -52,9 +63,9 @@ export default function Navbar({ lang, onlyLogo, token, children }: NavbarProps)
 
                         {/* Controls */}
                         <nav className='flex w-[calc(100vw-8rem)] justify-end h-12 800px:w-fit'>
-                            <ThemeToggle />
-                            <LanguageToggle language={lang} />
-                            <AuthButton token={token} />
+                            {!disableThemeToggle && <ThemeToggle />}
+                            {!disableLanguageToggle && <LanguageToggle language={lang} />}
+                            {!disableAuthButton && <AuthButton token={token} />}
                         </nav>
 
                         {/* Mobile Menu Button */}
