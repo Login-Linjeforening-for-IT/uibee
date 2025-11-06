@@ -22,7 +22,7 @@ export default function NavItem({ href, children, external = false, target, rel,
     return (
         <>
             {/* Desktop version */}
-            <Link {...linkProps}>
+            <Link {...linkProps} className='hidden 800px:flex'>
                 <li className={`${commonStyling} text-base leading-4 p-3 font-bold transition-colors link-corner-hover
                     group-[.dropdown]:p-2.5 group-[.dropdown]:pr-3 group-[.dropdown]:pl-1`
                 }>
