@@ -22,7 +22,7 @@ export default function NavItem({ href, children, external = false, target, rel,
     return (
         <>
             {/* Desktop version */}
-            <Link {...linkProps} className='hidden 800px:block'>
+            <Link {...linkProps}>
                 <li className={`${commonStyling} text-base leading-4 p-3 font-bold transition-colors link-corner-hover
                     group-[.dropdown]:p-2.5 group-[.dropdown]:pr-3 group-[.dropdown]:pl-1`
                 }>
@@ -33,7 +33,7 @@ export default function NavItem({ href, children, external = false, target, rel,
             </Link>
 
             {/* Mobile version */}
-            <Link {...linkProps} className='block 800px:hidden'>
+            <Link {...linkProps}>
                 <li className={`${commonStyling} text-2xl leading-6 overflow-hidden w-auto pl-4 rounded-[0.3rem] transition-all 
                     duration-[600ms] opacity-100 h-16 py-5 group-[.dropdown]:p-0 group-[.dropdown]:text-lg group-[.dropdown]:h-auto 
                     group-[.dropdown]:py-2.5 group-[.dropdown]:pl-4`
