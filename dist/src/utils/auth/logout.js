@@ -6,6 +6,7 @@ export default async function AuthLogout({ frontendURL }) {
         'access_token',
         'user_id',
         'user_name',
+        'user_nickname',
         'user_email',
         'user_groups'
     ];

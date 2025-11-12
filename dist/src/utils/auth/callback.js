@@ -45,6 +45,7 @@ export default async function authCallback({ req, tokenURL, clientID, clientSecr
         const params = new URLSearchParams({
             id: userInfo.sub,
             name: userInfo.name,
+            username: userInfo.nickname,
             email: userInfo.email,
             groups: userInfo.groups.join(','),
             access_token: token.access_token,

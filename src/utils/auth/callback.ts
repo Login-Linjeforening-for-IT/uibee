@@ -4,6 +4,7 @@ import type { AuthCallbackProps } from 'uibee/utils'
 type UserInfo = {
     sub: string
     name: string
+    nickname: string
     email: string
     groups: string[]
 }
@@ -72,6 +73,7 @@ export default async function authCallback({
         const params = new URLSearchParams({
             id: userInfo.sub,
             name: userInfo.name,
+            username: userInfo.nickname,
             email: userInfo.email,
             groups: userInfo.groups.join(','),
             access_token: token.access_token,

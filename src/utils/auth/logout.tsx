@@ -9,6 +9,7 @@ export default async function AuthLogout({ frontendURL }: AuthLogoutProps) {
         'access_token',
         'user_id',
         'user_name',
+        'user_nickname',
         'user_email',
         'user_groups'
     ]
