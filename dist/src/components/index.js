@@ -3,6 +3,7 @@ export { default as Input } from './inputs/input';
 export { default as SwitchInput } from './inputs/switch';
 export { default as TagInput } from './inputs/tag';
 export { default as Textarea } from './inputs/markdown';
+export { default as Select } from './inputs/select';
 // Logos
 export { default as Logo } from './logo/logo';
 export { default as LogoSmall } from './logo/logoSmall';
