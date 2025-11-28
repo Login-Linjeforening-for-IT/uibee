@@ -56,7 +56,7 @@ export default function LoginPage({title, description, redirectURL, version, btg
                         </button>
                     </form>
                 ) : (
-                    <Link href={redirectURL} className='w-full flex justify-center cursor-none'>
+                    <Link href={redirectURL} className='w-full flex justify-center cursor-default'>
                         <button
                             className={
                                 'flex items-center justify-center gap-2 w-full max-w-xs py-3 px-6 rounded-xl bg-login font-bold text-lg ' +

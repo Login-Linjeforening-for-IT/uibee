@@ -551,8 +551,8 @@
   .animate-jump {
     animation: jump 0.4s 1;
   }
-  .cursor-none {
-    cursor: none;
+  .cursor-default {
+    cursor: default;
   }
   .cursor-pointer {
     cursor: pointer;
