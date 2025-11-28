@@ -18,13 +18,14 @@ function hamburgerStyle (isOpen: boolean, isSecond?: boolean) {
 }
 
 export type NavbarProps = {
-    lang: Language
+    lang?: Language
     disableLanguageToggle?: boolean
     onlyLogo?: boolean
-    theme: string
+    theme?: string
     disableThemeToggle?: boolean
-    token: string | null
+    token?: string | null
     disableAuthButton?: boolean
+    profileURL?: string
     children: React.ReactNode
 }
 
@@ -35,7 +36,8 @@ export default function Navbar({
     children,
     disableLanguageToggle,
     disableThemeToggle,
-    disableAuthButton
+    disableAuthButton,
+    profileURL
 }: NavbarProps) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
@@ -65,7 +67,7 @@ export default function Navbar({
                         <nav className='flex w-[calc(100vw-8rem)] justify-end h-12 800px:w-fit'>
                             {!disableThemeToggle && <ThemeToggle />}
                             {!disableLanguageToggle && <LanguageToggle language={lang} />}
-                            {!disableAuthButton && <AuthButton token={token} />}
+                            {!disableAuthButton && <AuthButton token={token} profileURL={profileURL} />}
                         </nav>
 
                         {/* Mobile Menu Button */}
@@ -105,21 +107,39 @@ export default function Navbar({
     )
 }
 
-function AuthButton({ token }: { token: string | null }) {
+function AuthButton({ token, profileURL }: { token?: string | null, profileURL?: string }) {
     return (
         <div className='rounded-[0.3rem] hover:bg-[#6464641a] h-12 w-12'>
             {token ? (
-                <Link
-                    href='/api/logout'
-                    prefetch={false}
-                    onClick={(e) => {
-                        e.preventDefault()
-                        window.location.href = '/api/logout'
-                    }}
-                    className='grid items-center justify-center h-full w-full'
-                >
-                    <LogOut size={24} />
-                </Link>
+                <>
+                    <Link
+                        href='/api/logout'
+                        prefetch={false}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            window.location.href = '/api/logout'
+                        }}
+                        className='grid items-center justify-center h-full w-full'
+                    >
+                        <LogOut size={24} />
+                    </Link>
+                    {profileURL &&
+                        <Link
+                            href={profileURL}
+                            className='grid items-center justify-center h-full w-full'
+                        >
+                            <div className={`relative w-[30px] h-5
+                                before:content-[""] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2
+                                before:w-[10px] before:h-[10px] before:border-2 before:border-login-50
+                                before:rounded-full before:bg-transparent
+                                after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2
+                                after:w-[18px] after:h-2 after:border-2 after:border-login-50
+                                after:rounded-t-[22px] after:border-b-0 after:bg-transparent
+                            `}
+                            />
+                        </Link>
+                    }
+                </>
             ) : (
                 <Link
                     href='/api/login'

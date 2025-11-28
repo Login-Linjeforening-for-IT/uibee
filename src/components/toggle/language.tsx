@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation'
 import { Language } from 'uibee/components'
 import { Globe } from 'lucide-react'
 
-export default function LanguageToggle({language}: {language: Language}) {
-    const [lang, setLang] = useState<Language>(language)
+export default function LanguageToggle({language}: {language?: Language}) {
+    const [lang, setLang] = useState<Language>(language || 'en')
     const [jump, setJump] = useState(false)
 
     const router = useRouter()
