@@ -359,6 +359,16 @@
   .mx-auto {
     margin-inline: auto;
   }
+  .highlighted-section {
+    line-height: 1.8rem;
+    border-left: .3rem solid var(--color-login);
+    max-width: 50rem;
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+    padding: .5rem 0 .5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
   .-mt-0\.5 {
     margin-top: calc(var(--spacing) * -0.5);
   }

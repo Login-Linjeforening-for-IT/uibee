@@ -1,4 +1,4 @@
 import { Language } from 'uibee/components';
 export default function LanguageToggle({ language }: {
-    language: Language;
+    language?: Language;
 }): import("react/jsx-runtime").JSX.Element;

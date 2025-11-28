@@ -5,7 +5,7 @@ import { getCookie, setCookie } from '../../utils/cookies/cookies';
 import { useRouter } from 'next/navigation';
 import { Globe } from 'lucide-react';
 export default function LanguageToggle({ language }) {
-    const [lang, setLang] = useState(language);
+    const [lang, setLang] = useState(language || 'en');
     const [jump, setJump] = useState(false);
     const router = useRouter();
     useEffect(() => {
