@@ -1,4 +1,4 @@
-export function PageContainer({ title, children }: { title: string; children: React.ReactNode }) {
+export default function PageContainer({ title, children }: { title: string; children: React.ReactNode }) {
     return (
         <div className='w-full page-container'>
             <div className='flex flex-col col-start-3'>
