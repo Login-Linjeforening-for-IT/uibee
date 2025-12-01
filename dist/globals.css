@@ -522,11 +522,11 @@
   .max-w-6xl {
     max-width: var(--container-6xl);
   }
-  .max-w-\[35rem\] {
-    max-width: 35rem;
+  .max-w-140 {
+    max-width: calc(var(--spacing) * 140);
   }
-  .max-w-\[50rem\] {
-    max-width: 50rem;
+  .max-w-200 {
+    max-width: calc(var(--spacing) * 200);
   }
   .max-w-md {
     max-width: var(--container-md);
@@ -541,6 +541,9 @@
     flex: 1;
   }
   .flex-shrink-0 {
+    flex-shrink: 0;
+  }
+  .shrink-0 {
     flex-shrink: 0;
   }
   .origin-\[0\] {
@@ -1051,6 +1054,10 @@
     --tw-duration: 500ms;
     transition-duration: 500ms;
   }
+  .duration-600 {
+    --tw-duration: 600ms;
+    transition-duration: 600ms;
+  }
   .duration-1000 {
     --tw-duration: 1000ms;
     transition-duration: 1000ms;
@@ -1058,10 +1065,6 @@
   .duration-\[400ms\] {
     --tw-duration: 400ms;
     transition-duration: 400ms;
-  }
-  .duration-\[600ms\] {
-    --tw-duration: 600ms;
-    transition-duration: 600ms;
   }
   .ease-in-out {
     --tw-ease: var(--ease-in-out);
@@ -1221,16 +1224,16 @@
       left: calc(1/2 * 100%);
     }
   }
-  .before\:h-\[10px\] {
+  .before\:h-2\.5 {
     &::before {
       content: var(--tw-content);
-      height: 10px;
+      height: calc(var(--spacing) * 2.5);
     }
   }
-  .before\:w-\[10px\] {
+  .before\:w-2\.5 {
     &::before {
       content: var(--tw-content);
-      width: 10px;
+      width: calc(var(--spacing) * 2.5);
     }
   }
   .before\:-translate-x-1\/2 {

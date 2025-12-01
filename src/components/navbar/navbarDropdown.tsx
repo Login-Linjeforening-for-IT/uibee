@@ -53,11 +53,11 @@ export default function NavDropdown({ children, title }: NavDropdownProps) {
                     }}
                 >
                     <li className={`list-none no-underline text-2xl leading-6 overflow-hidden
-                        w-full pl-4 pr-4 rounded-[0.3rem] transition-all duration-[600ms]
+                        w-full pl-4 pr-4 rounded-[0.3rem] transition-all duration-600
                         flex items-center gap-2 opacity-100 min-h-16 py-5 `}
                     >
                         <span>{title}</span>
-                        <ChevronDown className={`w-6 h-6 transition-transform duration-400 flex-shrink-0 
+                        <ChevronDown className={`w-6 h-6 transition-transform duration-400 shrink-0 
                             ${isMobileDropdownOpen ? 'rotate-180' : ''}`}
                         />
                     </li>

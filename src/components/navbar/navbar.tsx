@@ -5,6 +5,7 @@ import Link from 'next/link'
 import LogoSmall from '@components/logo/logoSmall'
 import LanguageToggle from '@components/toggle/language'
 import ThemeToggle from '@components/toggle/theme'
+import { getCookie } from 'uibee/utils'
 import { Language } from 'uibee/components'
 import { LogOut } from 'lucide-react'
 
@@ -32,7 +33,6 @@ export type NavbarProps = {
 export default function Navbar({
     lang,
     onlyLogo,
-    token,
     children,
     disableLanguageToggle,
     disableThemeToggle,
@@ -59,7 +59,7 @@ export default function Navbar({
                 {onlyLogo ? null : (
                     <>
                         {/* Desktop Navigation */}
-                        <nav className='hidden 800px:flex 800px:justify-between 800px:items-center 800px:w-fill max-w-[50rem]'>
+                        <nav className='hidden 800px:flex 800px:justify-between 800px:items-center 800px:w-fill max-w-200'>
                             {children}
                         </nav>
 
@@ -67,7 +67,7 @@ export default function Navbar({
                         <nav className='flex w-[calc(100vw-8rem)] justify-end h-12 800px:w-fit'>
                             {!disableThemeToggle && <ThemeToggle />}
                             {!disableLanguageToggle && <LanguageToggle language={lang} />}
-                            {!disableAuthButton && <AuthButton token={token} profileURL={profileURL} />}
+                            {!disableAuthButton && <AuthButton profileURL={profileURL} />}
                         </nav>
 
                         {/* Mobile Menu Button */}
@@ -80,7 +80,7 @@ export default function Navbar({
                         </button>
 
                         {/* Mobile Navigation */}
-                        <nav className={`fixed top-16 w-[calc(100%-2rem)] max-w-[35rem] mx-auto left-0 right-0 800px:hidden
+                        <nav className={`fixed top-16 w-[calc(100%-2rem)] max-w-140 mx-auto left-0 right-0 800px:hidden
                             transition-all duration-500 ease-in-out overflow-hidden 
                             ${isMobileMenuOpen ? 'max-h-[calc(100vh-4rem)] opacity-100' : 'max-h-0 opacity-0'}`}
                         onClick={() => setIsMobileMenuOpen(false)}>
@@ -107,7 +107,9 @@ export default function Navbar({
     )
 }
 
-function AuthButton({ token, profileURL }: { token?: string | null, profileURL?: string }) {
+function AuthButton({ profileURL }: { profileURL?: string }) {
+    const token = getCookie('access_token')
+
     return (
         <div className='rounded-[0.3rem] hover:bg-[#6464641a] h-12 w-12'>
             {token ? (
@@ -130,7 +132,7 @@ function AuthButton({ token, profileURL }: { token?: string | null, profileURL?:
                         >
                             <div className={`relative w-[30px] h-5
                                 before:content-[""] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2
-                                before:w-[10px] before:h-[10px] before:border-2 before:border-login-50
+                                before:w-2.5 before:h-2.5 before:border-2 before:border-login-50
                                 before:rounded-full before:bg-transparent
                                 after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2
                                 after:w-[18px] after:h-2 after:border-2 after:border-login-50
@@ -147,7 +149,7 @@ function AuthButton({ token, profileURL }: { token?: string | null, profileURL?:
                 >
                     <div className={`relative w-[30px] h-5
                         before:content-[""] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2
-                        before:w-[10px] before:h-[10px] before:border-2 before:border-login-50
+                        before:w-2.5 before:h-2.5 before:border-2 before:border-login-50
                         before:rounded-full before:bg-transparent
                         after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2
                         after:w-[18px] after:h-2 after:border-2 after:border-login-50

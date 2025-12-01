@@ -7,6 +7,6 @@ export default function NavItem({ href, children, external = false, target, rel,
     const linkProps = { href, target, rel, title };
     return (_jsxs(_Fragment, { children: [_jsx(Link, { ...linkProps, className: 'hidden 800px:flex', children: _jsxs("li", { className: `${commonStyling} text-base leading-4 p-3 font-bold transition-colors link-corner-hover
                     group-[.dropdown]:p-2.5 group-[.dropdown]:pr-3 group-[.dropdown]:pl-1`, children: [icon, children, external && _jsx(ArrowUpRight, { className: 'w-6 h-6 stroke-login' })] }) }), _jsx(Link, { ...linkProps, className: '800px:hidden', children: _jsxs("li", { className: `${commonStyling} text-2xl leading-6 overflow-hidden w-auto pl-4 rounded-[0.3rem] transition-all 
-                    duration-[600ms] opacity-100 h-16 py-5 group-[.dropdown]:p-0 group-[.dropdown]:text-lg group-[.dropdown]:h-auto 
+                    duration-600 opacity-100 h-16 py-5 group-[.dropdown]:p-0 group-[.dropdown]:text-lg group-[.dropdown]:h-auto 
                     group-[.dropdown]:py-2.5 group-[.dropdown]:pl-4`, children: [children, external && _jsx(ArrowUpRight, { className: 'w-6 h-6 stroke-login' })] }) })] }));
 }

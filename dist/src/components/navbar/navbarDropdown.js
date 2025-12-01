@@ -13,8 +13,8 @@ export default function NavDropdown({ children, title }) {
                             e.stopPropagation();
                             setIsMobileDropdownOpen(!isMobileDropdownOpen);
                         }, children: _jsxs("li", { className: `list-none no-underline text-2xl leading-6 overflow-hidden
-                        w-full pl-4 pr-4 rounded-[0.3rem] transition-all duration-[600ms]
-                        flex items-center gap-2 opacity-100 min-h-16 py-5 `, children: [_jsx("span", { children: title }), _jsx(ChevronDown, { className: `w-6 h-6 transition-transform duration-400 flex-shrink-0 
+                        w-full pl-4 pr-4 rounded-[0.3rem] transition-all duration-600
+                        flex items-center gap-2 opacity-100 min-h-16 py-5 `, children: [_jsx("span", { children: title }), _jsx(ChevronDown, { className: `w-6 h-6 transition-transform duration-400 shrink-0 
                             ${isMobileDropdownOpen ? 'rotate-180' : ''}` })] }) }), _jsx("div", { className: `list-none no-underline text-xl px-6 ${isMobileDropdownOpen ? 'pb-4' : ''}`, children: React.Children.map(children, (child, index) => (_jsx("div", { className: `leading-6 transition-all duration-500 group dropdown
                             ${isMobileDropdownOpen ? 'h-11 opacity-100' : 'h-0 opacity-0'}
                         `, children: child }, index))) })] })] }));

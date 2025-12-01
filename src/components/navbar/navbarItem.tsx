@@ -35,7 +35,7 @@ export default function NavItem({ href, children, external = false, target, rel,
             {/* Mobile version */}
             <Link {...linkProps} className='800px:hidden'>
                 <li className={`${commonStyling} text-2xl leading-6 overflow-hidden w-auto pl-4 rounded-[0.3rem] transition-all 
-                    duration-[600ms] opacity-100 h-16 py-5 group-[.dropdown]:p-0 group-[.dropdown]:text-lg group-[.dropdown]:h-auto 
+                    duration-600 opacity-100 h-16 py-5 group-[.dropdown]:p-0 group-[.dropdown]:text-lg group-[.dropdown]:h-auto 
                     group-[.dropdown]:py-2.5 group-[.dropdown]:pl-4`
                 }>
                     {children}
