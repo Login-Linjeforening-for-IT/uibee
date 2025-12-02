@@ -16,7 +16,6 @@
   "main": "./dist/src/index.js",
   "types": "./dist/src/index.d.ts",
   "exports": {
-    ".": "./dist/src/index.js",
     "./hooks": "./dist/src/hooks/index.js",
     "./components": "./dist/src/components/index.js",
     "./scripts": "./dist/src/scripts/index.js",
