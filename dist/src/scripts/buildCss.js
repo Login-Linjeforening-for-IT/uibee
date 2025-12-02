@@ -6,7 +6,7 @@ export default async function buildCss() {
     const tailwindConfig = tailwindModule.default ?? tailwindModule;
     const tailwindPostcss = (await import('@tailwindcss/postcss')).default;
     const inputPath = path.resolve('./src/globals.css');
-    const outputPath = path.resolve('./dist/globals.css');
+    const outputPath = path.resolve('./dist/src/globals.css');
     const inputCss = readFileSync(inputPath, 'utf-8');
     const result = await postcss([tailwindPostcss(tailwindConfig)]).process(inputCss, {
         from: inputPath,
