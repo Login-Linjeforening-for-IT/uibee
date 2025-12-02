@@ -5,7 +5,6 @@ import Link from 'next/link'
 import LogoSmall from '@components/logo/logoSmall'
 import LanguageToggle from '@components/toggle/language'
 import ThemeToggle from '@components/toggle/theme'
-import { getCookie } from 'uibee/utils'
 import { Language } from 'uibee/components'
 import { LogOut } from 'lucide-react'
 
@@ -37,6 +36,7 @@ export default function Navbar({
     onlyLogo,
     disableLanguageToggle,
     disableThemeToggle,
+    token,
     disableAuthButton,
     profileURL,
     className,
@@ -71,7 +71,7 @@ export default function Navbar({
                         <nav className='flex w-[calc(100vw-8rem)] justify-end h-12 800px:w-fit'>
                             {!disableThemeToggle && <ThemeToggle />}
                             {!disableLanguageToggle && <LanguageToggle language={lang} />}
-                            {!disableAuthButton && <AuthButton profileURL={profileURL} />}
+                            {!disableAuthButton && <AuthButton profileURL={profileURL} token={token} />}
                         </nav>
 
                         {/* Mobile Menu Button */}
@@ -111,8 +111,7 @@ export default function Navbar({
     )
 }
 
-function AuthButton({ profileURL }: { profileURL?: string }) {
-    const token = getCookie('access_token')
+function AuthButton({ profileURL, token }: { profileURL?: string, token?: string | null }) {
 
     return (
         <div className='rounded-[0.3rem] hover:bg-[#6464641a] h-12 w-12'>

@@ -13,4 +13,4 @@ export type NavbarProps = {
     innerClassName?: string;
     children: React.ReactNode;
 };
-export default function Navbar({ lang, onlyLogo, disableLanguageToggle, disableThemeToggle, disableAuthButton, profileURL, className, innerClassName, children, }: NavbarProps): import("react/jsx-runtime").JSX.Element;
+export default function Navbar({ lang, onlyLogo, disableLanguageToggle, disableThemeToggle, token, disableAuthButton, profileURL, className, innerClassName, children, }: NavbarProps): import("react/jsx-runtime").JSX.Element;
