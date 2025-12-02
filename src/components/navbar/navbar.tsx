@@ -27,25 +27,29 @@ export type NavbarProps = {
     token?: string | null
     disableAuthButton?: boolean
     profileURL?: string
+    className?: string
+    innerClassName?: string
     children: React.ReactNode
 }
 
 export default function Navbar({
     lang,
     onlyLogo,
-    children,
     disableLanguageToggle,
     disableThemeToggle,
     disableAuthButton,
-    profileURL
+    profileURL,
+    className,
+    innerClassName,
+    children,
 }: NavbarProps) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     return (
-        <div className={`${isMobileMenuOpen ? 'bg-[#181818f0]' : 'bg-[#18181899]'} backdrop-blur-xl fixed top-0 z-900 w-full`}>
+        <div className={`${isMobileMenuOpen ? 'bg-[#181818f0]' : 'bg-[#18181899]'} backdrop-blur-xl fixed top-0 z-900 w-full ${className}`}>
             <div className={`flex w-full max-w-6xl m-auto p-2 transition duration-500 800px:justify-between 800px:p-4 ${
-                isMobileMenuOpen ? 'h-screen bg-login-900/20 800px:h-20' : ''
-            }`}>
+                isMobileMenuOpen ? 'h-screen bg-login-900/20 800px:h-20' : ''} ${innerClassName}
+            `}>
                 {/* Logo */}
                 <div className='block h-12 p-1 800px:p-0'>
                     <Link
