@@ -2,7 +2,7 @@ import { removeCookies } from '@utils/cookies/cookies'
 import { NextResponse } from 'next/server'
 import type { AuthLogoutProps } from 'uibee/utils'
 
-export default async function AuthLogout({ frontendURL }: AuthLogoutProps) {
+export default async function AuthLogout({ frontendURL, path }: AuthLogoutProps) {
     removeCookies(
         'access_token',
         'user_id',
@@ -12,6 +12,6 @@ export default async function AuthLogout({ frontendURL }: AuthLogoutProps) {
         'user_groups'
     )
 
-    const response = NextResponse.redirect(new URL('/', frontendURL))
+    const response = NextResponse.redirect(new URL(path || '/', frontendURL))
     return response
 }

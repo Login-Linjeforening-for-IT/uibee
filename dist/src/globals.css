@@ -417,7 +417,7 @@
   .hidden {
     display: none;
   }
-  .aspect-\[3\/1\] {
+  .aspect-3\/1 {
     aspect-ratio: 3/1;
   }
   .h-0 {
@@ -605,9 +605,6 @@
   }
   .animate-jump {
     animation: jump 0.4s 1;
-  }
-  .cursor-default {
-    cursor: default;
   }
   .cursor-pointer {
     cursor: pointer;

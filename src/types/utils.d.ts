@@ -54,6 +54,7 @@ declare module 'uibee/utils' {
     }
     export interface AuthLogoutProps {
         request: NextRequest
+        path?: string
         frontendURL: string
     }
 
