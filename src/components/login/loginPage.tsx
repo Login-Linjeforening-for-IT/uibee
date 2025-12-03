@@ -1,5 +1,3 @@
-'use client'
-
 import { LoginPageProps } from 'uibee/components'
 import { LogIn } from 'lucide-react'
 import Logo from '@components/logo/logo'
