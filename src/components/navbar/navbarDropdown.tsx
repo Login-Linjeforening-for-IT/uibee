@@ -11,33 +11,38 @@ export type NavDropdownProps = {
 
 export default function NavDropdown({ children, title, className }: NavDropdownProps) {
     const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false)
+    const [isDesktopOpen, setIsDesktopOpen] = useState(false)
     const navItemRef = useRef<HTMLDivElement>(null)
 
     return (
         <>
             {/* Desktop Dropdown */}
-            <div className={'relative group hidden 800px:block'}>
-                <div className='outline-none' tabIndex={0} ref={navItemRef}>
+            <div className={'relative hidden 800px:block'}>
+                <div className='outline-none' tabIndex={0} ref={navItemRef}
+                    onMouseEnter={() => setIsDesktopOpen(true)}
+                    onMouseLeave={() => setIsDesktopOpen(false)}
+                    onFocus={() => setIsDesktopOpen(true)}
+                    onBlur={() => setIsDesktopOpen(false)}
+                >
                     <div className={`list-none no-underline text-base leading-4 p-3 font-bold cursor-pointer flex flex-row items-center 
                         transition-colors`
                     }>
                         {title}
                         <ChevronDown className={'w-6 h-6 stroke-login ml-1 text-2xl transition-transform duration-300 ease-in-out'} />
                     </div>
-                    <div className={`absolute pt-2 -ml-4 -translate-y-4 opacity-0 pointer-events-none
-                        transition-all duration-200 ease-in-out z-10
-                        group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0
-                        group-focus-within:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0`}
+                    <div className={`absolute pt-2 -ml-4 transition-all duration-200 ease-in-out z-10 ${
+                        isDesktopOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none -translate-y-4'
+                    }`}
                     >
                         <ul
                             className={`p-3 px-6 pb-4 rounded-[0.4rem] shadow-[0_0.1rem_0.5rem_rgba(3,3,3,0.5)] bg-login-700/98 ${
                                 className || ''}`}
-                            onClick={() => navItemRef.current?.blur()}
+                            onClick={() => setIsDesktopOpen(false)}
                         >
                             {React.Children.map(children, (child, index) => (
                                 <div
                                     key={index}
-                                    onClick={() => navItemRef.current?.blur()}
+                                    onClick={() => setIsDesktopOpen(false)}
                                     className='group dropdown'
                                 >
                                     {child}
