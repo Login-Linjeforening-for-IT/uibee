@@ -6,9 +6,10 @@ import React, { ReactNode, useRef, useState } from 'react'
 export type NavDropdownProps = {
     children: ReactNode
     title: string
+    className?: string
 }
 
-export default function NavDropdown({ children, title }: NavDropdownProps) {
+export default function NavDropdown({ children, title, className }: NavDropdownProps) {
     const [isMobileDropdownOpen, setIsMobileDropdownOpen] = useState(false)
     const navItemRef = useRef<HTMLDivElement>(null)
 
@@ -28,7 +29,9 @@ export default function NavDropdown({ children, title }: NavDropdownProps) {
                         group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0
                         group-focus-within:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0`}
                     >
-                        <ul className={'p-3 px-6 pb-4 rounded-[0.4rem] shadow-[0_0.1rem_0.5rem_rgba(3,3,3,0.5)] bg-login-700/98'}>
+                        <ul className={`p-3 px-6 pb-4 rounded-[0.4rem] shadow-[0_0.1rem_0.5rem_rgba(3,3,3,0.5)] bg-login-700/98 ${
+                            className || ''}`}
+                        >
                             {React.Children.map(children, (child, index) => (
                                 <div
                                     key={index}
