@@ -29,8 +29,10 @@ export default function NavDropdown({ children, title, className }: NavDropdownP
                         group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0
                         group-focus-within:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0`}
                     >
-                        <ul className={`p-3 px-6 pb-4 rounded-[0.4rem] shadow-[0_0.1rem_0.5rem_rgba(3,3,3,0.5)] bg-login-700/98 ${
-                            className || ''}`}
+                        <ul
+                            className={`p-3 px-6 pb-4 rounded-[0.4rem] shadow-[0_0.1rem_0.5rem_rgba(3,3,3,0.5)] bg-login-700/98 ${
+                                className || ''}`}
+                            onClick={() => navItemRef.current?.blur()}
                         >
                             {React.Children.map(children, (child, index) => (
                                 <div
