@@ -44,7 +44,7 @@ export default function NavDropdown({ children, title }: NavDropdownProps) {
             </div>
 
             {/* Mobile Dropdown */}
-            <div className={'block 800px:hidden'}>
+            <div className={'block 800px:hidden!'}>
                 <button
                     className={'bg-none border-none cursor-pointer w-full text-left'}
                     onClick={(e) => {

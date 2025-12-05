@@ -1443,6 +1443,11 @@
       display: none;
     }
   }
+  .\38 00px\:hidden\! {
+    @media (width >= 800px) {
+      display: none !important;
+    }
+  }
   .\38 00px\:h-20 {
     @media (width >= 800px) {
       height: calc(var(--spacing) * 20);
