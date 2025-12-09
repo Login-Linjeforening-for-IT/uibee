@@ -6,7 +6,7 @@ import LogoSmall from '@components/logo/logoSmall'
 import LanguageToggle from '@components/toggle/language'
 import ThemeToggle from '@components/toggle/theme'
 import { Language } from 'uibee/components'
-import { LogOut } from 'lucide-react'
+import { LogOut, User } from 'lucide-react'
 
 
 function hamburgerStyle (isOpen: boolean, isSecond?: boolean) {
@@ -114,7 +114,7 @@ export default function Navbar({
 function AuthButton({ profileURL, token }: { profileURL?: string, token?: string | null }) {
 
     return (
-        <div className='rounded-[0.3rem] hover:bg-[#6464641a] h-12 w-12'>
+        <div className='rounded-[0.3rem] hover:bg-login-300/20 h-12 w-12'>
             {token ? (
                 <>
                     <Link
@@ -133,15 +133,7 @@ function AuthButton({ profileURL, token }: { profileURL?: string, token?: string
                             href={profileURL}
                             className='grid items-center justify-center h-full w-full'
                         >
-                            <div className={`relative w-[30px] h-5
-                                before:content-[""] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2
-                                before:w-2.5 before:h-2.5 before:border-2 before:border-login-50
-                                before:rounded-full before:bg-transparent
-                                after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2
-                                after:w-[18px] after:h-2 after:border-2 after:border-login-50
-                                after:rounded-t-[22px] after:border-b-0 after:bg-transparent
-                            `}
-                            />
+                            <User size={24} />
                         </Link>
                     }
                 </>
@@ -150,15 +142,7 @@ function AuthButton({ profileURL, token }: { profileURL?: string, token?: string
                     href='/api/login'
                     className='grid items-center justify-center h-full w-full'
                 >
-                    <div className={`relative w-[30px] h-5
-                        before:content-[""] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2
-                        before:w-2.5 before:h-2.5 before:border-2 before:border-login-50
-                        before:rounded-full before:bg-transparent
-                        after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2
-                        after:w-[18px] after:h-2 after:border-2 after:border-login-50
-                        after:rounded-t-[22px] after:border-b-0 after:bg-transparent
-                    `}
-                    />
+                    <User size={24} />
                 </Link>
             )}
         </div>

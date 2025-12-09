@@ -5,7 +5,7 @@ import Link from 'next/link';
 import LogoSmall from '../logo/logoSmall';
 import LanguageToggle from '../toggle/language';
 import ThemeToggle from '../toggle/theme';
-import { LogOut } from 'lucide-react';
+import { LogOut, User } from 'lucide-react';
 function hamburgerStyle(isOpen, isSecond) {
     return `bg-login-50 h-0.5 absolute w-8 transition-all duration-[400ms] left-2 ${isOpen
         ? `top-6 ${isSecond ? 'rotate-45' : '-rotate-45'}`
@@ -23,23 +23,9 @@ export default function Navbar({ lang, onlyLogo, disableLanguageToggle, disableT
                                 }, children: child }, index))) })] }))] }) }));
 }
 function AuthButton({ profileURL, token }) {
-    return (_jsx("div", { className: 'rounded-[0.3rem] hover:bg-[#6464641a] h-12 w-12', children: token ? (_jsxs(_Fragment, { children: [_jsx(Link, { href: '/api/logout', prefetch: false, onClick: (e) => {
+    return (_jsx("div", { className: 'rounded-[0.3rem] hover:bg-login-300/20 h-12 w-12', children: token ? (_jsxs(_Fragment, { children: [_jsx(Link, { href: '/api/logout', prefetch: false, onClick: (e) => {
                         e.preventDefault();
                         window.location.href = '/api/logout';
                     }, className: 'grid items-center justify-center h-full w-full', children: _jsx(LogOut, { size: 24 }) }), profileURL &&
-                    _jsx(Link, { href: profileURL, className: 'grid items-center justify-center h-full w-full', children: _jsx("div", { className: `relative w-[30px] h-5
-                                before:content-[""] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2
-                                before:w-2.5 before:h-2.5 before:border-2 before:border-login-50
-                                before:rounded-full before:bg-transparent
-                                after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2
-                                after:w-[18px] after:h-2 after:border-2 after:border-login-50
-                                after:rounded-t-[22px] after:border-b-0 after:bg-transparent
-                            ` }) })] })) : (_jsx(Link, { href: '/api/login', className: 'grid items-center justify-center h-full w-full', children: _jsx("div", { className: `relative w-[30px] h-5
-                        before:content-[""] before:absolute before:top-0 before:left-1/2 before:-translate-x-1/2
-                        before:w-2.5 before:h-2.5 before:border-2 before:border-login-50
-                        before:rounded-full before:bg-transparent
-                        after:content-[""] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2
-                        after:w-[18px] after:h-2 after:border-2 after:border-login-50
-                        after:rounded-t-[22px] after:border-b-0 after:bg-transparent
-                    ` }) })) }));
+                    _jsx(Link, { href: profileURL, className: 'grid items-center justify-center h-full w-full', children: _jsx(User, { size: 24 }) })] })) : (_jsx(Link, { href: '/api/login', className: 'grid items-center justify-center h-full w-full', children: _jsx(User, { size: 24 }) })) }));
 }

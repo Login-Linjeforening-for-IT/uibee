@@ -432,9 +432,6 @@
   .h-4 {
     height: calc(var(--spacing) * 4);
   }
-  .h-5 {
-    height: calc(var(--spacing) * 5);
-  }
   .h-6 {
     height: calc(var(--spacing) * 6);
   }
@@ -488,9 +485,6 @@
   }
   .w-\[4\.3rem\] {
     width: 4.3rem;
-  }
-  .w-\[30px\] {
-    width: 30px;
   }
   .w-\[calc\(100\%-2rem\)\] {
     width: calc(100% - 2rem);
@@ -1168,161 +1162,10 @@
       padding-inline: calc(var(--spacing) * 2);
     }
   }
-  .before\:absolute {
-    &::before {
-      content: var(--tw-content);
-      position: absolute;
-    }
-  }
-  .before\:top-0 {
-    &::before {
-      content: var(--tw-content);
-      top: calc(var(--spacing) * 0);
-    }
-  }
-  .before\:left-1\/2 {
-    &::before {
-      content: var(--tw-content);
-      left: calc(1/2 * 100%);
-    }
-  }
-  .before\:h-2\.5 {
-    &::before {
-      content: var(--tw-content);
-      height: calc(var(--spacing) * 2.5);
-    }
-  }
-  .before\:w-2\.5 {
-    &::before {
-      content: var(--tw-content);
-      width: calc(var(--spacing) * 2.5);
-    }
-  }
-  .before\:-translate-x-1\/2 {
-    &::before {
-      content: var(--tw-content);
-      --tw-translate-x: calc(calc(1/2 * 100%) * -1);
-      translate: var(--tw-translate-x) var(--tw-translate-y);
-    }
-  }
-  .before\:rounded-full {
-    &::before {
-      content: var(--tw-content);
-      border-radius: calc(infinity * 1px);
-    }
-  }
-  .before\:border-2 {
-    &::before {
-      content: var(--tw-content);
-      border-style: var(--tw-border-style);
-      border-width: 2px;
-    }
-  }
-  .before\:border-login-50 {
-    &::before {
-      content: var(--tw-content);
-      border-color: var(--color-login-50);
-    }
-  }
-  .before\:bg-transparent {
-    &::before {
-      content: var(--tw-content);
-      background-color: transparent;
-    }
-  }
-  .before\:content-\[\"\"\] {
-    &::before {
-      --tw-content: "";
-      content: var(--tw-content);
-    }
-  }
-  .after\:absolute {
-    &::after {
-      content: var(--tw-content);
-      position: absolute;
-    }
-  }
-  .after\:bottom-0 {
-    &::after {
-      content: var(--tw-content);
-      bottom: calc(var(--spacing) * 0);
-    }
-  }
-  .after\:left-1\/2 {
-    &::after {
-      content: var(--tw-content);
-      left: calc(1/2 * 100%);
-    }
-  }
-  .after\:h-2 {
-    &::after {
-      content: var(--tw-content);
-      height: calc(var(--spacing) * 2);
-    }
-  }
-  .after\:w-\[18px\] {
-    &::after {
-      content: var(--tw-content);
-      width: 18px;
-    }
-  }
-  .after\:-translate-x-1\/2 {
-    &::after {
-      content: var(--tw-content);
-      --tw-translate-x: calc(calc(1/2 * 100%) * -1);
-      translate: var(--tw-translate-x) var(--tw-translate-y);
-    }
-  }
-  .after\:rounded-t-\[22px\] {
-    &::after {
-      content: var(--tw-content);
-      border-top-left-radius: 22px;
-      border-top-right-radius: 22px;
-    }
-  }
-  .after\:border-2 {
-    &::after {
-      content: var(--tw-content);
-      border-style: var(--tw-border-style);
-      border-width: 2px;
-    }
-  }
-  .after\:border-b-0 {
-    &::after {
-      content: var(--tw-content);
-      border-bottom-style: var(--tw-border-style);
-      border-bottom-width: 0px;
-    }
-  }
-  .after\:border-login-50 {
-    &::after {
-      content: var(--tw-content);
-      border-color: var(--color-login-50);
-    }
-  }
-  .after\:bg-transparent {
-    &::after {
-      content: var(--tw-content);
-      background-color: transparent;
-    }
-  }
-  .after\:content-\[\"\"\] {
-    &::after {
-      --tw-content: "";
-      content: var(--tw-content);
-    }
-  }
   .after\:content-\[\"_\*\"\] {
     &::after {
       --tw-content: " *";
       content: var(--tw-content);
-    }
-  }
-  .hover\:bg-\[\#6464641a\] {
-    &:hover {
-      @media (hover: hover) {
-        background-color: #6464641a;
-      }
     }
   }
   .hover\:bg-gray-400\/10 {
@@ -1456,7 +1299,7 @@
 }
 :root {
   transition: background 0.4s,
-        color 0.4s;
+        color 0.4s,;
 }
 .dark {
   --background: #0e0e0e;
@@ -1473,6 +1316,7 @@
   --color-login-200: #6b6b6b;
   --color-login-100: #b0b0b0;
   --color-login-50: #ededed;
+  --color-login-text: #ededed;
 }
 .light {
   --background: #ededed;
@@ -1489,6 +1333,7 @@
   --color-login-200: #fafafa;
   --color-login-100: #fcfcfc;
   --color-login-50: #ffffff;
+  --color-login-text: #0e0e0e;
 }
 @keyframes jump {
   40% {

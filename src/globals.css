@@ -34,6 +34,8 @@
     --color-login-200: #727272;
     --color-login-100: #b0b0b0;
     --color-login-50: #ededed;
+    
+    --color-login-text: #ededed;
 }
 
 @utility noscroll {
@@ -53,7 +55,7 @@
 :root {
     transition:
         background 0.4s,
-        color 0.4s;
+        color 0.4s,
 }
 
 .dark {
@@ -72,6 +74,8 @@
     --color-login-200: #6b6b6b;
     --color-login-100: #b0b0b0;
     --color-login-50: #ededed;
+
+    --color-login-text: #ededed;
 }
 
 .light {
@@ -90,6 +94,8 @@
     --color-login-200: #fafafa;
     --color-login-100: #fcfcfc;
     --color-login-50: #ffffff;
+
+    --color-login-text: #0e0e0e;
 }
 
 @keyframes jump {
