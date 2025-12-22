@@ -72,7 +72,7 @@ export default function Toaster() {
                 top: mainToastPosition ? `${mainToastPosition.top - idx * 8}px` : 'auto',
                 zIndex: 100 - idx,
                 transform: `scale(${1 - idx * 0.05})`,
-            }, children: [_jsx("span", { className: 'flex-shrink-0 w-10 h-10 flex items-center justify-center', children: _jsx(ToastIcon, { type: toast.type }) }), _jsxs("div", { className: 'pr-1 pb-1', children: [_jsx("span", { className: 'font-bold', children: toast.title }), (idx === 0 || isHovered) &&
+            }, children: [_jsx("span", { className: 'shrink-0 w-10 h-10 flex items-center justify-center', children: _jsx(ToastIcon, { type: toast.type }) }), _jsxs("div", { className: 'pr-1 pb-1', children: [_jsx("span", { className: 'font-bold', children: toast.title }), (idx === 0 || isHovered) &&
                             _jsx("span", { className: 'text-sm line-clamp-3', children: toast.description })] })] }, `${toast.id}-${idx}`))) }));
 }
 function ToastIcon({ type }) {
