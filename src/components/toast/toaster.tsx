@@ -94,7 +94,7 @@ export default function Toaster() {
                         transform: `scale(${1 - idx * 0.05})`,
                     }}
                 >
-                    <span className='flex-shrink-0 w-10 h-10 flex items-center justify-center'>
+                    <span className='shrink-0 w-10 h-10 flex items-center justify-center'>
                         <ToastIcon type={toast.type} />
                     </span>
                     <div className='pr-1 pb-1'>

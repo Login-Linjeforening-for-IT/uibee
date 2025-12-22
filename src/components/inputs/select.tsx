@@ -200,5 +200,3 @@ function SelectedOption({ value, selectedOption }: SelectedOptionProps) {
         </div>
     )
 }
-
-
