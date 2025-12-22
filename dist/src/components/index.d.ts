@@ -15,3 +15,4 @@ export { default as Highlight } from './container/highlight';
 export { default as VersionTag } from './version/version';
 export { default as LoginPage } from './login/loginPage';
 export { default as Toaster, addToast } from './toast/toaster';
+export { default as Button } from './buttons/button';

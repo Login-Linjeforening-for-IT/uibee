@@ -603,6 +603,9 @@
   .animate-jump {
     animation: jump 0.4s 1;
   }
+  .cursor-not-allowed {
+    cursor: not-allowed;
+  }
   .cursor-pointer {
     cursor: pointer;
   }
@@ -641,6 +644,9 @@
   }
   .justify-end {
     justify-content: flex-end;
+  }
+  .justify-evenly {
+    justify-content: space-evenly;
   }
   .gap-0\.5 {
     gap: calc(var(--spacing) * 0.5);
@@ -696,6 +702,10 @@
     border-style: var(--tw-border-style);
     border-width: 1px;
   }
+  .border-0 {
+    border-style: var(--tw-border-style);
+    border-width: 0px;
+  }
   .border-\[0\.10rem\] {
     border-style: var(--tw-border-style);
     border-width: 0.10rem;
@@ -729,6 +739,12 @@
   .bg-login-600 {
     background-color: var(--color-login-600);
   }
+  .bg-login-600\/70 {
+    background-color: color-mix(in srgb, #212121 70%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-login-600) 70%, transparent);
+    }
+  }
   .bg-login-700 {
     background-color: var(--color-login-700);
   }
@@ -748,6 +764,12 @@
     background-color: color-mix(in srgb, #121212 20%, transparent);
     @supports (color: color-mix(in lab, red, red)) {
       background-color: color-mix(in oklab, var(--color-login-900) 20%, transparent);
+    }
+  }
+  .bg-login\/70 {
+    background-color: color-mix(in srgb, #fd8738 70%, transparent);
+    @supports (color: color-mix(in lab, red, red)) {
+      background-color: color-mix(in oklab, var(--color-login) 70%, transparent);
     }
   }
   .bg-transparent {
@@ -1002,6 +1024,16 @@
     --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, rgb(0 0 0 / 0.1)), 0 2px 4px -2px var(--tw-shadow-color, rgb(0 0 0 / 0.1));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
   }
+  .outline {
+    outline-style: var(--tw-outline-style);
+    outline-width: 1px;
+  }
+  .outline-login {
+    outline-color: var(--color-login);
+  }
+  .outline-login-600 {
+    outline-color: var(--color-login-600);
+  }
   .backdrop-blur-xl {
     --tw-backdrop-blur: blur(var(--blur-xl));
     -webkit-backdrop-filter: var(--tw-backdrop-blur,) var(--tw-backdrop-brightness,) var(--tw-backdrop-contrast,) var(--tw-backdrop-grayscale,) var(--tw-backdrop-hue-rotate,) var(--tw-backdrop-invert,) var(--tw-backdrop-opacity,) var(--tw-backdrop-saturate,) var(--tw-backdrop-sepia,);
@@ -1071,6 +1103,10 @@
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
+  }
+  .select-none {
+    -webkit-user-select: none;
+    user-select: none;
   }
   .group-\[\.dropdown\]\:h-auto {
     &:is(:where(.group):is(.dropdown) *) {
@@ -1202,12 +1238,32 @@
       }
     }
   }
+  .hover\:bg-login-600\/90 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #212121 90%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-login-600) 90%, transparent);
+        }
+      }
+    }
+  }
   .hover\:bg-login\/80 {
     &:hover {
       @media (hover: hover) {
         background-color: color-mix(in srgb, #fd8738 80%, transparent);
         @supports (color: color-mix(in lab, red, red)) {
           background-color: color-mix(in oklab, var(--color-login) 80%, transparent);
+        }
+      }
+    }
+  }
+  .hover\:bg-login\/90 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: color-mix(in srgb, #fd8738 90%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-login) 90%, transparent);
         }
       }
     }
@@ -1472,6 +1528,11 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
+@property --tw-outline-style {
+  syntax: "*";
+  inherits: false;
+  initial-value: solid;
+}
 @property --tw-backdrop-blur {
   syntax: "*";
   inherits: false;
@@ -1553,6 +1614,7 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
+      --tw-outline-style: solid;
       --tw-backdrop-blur: initial;
       --tw-backdrop-brightness: initial;
       --tw-backdrop-contrast: initial;
