@@ -4,7 +4,7 @@ import type { JSX } from 'react'
 type ButtonProps = {
     text: string
     className?: string
-    icon?: string | JSX.Element
+    icon: string | JSX.Element
     path?: string
     type?: 'button' | 'submit' | 'reset'
     color?: 'primary' | 'secondary'
