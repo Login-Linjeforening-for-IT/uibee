@@ -8,7 +8,7 @@ type ButtonProps = {
     path?: string
     type?: 'button' | 'submit' | 'reset'
     color?: 'primary' | 'secondary'
-    onClick?: (_: object) => void
+    onClick?: (_: object | string) => void
     disabled?: boolean
 }
 
