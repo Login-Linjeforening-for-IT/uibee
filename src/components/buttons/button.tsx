@@ -6,6 +6,7 @@ type ButtonProps = {
     className?: string
     icon?: string | JSX.Element
     path?: string
+    type?: 'button' | 'submit' | 'reset'
     color?: 'primary' | 'secondary'
     onClick?: (_: object) => void
     disabled?: boolean
@@ -17,6 +18,7 @@ export default function Button({
     icon,
     path,
     color,
+    type,
     onClick,
     disabled
 }: ButtonProps) {
@@ -27,7 +29,7 @@ export default function Button({
     if (!path) {
         return (
             <button
-                type='button'
+                type={type || 'button'}
                 disabled={disabled}
                 onClick={onClick}
                 aria-label={text}
