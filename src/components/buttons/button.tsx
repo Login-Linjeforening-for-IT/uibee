@@ -39,7 +39,7 @@ export default function Button({
                     focus:outline-none border-0 outline w-fit ${className}
                 `}
             >
-                <h1 className='font-bold'>{icon ? icon : ''}</h1>
+                <h1 className='font-bold'>{icon || ''}</h1>
                 <h1>{text}</h1>
             </button>
         )
@@ -53,7 +53,7 @@ export default function Button({
                     justify-evenly items-center gap-2 select-none
                 `}
             >
-                <h1 className='font-bold'>{icon ? `${icon}` : ''}</h1>
+                <h1 className='font-bold'>{icon || ''}</h1>
                 <h1 className=''>{text}</h1>
             </div>
         )
@@ -67,7 +67,7 @@ export default function Button({
                 justify-evenly items-center gap-2 select-none
             `}
         >
-            <h1 className='font-bold'>{icon ? `${icon}` : ''}</h1>
+            <h1 className='font-bold'>{icon || ''}</h1>
             <h1 className=''>{text}</h1>
         </Link>
     )
