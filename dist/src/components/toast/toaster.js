@@ -1,7 +1,7 @@
 'use client';
 import { jsx as _jsx } from "react/jsx-runtime";
 import { useState, useEffect, useMemo } from 'react';
-import ToastItem from 'toastItem';
+import ToastItem from './toastItem';
 const listeners = new Set();
 let idCounter = 0;
 export function toast(message, type, duration = 4000) {

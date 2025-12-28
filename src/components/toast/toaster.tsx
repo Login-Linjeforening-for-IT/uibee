@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import type { Toast, ToastType } from 'uibee/components'
-import ToastItem from '@components/toast/toastItem'
+import ToastItem from './toastItem'
 
 const listeners = new Set<(toast: Toast) => void>()
 let idCounter = 0
