@@ -17,9 +17,10 @@ export { default as NavDropdown } from './navbar/navbarDropdown';
 // Containers
 export { default as PageContainer } from './container/page';
 export { default as Highlight } from './container/highlight';
-// Other components
+// Login
 export { default as VersionTag } from './version/version';
 export { default as LoginPage } from './login/loginPage';
+// Toasts
 export { default as Toaster, toast } from './toast/toaster';
 // Buttons
 export { default as Button } from './buttons/button';

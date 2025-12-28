@@ -8,6 +8,10 @@ export function toast(message, type, duration = 4000) {
     const id = ++idCounter;
     listeners.forEach(listener => listener({ id, message, type, expiresAt: Date.now() + duration }));
 }
+toast.info = (message, duration) => toast(message, 'info', duration);
+toast.success = (message, duration) => toast(message, 'success', duration);
+toast.warning = (message, duration) => toast(message, 'warning', duration);
+toast.error = (message, duration) => toast(message, 'error', duration);
 export default function Toaster() {
     const [toasts, setToasts] = useState([]);
     const [expanded, setExpanded] = useState(false);

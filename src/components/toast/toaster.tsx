@@ -12,6 +12,11 @@ export function toast(message: string, type: ToastType, duration = 4000) {
     listeners.forEach(listener => listener({ id, message, type, expiresAt: Date.now() + duration }))
 }
 
+toast.info = (message: string, duration?: number) => toast(message, 'info', duration)
+toast.success = (message: string, duration?: number) => toast(message, 'success', duration)
+toast.warning = (message: string, duration?: number) => toast(message, 'warning', duration)
+toast.error = (message: string, duration?: number) => toast(message, 'error', duration)
+
 export default function Toaster() {
     const [toasts, setToasts] = useState<Toast[]>([])
     const [expanded, setExpanded] = useState(false)

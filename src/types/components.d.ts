@@ -33,8 +33,14 @@ declare module 'uibee/components' {
     export type Language = 'no' | 'en'
 
     export default function LoginPage(props: LoginPageProps): JSX.Element;
-    export default function Toaster(): JSX.Element;
-    export default function toast(message: string, type: ToastType, duration?: number): void;
+    export function Toaster(): JSX.Element;
+    export function toast(message: string, type: ToastType, duration?: number): void;
+    export namespace toast {
+        export function info(message: string, duration?: number): void;
+        export function success(message: string, duration?: number): void;
+        export function warning(message: string, duration?: number): void;
+        export function error(message: string, duration?: number): void;
+    }
     export default function LanguageToggle(props: { lang: Language }): JSX.Element;
     export default function ThemeSwitch(props: { className?: string }): JSX.Element;
 }
