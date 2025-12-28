@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getCookie, setCookie } from '@utils/cookies/cookies'
+import { getCookie, setCookie } from 'utilbee/utils'
 import { useRouter } from 'next/navigation'
 
 export default function ThemeToggle({className}: {className?: string}) {
