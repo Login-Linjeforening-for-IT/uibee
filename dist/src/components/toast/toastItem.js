@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { AlertCircle, AlertTriangle, CheckCircle, Info, X } from 'lucide-react';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-export default function Toast({ toast, index, expanded, onRemove, onHeight, offset, frontHeight }) {
+export default function ToastItem({ toast, index, expanded, onRemove, onHeight, offset, frontHeight }) {
     const [mounted, setMounted] = useState(false);
     const ref = useRef(null);
     useEffect(() => {

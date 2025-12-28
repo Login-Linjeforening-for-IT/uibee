@@ -1,8 +1,8 @@
 import { AlertCircle, AlertTriangle, CheckCircle, Info, X } from 'lucide-react'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import type { Toast, ToastType, ToastProps } from 'uibee/components'
+import type { ToastType, ToastProps } from 'uibee/components'
 
-export default function Toast({ toast, index, expanded, onRemove, onHeight, offset, frontHeight }: ToastProps) {
+export default function ToastItem({ toast, index, expanded, onRemove, onHeight, offset, frontHeight }: ToastProps) {
     const [mounted, setMounted] = useState(false)
     const ref = useRef<HTMLLIElement>(null)
 
