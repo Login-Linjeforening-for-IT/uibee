@@ -20,6 +20,6 @@ export { default as Highlight } from './container/highlight';
 // Other components
 export { default as VersionTag } from './version/version';
 export { default as LoginPage } from './login/loginPage';
-export { default as Toaster, addToast } from './toast/toaster';
+export { default as Toaster, toast } from './toast/toaster';
 // Buttons
 export { default as Button } from './buttons/button';

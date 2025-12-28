@@ -12,7 +12,7 @@ export function toast(message: string, type: ToastType, duration = 4000) {
     listeners.forEach(listener => listener({ id, message, type, expiresAt: Date.now() + duration }))
 }
 
-export function Toaster() {
+export default function Toaster() {
     const [toasts, setToasts] = useState<Toast[]>([])
     const [expanded, setExpanded] = useState(false)
     const [heights, setHeights] = useState<Record<number, number>>({})
