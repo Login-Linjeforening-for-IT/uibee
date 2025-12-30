@@ -1,14 +1,16 @@
-import { HTMLInputTypeAttribute } from 'react';
-type InputProps = {
+import { type ChangeEvent, type JSX } from 'react';
+export type InputProps = {
+    label?: string;
     name: string;
-    type: HTMLInputTypeAttribute;
-    label: string;
+    type?: React.HTMLInputTypeAttribute;
+    placeholder?: string;
     value?: string | number;
-    setValue: (value: string | number) => void;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    error?: string;
     className?: string;
-    tooltip?: string;
+    disabled?: boolean;
     required?: boolean;
-    color?: string;
+    icon?: JSX.Element;
+    info?: string;
 };
-export default function Input({ name, type, label, className, tooltip, required, value, setValue, color }: InputProps): import("react/jsx-runtime").JSX.Element;
-export {};
+export default function Input({ label, name, type, placeholder, value, onChange, error, className, disabled, required, icon, info, }: InputProps): import("react/jsx-runtime").JSX.Element;

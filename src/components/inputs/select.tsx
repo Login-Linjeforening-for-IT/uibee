@@ -1,202 +1,167 @@
 'use client'
 
-import { useRef, useState } from 'react'
-import ToolTip from './tooltip'
-import Label from './label'
-import EraseButton from './erase'
+import { useState, useEffect } from 'react'
+import { useClickOutside } from '../../hooks'
+import { ChevronDown, X } from 'lucide-react'
+import { FieldWrapper } from './shared'
 
-type Option = {
-    value: string | number;
-    label: string;
-    image?: string
-}
-
-
-type SelectProps = {
-    name: string
+export type Option = {
+    value: string | number
     label: string
-    value: string | number
-    setValue: (_: string | number) => void
-    options: Option[]
-    className?: string
-    tooltip?: string
-    required?: boolean
-    children?: React.ReactNode
-    color?: string
 }
 
-type SelectedOptionProps = {
-    value: string | number
-    selectedOption: Option | undefined
+export type SelectProps = {
+    label?: string
+    name: string
+    value?: string | number | null
+    onChange?: (value: string | number | null) => void
+    options: Option[]
+    error?: string
+    className?: string
+    disabled?: boolean
+    required?: boolean
+    placeholder?: string
+    info?: string
+    clearable?: boolean
 }
 
 export default function Select({
-    name,
     label,
+    name,
     value,
+    onChange,
     options,
+    error,
     className,
-    tooltip,
+    disabled,
     required,
-    children,
-    setValue,
-    color
+    placeholder = 'Select an option',
+    info,
+    clearable = true,
 }: SelectProps) {
-    const [hasBlured, setHasBlured] = useState(false)
-    const selectRef = useRef<HTMLSelectElement | null>(null)
-    const selectedOption = options.find((o) => o.value === value)
+    const [isOpen, setIsOpen] = useState(false)
+    const [selectedOption, setSelectedOption] = useState<Option | undefined>(
+        options.find(opt => opt.value === value)
+    )
 
-    function handleChoose(value: string | number) {
-        setValue(value)
-        setHasBlured(true)
-        if (selectRef.current) {
-            selectRef.current.value = String(value)
-            selectRef.current.blur()
+    useEffect(() => {
+        setSelectedOption(options.find(opt => opt.value === value))
+    }, [value, options])
+
+    const containerRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false))
+
+    const handleSelect = (option: Option) => {
+        if (disabled) return
+        setSelectedOption(option)
+        setIsOpen(false)
+        if (onChange) {
+            onChange(option.value)
+        }
+    }
+
+    const handleClear = (e: React.MouseEvent) => {
+        e.stopPropagation()
+        if (disabled) return
+        setSelectedOption(undefined)
+        if (onChange) {
+            onChange(null)
         }
     }
 
     return (
-        <div className={`w-full ${className}`}>
-            <div className='relative flex items-center'>
-                <select
-                    ref={selectRef}
-                    name={name}
-                    className={
-                        'peer cursor-pointer block px-2.5 pb-2.5 pt-4 ' +
-                        'w-full text-sm rounded-lg border-[0.10rem] ' +
-                        'appearance-none border-login-200 focus:ring-0 ' +
-                        'focus:outline-none focus:border-login-50 ' +
-                        `${color ? color : 'bg-login-800'}`
-                    }
-                    value={value}
-                    onChange={(e) => {
-                        setValue(e.target.value)
-                        setHasBlured(true)
-                    }}
-                    onBlur={() => setHasBlured(true)}
-                    onMouseDown={(e) => {
-                        e.preventDefault()
-                        selectRef.current?.focus()
-                    }}
-                    required={required}
+        <FieldWrapper
+            label={label}
+            name={name}
+            required={required}
+            info={info}
+            error={error}
+            className={className}
+        >
+            <div className='relative' ref={containerRef}>
+                <button
+                    type='button'
+                    onClick={() => !disabled && setIsOpen(!isOpen)}
+                    disabled={disabled}
+                    aria-haspopup='listbox'
+                    aria-expanded={isOpen}
+                    aria-labelledby={label ? undefined : name}
+                    className={`
+                        w-full rounded-md bg-login-500/50 border border-login-500 
+                        text-login-text text-left
+                        focus:outline-none focus:border-login focus:ring-1 focus:ring-login
+                        disabled:opacity-50 disabled:cursor-not-allowed
+                        py-2 pl-3 pr-10
+                        transition-all duration-200
+                        flex items-center justify-between
+                        ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+                        ${!selectedOption ? 'text-login-200' : ''}
+                    `}
+                    title={label}
                 >
-                    <option value='' hidden />
-                    {options.map((option) => (
-                        <option key={option.value} value={option.value}>
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-
-                <Label
-                    label={label}
-                    value={value}
-                    required={required}
-                    color={color}
-                    showRequired={required && !value && hasBlured}
-                />
-
-                {value && (
-                    <EraseButton
-                        setData={(v: string) => {
-                            setValue(v)
-                            setHasBlured(true)
-                        }}
-                    />
-                )}
-                {!value && tooltip && <ToolTip info={tooltip} />}
-
-                <SelectContent
-                    options={options}
-                    value={value}
-                    selectedOption={selectedOption}
-                    handleChoose={handleChoose}
-                    color={color}
-                />
-            </div>
-            {children}
-        </div>
-    )
-}
-
-function SelectContent({
-    options,
-    value,
-    selectedOption,
-    handleChoose,
-    color
-}: {
-    options: Option[]
-    value: string | number
-    selectedOption: Option | undefined
-    handleChoose: (value: string | number) => void
-    color?: string
-}) {
-    return (
-        <div
-            className={
-                'hidden peer-focus:block absolute left-0 ' +
-                'right-0 top-full mt-1 z-50'
-            }
-        >
-            <div
-                className={
-                    `${color ? color : 'bg-login-800'}` + ' border-[0.10rem] border-login-200 ' +
-                    'rounded-lg shadow-lg p-0 max-h-72 overflow-hidden'
-                }
-            >
-                <div className='max-h-72 overflow-auto'>
-                    <SelectedOption
-                        value={value}
-                        selectedOption={selectedOption}
-                    />
-                    <div className='p-2'>
-                        {options
-                            .filter((o) => o.value !== value)
-                            .map((opt) => (
-                                <button
-                                    key={opt.value}
-                                    type='button'
-                                    className={
-                                        'cursor-pointer w-full flex ' +
-                                        'items-center gap-3 px-2 py-2 ' +
-                                        'text-sm hover:bg-surface ' +
-                                        'rounded hover:bg-login-600'
-                                    }
-                                    onMouseDown={(e) => {
-                                        e.preventDefault()
-                                        handleChoose(opt.value)
-                                    }}
-                                >
-                                    <span className='text-left'>
-                                        {opt.label}
-                                    </span>
-                                </button>
-                            ))}
+                    <span className='truncate'>
+                        {selectedOption ? selectedOption.label : placeholder}
+                    </span>
+                    <div className='absolute inset-y-0 right-0 flex items-center px-2 gap-1'>
+                        {clearable && selectedOption && !disabled && (
+                            <div
+                                role='button'
+                                onClick={handleClear}
+                                className={`
+                                    p-1 hover:bg-login-500 rounded-full text-login-200
+                                    hover:text-red-400 transition-colors cursor-pointer
+                                `}
+                                title='Clear selection'
+                            >
+                                <X className='w-3 h-3' />
+                            </div>
+                        )}
+                        <div className={`
+                            text-login-200 pointer-events-none
+                            transition-transform duration-200
+                            ${isOpen ? 'rotate-180' : ''}
+                        `}>
+                            <ChevronDown className='w-4 h-4' />
+                        </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+                </button>
 
-function SelectedOption({ value, selectedOption }: SelectedOptionProps) {
-    if (!value) {
-        return <></>
-    }
-
-    return (
-        <div
-            className={
-                'sticky top-0 bg-surface px-2 py-2 z-10 border-b ' +
-                'border-login-200 bg-login-600'
-            }
-        >
-            <div className='flex items-center gap-3'>
-                <span className='font-medium text-left'>
-                    {selectedOption?.label}
-                </span>
+                {isOpen && (
+                    <div className={`
+                        absolute z-50 w-full mt-1 bg-login-600 border border-login-500
+                        rounded-md shadow-lg max-h-60 overflow-auto noscroll
+                    `}>
+                        {options.length > 0 ? (
+                            <ul className='py-1' role='listbox'>
+                                {options.map((option) => (
+                                    <li key={option.value} role='option' aria-selected={selectedOption?.value === option.value}>
+                                        <button
+                                            type='button'
+                                            onClick={() => handleSelect(option)}
+                                            className={`
+                                                w-full text-left px-3 py-2 text-sm
+                                                hover:bg-login-500 transition-colors duration-150
+                                                ${selectedOption?.value === option.value ? 'bg-login-500 text-login' : 'text-login-text'}
+                                            `}
+                                        >
+                                            {option.label}
+                                        </button>
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <div className='px-3 py-2 text-sm text-login-200'>
+                                No options available
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
-        </div>
+            <input
+                type='hidden'
+                name={name}
+                value={selectedOption?.value || ''}
+                required={required}
+            />
+        </FieldWrapper>
     )
 }

@@ -1,19 +1,19 @@
-type Option = {
+export type Option = {
     value: string | number;
     label: string;
-    image?: string;
 };
-type SelectProps = {
+export type SelectProps = {
+    label?: string;
     name: string;
-    label: string;
-    value: string | number;
-    setValue: (_: string | number) => void;
+    value?: string | number | null;
+    onChange?: (value: string | number | null) => void;
     options: Option[];
+    error?: string;
     className?: string;
-    tooltip?: string;
+    disabled?: boolean;
     required?: boolean;
-    children?: React.ReactNode;
-    color?: string;
+    placeholder?: string;
+    info?: string;
+    clearable?: boolean;
 };
-export default function Select({ name, label, value, options, className, tooltip, required, children, setValue, color }: SelectProps): import("react/jsx-runtime").JSX.Element;
-export {};
+export default function Select({ label, name, value, onChange, options, error, className, disabled, required, placeholder, info, clearable, }: SelectProps): import("react/jsx-runtime").JSX.Element;

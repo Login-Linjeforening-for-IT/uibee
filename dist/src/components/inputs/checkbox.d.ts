@@ -1,5 +1,5 @@
 import { type ChangeEvent } from 'react';
-export type SwitchProps = {
+export type CheckboxProps = {
     label?: string;
     name: string;
     checked?: boolean;
@@ -10,4 +10,4 @@ export type SwitchProps = {
     info?: string;
     required?: boolean;
 };
-export default function Switch({ label, name, checked, onChange, className, disabled, error, info, required, }: SwitchProps): import("react/jsx-runtime").JSX.Element;
+export default function Checkbox({ label, name, checked, onChange, className, disabled, error, info, required, }: CheckboxProps): import("react/jsx-runtime").JSX.Element;

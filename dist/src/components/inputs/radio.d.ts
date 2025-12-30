@@ -1,7 +1,8 @@
 import { type ChangeEvent } from 'react';
-export type SwitchProps = {
+export type RadioProps = {
     label?: string;
     name: string;
+    value: string | number;
     checked?: boolean;
     onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
     className?: string;
@@ -10,4 +11,4 @@ export type SwitchProps = {
     info?: string;
     required?: boolean;
 };
-export default function Switch({ label, name, checked, onChange, className, disabled, error, info, required, }: SwitchProps): import("react/jsx-runtime").JSX.Element;
+export default function Radio({ label, name, value, checked, onChange, className, disabled, error, info, required, }: RadioProps): import("react/jsx-runtime").JSX.Element;

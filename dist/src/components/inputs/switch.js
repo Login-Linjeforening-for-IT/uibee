@@ -1,7 +1,15 @@
-'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
-import ToolTip from './tooltip';
-export default function Switch({ name, label, value, className, tooltip, setValue }) {
-    return (_jsxs("div", { className: `relative w-full flex items-center px-2.5 pb-2.5 pt-3 border-login-200 rounded-lg border-[0.10rem]
-            bg-login-800 ${className}`, children: [_jsxs("label", { className: 'flex items-center cursor-pointer', children: [_jsx("input", { type: 'checkbox', name: name, className: 'sr-only', checked: value, onChange: (e) => setValue(e.target.checked) }), _jsx("div", { className: `w-10 h-6  rounded-full p-1 transition ${value ? 'bg-login-50' : 'bg-login-200'}`, children: _jsx("div", { className: `w-4 h-4 bg-login-800 rounded-full shadow-md transform transition ${value ? 'translate-x-4' : ''}` }) })] }), _jsx("span", { className: 'ml-3 text-sm', children: label }), tooltip && _jsx(ToolTip, { info: tooltip })] }));
+import { SelectionWrapper } from './shared';
+export default function Switch({ label, name, checked, onChange, className, disabled, error, info, required, }) {
+    return (_jsx(SelectionWrapper, { label: label, name: name, required: required, info: info, error: error, className: className, disabled: disabled, children: _jsxs("label", { className: 'relative inline-flex items-center cursor-pointer', children: [_jsx("input", { type: 'checkbox', id: name, name: name, checked: checked, onChange: onChange, disabled: disabled, required: required, className: 'sr-only peer' }), _jsx("div", { className: `
+                    w-11 h-6 bg-login-500/50 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-login/50 
+                    rounded-full peer 
+                    peer-checked:after:translate-x-full peer-checked:after:border-white 
+                    after:content-[''] after:absolute after:top-0.5 after:left-0.5 
+                    after:bg-white after:border-gray-300 after:border after:rounded-full 
+                    after:h-5 after:w-5 after:transition-all 
+                    peer-checked:bg-login
+                    ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+                    ${error ? 'ring-1 ring-red-500' : ''}
+                ` })] }) }));
 }

@@ -1,53 +1,57 @@
 'use client';
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import { useRef, useState } from 'react';
-import ToolTip from './tooltip';
-import Label from './label';
-import EraseButton from './erase';
-export default function Select({ name, label, value, options, className, tooltip, required, children, setValue, color }) {
-    const [hasBlured, setHasBlured] = useState(false);
-    const selectRef = useRef(null);
-    const selectedOption = options.find((o) => o.value === value);
-    function handleChoose(value) {
-        setValue(value);
-        setHasBlured(true);
-        if (selectRef.current) {
-            selectRef.current.value = String(value);
-            selectRef.current.blur();
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useState, useEffect } from 'react';
+import { useClickOutside } from '../../hooks';
+import { ChevronDown, X } from 'lucide-react';
+import { FieldWrapper } from './shared';
+export default function Select({ label, name, value, onChange, options, error, className, disabled, required, placeholder = 'Select an option', info, clearable = true, }) {
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(options.find(opt => opt.value === value));
+    useEffect(() => {
+        setSelectedOption(options.find(opt => opt.value === value));
+    }, [value, options]);
+    const containerRef = useClickOutside(() => setIsOpen(false));
+    const handleSelect = (option) => {
+        if (disabled)
+            return;
+        setSelectedOption(option);
+        setIsOpen(false);
+        if (onChange) {
+            onChange(option.value);
         }
-    }
-    return (_jsxs("div", { className: `w-full ${className}`, children: [_jsxs("div", { className: 'relative flex items-center', children: [_jsxs("select", { ref: selectRef, name: name, className: 'peer cursor-pointer block px-2.5 pb-2.5 pt-4 ' +
-                            'w-full text-sm rounded-lg border-[0.10rem] ' +
-                            'appearance-none border-login-200 focus:ring-0 ' +
-                            'focus:outline-none focus:border-login-50 ' +
-                            `${color ? color : 'bg-login-800'}`, value: value, onChange: (e) => {
-                            setValue(e.target.value);
-                            setHasBlured(true);
-                        }, onBlur: () => setHasBlured(true), onMouseDown: (e) => {
-                            e.preventDefault();
-                            selectRef.current?.focus();
-                        }, required: required, children: [_jsx("option", { value: '', hidden: true }), options.map((option) => (_jsx("option", { value: option.value, children: option.label }, option.value)))] }), _jsx(Label, { label: label, value: value, required: required, color: color, showRequired: required && !value && hasBlured }), value && (_jsx(EraseButton, { setData: (v) => {
-                            setValue(v);
-                            setHasBlured(true);
-                        } })), !value && tooltip && _jsx(ToolTip, { info: tooltip }), _jsx(SelectContent, { options: options, value: value, selectedOption: selectedOption, handleChoose: handleChoose, color: color })] }), children] }));
-}
-function SelectContent({ options, value, selectedOption, handleChoose, color }) {
-    return (_jsx("div", { className: 'hidden peer-focus:block absolute left-0 ' +
-            'right-0 top-full mt-1 z-50', children: _jsx("div", { className: `${color ? color : 'bg-login-800'}` + ' border-[0.10rem] border-login-200 ' +
-                'rounded-lg shadow-lg p-0 max-h-72 overflow-hidden', children: _jsxs("div", { className: 'max-h-72 overflow-auto', children: [_jsx(SelectedOption, { value: value, selectedOption: selectedOption }), _jsx("div", { className: 'p-2', children: options
-                            .filter((o) => o.value !== value)
-                            .map((opt) => (_jsx("button", { type: 'button', className: 'cursor-pointer w-full flex ' +
-                                'items-center gap-3 px-2 py-2 ' +
-                                'text-sm hover:bg-surface ' +
-                                'rounded hover:bg-login-600', onMouseDown: (e) => {
-                                e.preventDefault();
-                                handleChoose(opt.value);
-                            }, children: _jsx("span", { className: 'text-left', children: opt.label }) }, opt.value))) })] }) }) }));
-}
-function SelectedOption({ value, selectedOption }) {
-    if (!value) {
-        return _jsx(_Fragment, {});
-    }
-    return (_jsx("div", { className: 'sticky top-0 bg-surface px-2 py-2 z-10 border-b ' +
-            'border-login-200 bg-login-600', children: _jsx("div", { className: 'flex items-center gap-3', children: _jsx("span", { className: 'font-medium text-left', children: selectedOption?.label }) }) }));
+    };
+    const handleClear = (e) => {
+        e.stopPropagation();
+        if (disabled)
+            return;
+        setSelectedOption(undefined);
+        if (onChange) {
+            onChange(null);
+        }
+    };
+    return (_jsxs(FieldWrapper, { label: label, name: name, required: required, info: info, error: error, className: className, children: [_jsxs("div", { className: 'relative', ref: containerRef, children: [_jsxs("button", { type: 'button', onClick: () => !disabled && setIsOpen(!isOpen), disabled: disabled, "aria-haspopup": 'listbox', "aria-expanded": isOpen, "aria-labelledby": label ? undefined : name, className: `
+                        w-full rounded-md bg-login-500/50 border border-login-500 
+                        text-login-text text-left
+                        focus:outline-none focus:border-login focus:ring-1 focus:ring-login
+                        disabled:opacity-50 disabled:cursor-not-allowed
+                        py-2 pl-3 pr-10
+                        transition-all duration-200
+                        flex items-center justify-between
+                        ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
+                        ${!selectedOption ? 'text-login-200' : ''}
+                    `, title: label, children: [_jsx("span", { className: 'truncate', children: selectedOption ? selectedOption.label : placeholder }), _jsxs("div", { className: 'absolute inset-y-0 right-0 flex items-center px-2 gap-1', children: [clearable && selectedOption && !disabled && (_jsx("div", { role: 'button', onClick: handleClear, className: `
+                                    p-1 hover:bg-login-500 rounded-full text-login-200
+                                    hover:text-red-400 transition-colors cursor-pointer
+                                `, title: 'Clear selection', children: _jsx(X, { className: 'w-3 h-3' }) })), _jsx("div", { className: `
+                            text-login-200 pointer-events-none
+                            transition-transform duration-200
+                            ${isOpen ? 'rotate-180' : ''}
+                        `, children: _jsx(ChevronDown, { className: 'w-4 h-4' }) })] })] }), isOpen && (_jsx("div", { className: `
+                        absolute z-50 w-full mt-1 bg-login-600 border border-login-500
+                        rounded-md shadow-lg max-h-60 overflow-auto noscroll
+                    `, children: options.length > 0 ? (_jsx("ul", { className: 'py-1', role: 'listbox', children: options.map((option) => (_jsx("li", { role: 'option', "aria-selected": selectedOption?.value === option.value, children: _jsx("button", { type: 'button', onClick: () => handleSelect(option), className: `
+                                                w-full text-left px-3 py-2 text-sm
+                                                hover:bg-login-500 transition-colors duration-150
+                                                ${selectedOption?.value === option.value ? 'bg-login-500 text-login' : 'text-login-text'}
+                                            `, children: option.label }) }, option.value))) })) : (_jsx("div", { className: 'px-3 py-2 text-sm text-login-200', children: "No options available" })) }))] }), _jsx("input", { type: 'hidden', name: name, value: selectedOption?.value || '', required: required })] }));
 }

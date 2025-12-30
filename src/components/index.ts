@@ -1,9 +1,10 @@
 // Input components
 export { default as Input } from './inputs/input'
-export { default as SwitchInput } from './inputs/switch'
-export { default as TagInput } from './inputs/tag'
-export { default as Textarea } from './inputs/markdown'
+export { default as Textarea } from './inputs/textarea'
+export { default as Checkbox } from './inputs/checkbox'
 export { default as Select } from './inputs/select'
+export { default as Switch } from './inputs/switch'
+export { default as Radio } from './inputs/radio'
 
 // Logos
 export { default as Logo } from './logo/logo'

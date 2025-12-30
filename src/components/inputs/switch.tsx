@@ -1,39 +1,62 @@
-'use client'
+import { type ChangeEvent } from 'react'
+import { SelectionWrapper } from './shared'
 
-import ToolTip from './tooltip'
-
-type SwitchProps = {
+export type SwitchProps = {
+    label?: string
     name: string
-    label: string
-    value?: boolean
-    setValue: (_: boolean) => void
+    checked?: boolean
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
     className?: string
-    tooltip?: string
+    disabled?: boolean
+    error?: string
+    info?: string
+    required?: boolean
 }
 
-export default function Switch({ name, label, value, className, tooltip, setValue }: SwitchProps) {
+export default function Switch({
+    label,
+    name,
+    checked,
+    onChange,
+    className,
+    disabled,
+    error,
+    info,
+    required,
+}: SwitchProps) {
     return (
-        <div className={`relative w-full flex items-center px-2.5 pb-2.5 pt-3 border-login-200 rounded-lg border-[0.10rem]
-            bg-login-800 ${className}`}
+        <SelectionWrapper
+            label={label}
+            name={name}
+            required={required}
+            info={info}
+            error={error}
+            className={className}
+            disabled={disabled}
         >
-            <label className='flex items-center cursor-pointer'>
+            <label className='relative inline-flex items-center cursor-pointer'>
                 <input
                     type='checkbox'
+                    id={name}
                     name={name}
-                    className='sr-only'
-                    checked={value}
-                    onChange={(e) => setValue(e.target.checked)}
+                    checked={checked}
+                    onChange={onChange}
+                    disabled={disabled}
+                    required={required}
+                    className='sr-only peer'
                 />
-                <div className={`w-10 h-6  rounded-full p-1 transition ${value ? 'bg-login-50' : 'bg-login-200'}`}>
-                    <div
-                        className={`w-4 h-4 bg-login-800 rounded-full shadow-md transform transition ${value ? 'translate-x-4' : ''}`}
-                    />
-                </div>
+                <div className={`
+                    w-11 h-6 bg-login-500/50 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-login/50 
+                    rounded-full peer 
+                    peer-checked:after:translate-x-full peer-checked:after:border-white 
+                    after:content-[''] after:absolute after:top-0.5 after:left-0.5 
+                    after:bg-white after:border-gray-300 after:border after:rounded-full 
+                    after:h-5 after:w-5 after:transition-all 
+                    peer-checked:bg-login
+                    ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+                    ${error ? 'ring-1 ring-red-500' : ''}
+                `}></div>
             </label>
-            <span className='ml-3 text-sm'>
-                {label}
-            </span>
-            {tooltip && <ToolTip info={tooltip} />}
-        </div>
+        </SelectionWrapper>
     )
 }
