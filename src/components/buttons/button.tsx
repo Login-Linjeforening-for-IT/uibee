@@ -40,7 +40,7 @@ export default function Button({
                 `}
             >
                 <h1 className='font-bold'>{icon || ''}</h1>
-                <h1 className='min-w-fit w-fit'>{text}</h1>
+                <h1 className='w-fit'>{text}</h1>
             </button>
         )
     }
@@ -54,7 +54,7 @@ export default function Button({
                 `}
             >
                 <h1 className='font-bold'>{icon || ''}</h1>
-                <h1 className=''>{text}</h1>
+                <h1 className='w-fit'>{text}</h1>
             </div>
         )
     }
@@ -68,7 +68,7 @@ export default function Button({
             `}
         >
             <h1 className='font-bold'>{icon || ''}</h1>
-            <h1 className=''>{text}</h1>
+            <h1 className='w-fit'>{text}</h1>
         </Link>
     )
 }
