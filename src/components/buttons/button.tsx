@@ -50,7 +50,7 @@ export default function Button({
             <div
                 className={`
                     ${bg} cursor-not-allowed px-4 rounded-md h-8 flex
-                    justify-evenly items-center gap-2 select-none
+                    justify-evenly items-center gap-2 select-none w-fit
                 `}
             >
                 <h1 className='font-bold'>{icon || ''}</h1>
@@ -64,7 +64,7 @@ export default function Button({
             href={path}
             className={`
                 ${bg} cursor-pointer px-4 rounded-md h-8 flex
-                justify-evenly items-center gap-2 select-none
+                justify-evenly items-center gap-2 select-none w-fit
             `}
         >
             <h1 className='font-bold'>{icon || ''}</h1>

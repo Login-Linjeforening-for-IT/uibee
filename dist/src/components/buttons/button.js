@@ -14,11 +14,11 @@ export default function Button({ text, className, icon, path, color, type, onCli
     if (disabled) {
         return (_jsxs("div", { className: `
                     ${bg} cursor-not-allowed px-4 rounded-md h-8 flex
-                    justify-evenly items-center gap-2 select-none
+                    justify-evenly items-center gap-2 select-none w-fit
                 `, children: [_jsx("h1", { className: 'font-bold', children: icon || '' }), _jsx("h1", { className: 'w-fit', children: text })] }));
     }
     return (_jsxs(Link, { href: path, className: `
                 ${bg} cursor-pointer px-4 rounded-md h-8 flex
-                justify-evenly items-center gap-2 select-none
+                justify-evenly items-center gap-2 select-none w-fit
             `, children: [_jsx("h1", { className: 'font-bold', children: icon || '' }), _jsx("h1", { className: 'w-fit', children: text })] }));
 }
