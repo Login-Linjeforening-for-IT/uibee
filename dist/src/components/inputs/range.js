@@ -15,6 +15,6 @@ export default function Range({ label, name, min = 0, max = 100, step = 1, value
                         [&::-moz-range-thumb]:bg-login
                         [&::-moz-range-thumb]:border-none
                         disabled:opacity-50 disabled:cursor-not-allowed
-                        ${error ? 'accent-red-500 [&::-webkit-slider-thumb]:bg-red-500 [&::-moz-range-thumb]:bg-red-500' : ''}
+                        ${error ? 'accent-red-500' : ''}
                     ` }), showValue && (_jsx("span", { className: 'text-login-text text-sm font-medium min-w-10 text-right', children: value }))] }) }));
 }

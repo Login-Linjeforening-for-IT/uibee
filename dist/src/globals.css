@@ -1541,11 +1541,6 @@
       background-color: var(--color-login);
     }
   }
-  .\[\&\:\:-moz-range-thumb\]\:bg-red-500 {
-    &::-moz-range-thumb {
-      background-color: var(--color-red-500);
-    }
-  }
   .\[\&\:\:-webkit-slider-thumb\]\:h-4 {
     &::-webkit-slider-thumb {
       height: calc(var(--spacing) * 4);
@@ -1569,11 +1564,6 @@
   .\[\&\:\:-webkit-slider-thumb\]\:bg-login {
     &::-webkit-slider-thumb {
       background-color: var(--color-login);
-    }
-  }
-  .\[\&\:\:-webkit-slider-thumb\]\:bg-red-500 {
-    &::-webkit-slider-thumb {
-      background-color: var(--color-red-500);
     }
   }
 }

@@ -9,7 +9,7 @@ export default function Button({ text, className, icon, path, color, type, onCli
                     ${bg} cursor-pointer px-4 rounded-md min-h-8 h-8 flex
                     justify-evenly items-center gap-2 select-none
                     focus:outline-none border-0 outline w-fit ${className}
-                `, children: [_jsx("h1", { className: 'font-bold', children: icon || '' }), _jsx("h1", { children: text })] }));
+                `, children: [_jsx("h1", { className: 'font-bold', children: icon || '' }), _jsx("h1", { className: 'w-fit', children: text })] }));
     }
     if (disabled) {
         return (_jsxs("div", { className: `
