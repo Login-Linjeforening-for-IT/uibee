@@ -552,6 +552,9 @@
   .min-w-0 {
     min-width: calc(var(--spacing) * 0);
   }
+  .min-w-10 {
+    min-width: calc(var(--spacing) * 10);
+  }
   .min-w-70 {
     min-width: calc(var(--spacing) * 70);
   }
@@ -904,6 +907,9 @@
   .text-left {
     text-align: left;
   }
+  .text-right {
+    text-align: right;
+  }
   .text-2xl {
     font-size: var(--text-2xl);
     line-height: var(--tw-leading, var(--text-2xl--line-height));
@@ -1017,6 +1023,12 @@
     &::placeholder {
       color: var(--color-login-200);
     }
+  }
+  .accent-login {
+    accent-color: var(--color-login);
+  }
+  .accent-red-500 {
+    accent-color: var(--color-red-500);
   }
   .opacity-0 {
     opacity: 0%;
@@ -1501,6 +1513,67 @@
   .dark\:text-login-100 {
     @media (prefers-color-scheme: dark) {
       color: var(--color-login-100);
+    }
+  }
+  .\[\&\:\:-moz-range-thumb\]\:h-4 {
+    &::-moz-range-thumb {
+      height: calc(var(--spacing) * 4);
+    }
+  }
+  .\[\&\:\:-moz-range-thumb\]\:w-4 {
+    &::-moz-range-thumb {
+      width: calc(var(--spacing) * 4);
+    }
+  }
+  .\[\&\:\:-moz-range-thumb\]\:rounded-full {
+    &::-moz-range-thumb {
+      border-radius: calc(infinity * 1px);
+    }
+  }
+  .\[\&\:\:-moz-range-thumb\]\:border-none {
+    &::-moz-range-thumb {
+      --tw-border-style: none;
+      border-style: none;
+    }
+  }
+  .\[\&\:\:-moz-range-thumb\]\:bg-login {
+    &::-moz-range-thumb {
+      background-color: var(--color-login);
+    }
+  }
+  .\[\&\:\:-moz-range-thumb\]\:bg-red-500 {
+    &::-moz-range-thumb {
+      background-color: var(--color-red-500);
+    }
+  }
+  .\[\&\:\:-webkit-slider-thumb\]\:h-4 {
+    &::-webkit-slider-thumb {
+      height: calc(var(--spacing) * 4);
+    }
+  }
+  .\[\&\:\:-webkit-slider-thumb\]\:w-4 {
+    &::-webkit-slider-thumb {
+      width: calc(var(--spacing) * 4);
+    }
+  }
+  .\[\&\:\:-webkit-slider-thumb\]\:appearance-none {
+    &::-webkit-slider-thumb {
+      appearance: none;
+    }
+  }
+  .\[\&\:\:-webkit-slider-thumb\]\:rounded-full {
+    &::-webkit-slider-thumb {
+      border-radius: calc(infinity * 1px);
+    }
+  }
+  .\[\&\:\:-webkit-slider-thumb\]\:bg-login {
+    &::-webkit-slider-thumb {
+      background-color: var(--color-login);
+    }
+  }
+  .\[\&\:\:-webkit-slider-thumb\]\:bg-red-500 {
+    &::-webkit-slider-thumb {
+      background-color: var(--color-red-500);
     }
   }
 }

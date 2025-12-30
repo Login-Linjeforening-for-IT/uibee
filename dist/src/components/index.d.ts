@@ -4,6 +4,7 @@ export { default as Checkbox } from './inputs/checkbox';
 export { default as Select } from './inputs/select';
 export { default as Switch } from './inputs/switch';
 export { default as Radio } from './inputs/radio';
+export { default as Range } from './inputs/range';
 export { default as Logo } from './logo/logo';
 export { default as LogoSmall } from './logo/logoSmall';
 export { default as ThemeToggle } from './toggle/theme';
