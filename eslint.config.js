@@ -19,6 +19,7 @@ export default [
         },
         rules: {
             ...pluginNext.configs.recommended.rules,
+            '@next/next/no-html-link-for-pages': 'off',
             strict: 'error',
             'no-var': 'error',
             'array-callback-return': 'error',

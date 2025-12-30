@@ -28,7 +28,8 @@
     "build:rewrite": "node dist/src/scripts/rewriteAlias.js",
     "build:ts": "tsc --declaration",
     "build": "npm run build:clean && npm run build:css && npm run build:ts && npm run build:rewrite",
-    "lint": "eslint --fix ./src"
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src"
   },
   "peerDependencies": {
     "next": "^16.0.10",
