@@ -1,6 +1,7 @@
 export type Option = {
     value: string | number;
     label: string;
+    image?: string;
 };
 export type SelectProps = {
     label?: string;

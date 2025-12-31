@@ -1,6 +1,7 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { useClickOutside } from '../../hooks';
 import { ChevronDown, X } from 'lucide-react';
 import { FieldWrapper } from './shared';
@@ -39,7 +40,7 @@ export default function Select({ label, name, value, onChange, options, error, c
                         flex items-center justify-between
                         ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
                         ${!selectedOption ? 'text-login-200' : ''}
-                    `, title: label, children: [_jsx("span", { className: 'truncate', children: selectedOption ? selectedOption.label : placeholder }), _jsxs("div", { className: 'absolute inset-y-0 right-0 flex items-center px-2 gap-1', children: [clearable && selectedOption && !disabled && (_jsx("div", { role: 'button', onClick: handleClear, className: `
+                    `, title: label, children: [_jsxs("div", { className: 'flex items-center gap-2 truncate', children: [selectedOption?.image && (_jsx(Image, { src: selectedOption.image, alt: '', width: 30, height: 20, className: 'rounded-xs object-cover shrink-0' })), _jsx("span", { className: 'truncate', children: selectedOption ? selectedOption.label : placeholder })] }), _jsxs("div", { className: 'absolute inset-y-0 right-0 flex items-center px-2 gap-1', children: [clearable && selectedOption && !disabled && (_jsx("div", { role: 'button', onClick: handleClear, className: `
                                     p-1 hover:bg-login-500 rounded-full text-login-200
                                     hover:text-red-400 transition-colors cursor-pointer
                                 `, title: 'Clear selection', children: _jsx(X, { className: 'w-3 h-3' }) })), _jsx("div", { className: `
@@ -49,9 +50,10 @@ export default function Select({ label, name, value, onChange, options, error, c
                         `, children: _jsx(ChevronDown, { className: 'w-4 h-4' }) })] })] }), isOpen && (_jsx("div", { className: `
                         absolute z-50 w-full mt-1 bg-login-600 border border-login-500
                         rounded-md shadow-lg max-h-60 overflow-auto noscroll
-                    `, children: options.length > 0 ? (_jsx("ul", { className: 'py-1', role: 'listbox', children: options.map((option) => (_jsx("li", { role: 'option', "aria-selected": selectedOption?.value === option.value, children: _jsx("button", { type: 'button', onClick: () => handleSelect(option), className: `
+                    `, children: options.length > 0 ? (_jsx("ul", { className: 'py-1', role: 'listbox', children: options.map((option) => (_jsx("li", { role: 'option', "aria-selected": selectedOption?.value === option.value, children: _jsxs("button", { type: 'button', onClick: () => handleSelect(option), className: `
                                                 w-full text-left px-3 py-2 text-sm
                                                 hover:bg-login-500 transition-colors duration-150
+                                                flex items-center gap-2
                                                 ${selectedOption?.value === option.value ? 'bg-login-500 text-login' : 'text-login-text'}
-                                            `, children: option.label }) }, option.value))) })) : (_jsx("div", { className: 'px-3 py-2 text-sm text-login-200', children: "No options available" })) }))] }), _jsx("input", { type: 'hidden', name: name, value: selectedOption?.value || '', required: required })] }));
+                                            `, children: [option.image && (_jsx(Image, { src: option.image, alt: '', width: 75, height: 25, className: 'rounded-md object-cover shrink-0' })), _jsx("span", { className: 'truncate', children: option.label })] }) }, option.value))) })) : (_jsx("div", { className: 'px-3 py-2 text-sm text-login-200', children: "No options available" })) }))] }), _jsx("input", { type: 'hidden', name: name, value: selectedOption?.value || '', required: required })] }));
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import { useClickOutside } from '../../hooks'
 import { ChevronDown, X } from 'lucide-react'
 import { FieldWrapper } from './shared'
@@ -8,6 +9,7 @@ import { FieldWrapper } from './shared'
 export type Option = {
     value: string | number
     label: string
+    image?: string
 }
 
 export type SelectProps = {
@@ -98,9 +100,20 @@ export default function Select({
                     `}
                     title={label}
                 >
-                    <span className='truncate'>
-                        {selectedOption ? selectedOption.label : placeholder}
-                    </span>
+                    <div className='flex items-center gap-2 truncate'>
+                        {selectedOption?.image && (
+                            <Image
+                                src={selectedOption.image}
+                                alt=''
+                                width={30}
+                                height={20}
+                                className='rounded-xs object-cover shrink-0'
+                            />
+                        )}
+                        <span className='truncate'>
+                            {selectedOption ? selectedOption.label : placeholder}
+                        </span>
+                    </div>
                     <div className='absolute inset-y-0 right-0 flex items-center px-2 gap-1'>
                         {clearable && selectedOption && !disabled && (
                             <div
@@ -140,10 +153,20 @@ export default function Select({
                                             className={`
                                                 w-full text-left px-3 py-2 text-sm
                                                 hover:bg-login-500 transition-colors duration-150
+                                                flex items-center gap-2
                                                 ${selectedOption?.value === option.value ? 'bg-login-500 text-login' : 'text-login-text'}
                                             `}
                                         >
-                                            {option.label}
+                                            {option.image && (
+                                                <Image
+                                                    src={option.image}
+                                                    alt=''
+                                                    width={75}
+                                                    height={25}
+                                                    className='rounded-md object-cover shrink-0'
+                                                />
+                                            )}
+                                            <span className='truncate'>{option.label}</span>
                                         </button>
                                     </li>
                                 ))}
