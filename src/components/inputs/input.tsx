@@ -59,9 +59,9 @@ export default function Input({
         const mm = pad(date.getMinutes())
 
         let newValue = ''
-        if (type === 'date') newValue = `${dd}/${MM}/${yyyy}`
+        if (type === 'date') newValue = `${yyyy}-${MM}-${dd}`
         else if (type === 'time') newValue = `${hh}:${mm}`
-        else if (type === 'datetime-local') newValue = `${dd}/${MM}/${yyyy} ${hh}:${mm}`
+        else if (type === 'datetime-local') newValue = `${yyyy}-${MM}-${dd}T${hh}:${mm}`
 
         const event = {
             target: {

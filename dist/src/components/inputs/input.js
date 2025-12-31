@@ -28,11 +28,11 @@ export default function Input({ label, name, type = 'text', placeholder, value, 
         const mm = pad(date.getMinutes());
         let newValue = '';
         if (type === 'date')
-            newValue = `${dd}/${MM}/${yyyy}`;
+            newValue = `${yyyy}-${MM}-${dd}`;
         else if (type === 'time')
             newValue = `${hh}:${mm}`;
         else if (type === 'datetime-local')
-            newValue = `${dd}/${MM}/${yyyy} ${hh}:${mm}`;
+            newValue = `${yyyy}-${MM}-${dd}T${hh}:${mm}`;
         const event = {
             target: {
                 name,
