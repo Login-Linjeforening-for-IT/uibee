@@ -40,7 +40,7 @@ export default function Button({
                 `}
             >
                 <h1 className='font-bold'>{icon || ''}</h1>
-                <h1 className='w-fit'>{text}</h1>
+                <h1 className='min-w-fit w-fit'>{text}</h1>
             </button>
         )
     }
@@ -49,12 +49,12 @@ export default function Button({
         return (
             <div
                 className={`
-                    ${bg} cursor-not-allowed px-4 rounded-md h-8 flex
-                    justify-evenly items-center gap-2 select-none w-fit
+                    ${bg} cursor-not-allowed px-4 rounded-md h-8 flex w-fit
+                    justify-evenly items-center gap-2 select-none ${className}
                 `}
             >
                 <h1 className='font-bold'>{icon || ''}</h1>
-                <h1 className='w-fit'>{text}</h1>
+                <h1 className='min-w-fit w-fit'>{text}</h1>
             </div>
         )
     }
@@ -63,12 +63,12 @@ export default function Button({
         <Link
             href={path}
             className={`
-                ${bg} cursor-pointer px-4 rounded-md h-8 flex
-                justify-evenly items-center gap-2 select-none w-fit
+                ${bg} cursor-pointer px-4 rounded-md h-8 flex w-fit
+                justify-evenly items-center gap-2 select-none ${className}
             `}
         >
             <h1 className='font-bold'>{icon || ''}</h1>
-            <h1 className='w-fit'>{text}</h1>
+            <h1 className='min-w-fit w-fit'>{text}</h1>
         </Link>
     )
 }
