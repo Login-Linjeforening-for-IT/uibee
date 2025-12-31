@@ -11,5 +11,6 @@ export type TextareaProps = {
     required?: boolean;
     rows?: number;
     info?: string;
+    markdown?: boolean;
 };
-export default function Textarea({ label, name, placeholder, value, onChange, error, className, disabled, required, rows, info, }: TextareaProps): import("react/jsx-runtime").JSX.Element;
+export default function Textarea({ label, name, placeholder, value, onChange, error, className, disabled, required, rows, info, markdown, }: TextareaProps): import("react/jsx-runtime").JSX.Element;

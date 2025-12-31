@@ -1,6 +1,7 @@
+import typography from '@tailwindcss/typography';
 const tailwindConfig = {
     content: ['./app/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
     theme: { extend: {} },
-    plugins: [],
+    plugins: [typography],
 };
 export default tailwindConfig;
