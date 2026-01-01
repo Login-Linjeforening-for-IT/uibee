@@ -36,7 +36,7 @@ export default function DateTimePickerPopup({
         }
     }, [value])
 
-    const handleDateSelect = (day: number) => {
+    function handleDateSelect(day: number) {
         const newDate = new Date(currentDate)
         newDate.setDate(day)
 
@@ -54,7 +54,7 @@ export default function DateTimePickerPopup({
         }
     }
 
-    const handleTimeChange = (timeUnit: 'hours' | 'minutes', val: number) => {
+    function handleTimeChange(timeUnit: 'hours' | 'minutes', val: number) {
         const newDate = value ? new Date(value) : new Date()
         if (!value) {
             newDate.setHours(0, 0, 0, 0)
@@ -72,7 +72,7 @@ export default function DateTimePickerPopup({
         onChange(newDate)
     }
 
-    const onTimeInputChange = (unit: 'hours' | 'minutes', val: string) => {
+    function onTimeInputChange(unit: 'hours' | 'minutes', val: string) {
         if (val === '') {
             setTimeInput(prev => ({ ...prev, [unit]: '' }))
             handleTimeChange(unit, 0)
@@ -90,17 +90,22 @@ export default function DateTimePickerPopup({
         handleTimeChange(unit, num)
     }
 
-    const onTimeInputBlur = (unit: 'hours' | 'minutes') => {
+    function onTimeInputBlur(unit: 'hours' | 'minutes') {
         if (timeInput[unit] === '') {
             const num = unit === 'hours' ? (value?.getHours() ?? 0) : (value?.getMinutes() ?? 0)
             setTimeInput(prev => ({ ...prev, [unit]: num.toString() }))
         }
     }
 
-    const getDaysInMonth = (year: number, month: number) => new Date(year, month + 1, 0).getDate()
-    const getFirstDayOfMonth = (year: number, month: number) => new Date(year, month, 1).getDay()
+    function getDaysInMonth(year: number, month: number) {
+        return new Date(year, month + 1, 0).getDate()
+    }
 
-    const renderCalendar = () => {
+    function getFirstDayOfMonth(year: number, month: number) {
+        return new Date(year, month, 1).getDay()
+    }
+
+    function renderCalendar() {
         const year = currentDate.getFullYear()
         const month = currentDate.getMonth()
         const daysInMonth = getDaysInMonth(year, month)
@@ -174,7 +179,7 @@ export default function DateTimePickerPopup({
         )
     }
 
-    const renderTimePicker = () => {
+    function renderTimePicker() {
         return (
             <div className='p-2 border-t border-login-500 flex justify-center gap-2'>
                 <div className='flex flex-col items-center'>

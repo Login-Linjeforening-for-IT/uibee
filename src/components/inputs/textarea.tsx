@@ -7,6 +7,7 @@ export type TextareaProps = {
     label?: string
     name: string
     placeholder?: string
+    type?: 'markdown' | 'json' | 'text'
     value?: string
     onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
     error?: string
@@ -15,7 +16,15 @@ export type TextareaProps = {
     required?: boolean
     rows?: number
     info?: string
-    markdown?: boolean
+}
+
+function isValidJson(str: string): string | null {
+    try {
+        JSON.parse(str)
+        return null
+    } catch(error) {
+        return (error as Error).message
+    }
 }
 
 export default function Textarea({
@@ -30,9 +39,12 @@ export default function Textarea({
     required,
     rows = 4,
     info,
-    markdown = false,
+    type = 'text',
 }: TextareaProps) {
     const [preview, setPreview] = useState(false)
+
+    const jsonError = type === 'json' && value ? isValidJson(value) : undefined
+    const displayError = jsonError || error
 
     return (
         <FieldWrapper
@@ -40,11 +52,11 @@ export default function Textarea({
             name={name}
             required={required}
             info={info}
-            error={error}
+            error={displayError}
             className={className}
         >
             <div className='relative'>
-                {markdown && (
+                {type === 'markdown' && (
                     <div className='absolute right-2 top-2 z-10 flex gap-2'>
                         <button
                             type='button'
@@ -57,7 +69,7 @@ export default function Textarea({
                     </div>
                 )}
 
-                {markdown && preview ? (
+                {type === 'markdown' && preview ? (
                     <div
                         className={`
                         w-full rounded-md bg-login-500/50 border border-login-500 

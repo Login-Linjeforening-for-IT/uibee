@@ -12,7 +12,7 @@ export default function Select({ label, name, value, onChange, options, error, c
         setSelectedOption(options.find(opt => opt.value === value));
     }, [value, options]);
     const containerRef = useClickOutside(() => setIsOpen(false));
-    const handleSelect = (option) => {
+    function handleSelect(option) {
         if (disabled)
             return;
         setSelectedOption(option);
@@ -20,8 +20,8 @@ export default function Select({ label, name, value, onChange, options, error, c
         if (onChange) {
             onChange(option.value);
         }
-    };
-    const handleClear = (e) => {
+    }
+    function handleClear(e) {
         e.stopPropagation();
         if (disabled)
             return;
@@ -29,7 +29,7 @@ export default function Select({ label, name, value, onChange, options, error, c
         if (onChange) {
             onChange(null);
         }
-    };
+    }
     return (_jsxs(FieldWrapper, { label: label, name: name, required: required, info: info, error: error, className: className, children: [_jsxs("div", { className: 'relative', ref: containerRef, children: [_jsxs("button", { type: 'button', onClick: () => !disabled && setIsOpen(!isOpen), disabled: disabled, "aria-haspopup": 'listbox', "aria-expanded": isOpen, "aria-labelledby": label ? undefined : name, className: `
                         w-full rounded-md bg-login-500/50 border border-login-500 
                         text-login-text text-left

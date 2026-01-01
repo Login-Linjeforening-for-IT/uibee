@@ -9,15 +9,15 @@ export default function Input({ label, name, type = 'text', placeholder, value, 
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useClickOutside(() => setIsOpen(false));
     const isDateType = ['date', 'datetime-local', 'time'].includes(type);
-    const handleIconClick = () => {
+    function handleIconClick() {
         if (isDateType && !disabled) {
             setIsOpen(!isOpen);
         }
         else if (localRef.current && !disabled) {
             localRef.current.focus();
         }
-    };
-    const handleDateChange = (date) => {
+    }
+    function handleDateChange(date) {
         if (!onChange)
             return;
         const pad = (n) => n.toString().padStart(2, '0');
@@ -41,7 +41,7 @@ export default function Input({ label, name, type = 'text', placeholder, value, 
             },
         };
         onChange(event);
-    };
+    }
     let displayIcon = icon;
     if (!displayIcon && isDateType) {
         if (type === 'time') {
@@ -51,7 +51,7 @@ export default function Input({ label, name, type = 'text', placeholder, value, 
             displayIcon = _jsx(Calendar, { className: 'w-4 h-4' });
         }
     }
-    const getDateValue = () => {
+    function getDateValue() {
         if (!value)
             return null;
         if (type === 'time') {
@@ -60,7 +60,7 @@ export default function Input({ label, name, type = 'text', placeholder, value, 
         }
         const date = new Date(value);
         return isNaN(date.getTime()) ? null : date;
-    };
+    }
     return (_jsx(FieldWrapper, { label: label, name: name, required: required, info: info, error: error, className: className, children: _jsxs("div", { className: 'relative flex items-center', ref: containerRef, children: [displayIcon && (_jsx("div", { className: `
                             absolute left-3 text-login-200
                             ${isDateType && !disabled ? 'cursor-pointer hover:text-login-text' : 'pointer-events-none'}

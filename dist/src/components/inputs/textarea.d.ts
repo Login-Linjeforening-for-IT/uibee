@@ -3,6 +3,7 @@ export type TextareaProps = {
     label?: string;
     name: string;
     placeholder?: string;
+    type?: 'markdown' | 'json' | 'text';
     value?: string;
     onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
     error?: string;
@@ -11,6 +12,5 @@ export type TextareaProps = {
     required?: boolean;
     rows?: number;
     info?: string;
-    markdown?: boolean;
 };
-export default function Textarea({ label, name, placeholder, value, onChange, error, className, disabled, required, rows, info, markdown, }: TextareaProps): import("react/jsx-runtime").JSX.Element;
+export default function Textarea({ label, name, placeholder, value, onChange, error, className, disabled, required, rows, info, type, }: TextareaProps): import("react/jsx-runtime").JSX.Element;

@@ -21,7 +21,7 @@ export default function DateTimePickerPopup({ value, onChange, type, onClose, })
             }));
         }
     }, [value]);
-    const handleDateSelect = (day) => {
+    function handleDateSelect(day) {
         const newDate = new Date(currentDate);
         newDate.setDate(day);
         if (value) {
@@ -35,8 +35,8 @@ export default function DateTimePickerPopup({ value, onChange, type, onClose, })
         if (type === 'date' && onClose) {
             onClose();
         }
-    };
-    const handleTimeChange = (timeUnit, val) => {
+    }
+    function handleTimeChange(timeUnit, val) {
         const newDate = value ? new Date(value) : new Date();
         if (!value) {
             newDate.setHours(0, 0, 0, 0);
@@ -52,8 +52,8 @@ export default function DateTimePickerPopup({ value, onChange, type, onClose, })
             newDate.setMinutes(val);
         }
         onChange(newDate);
-    };
-    const onTimeInputChange = (unit, val) => {
+    }
+    function onTimeInputChange(unit, val) {
         if (val === '') {
             setTimeInput(prev => ({ ...prev, [unit]: '' }));
             handleTimeChange(unit, 0);
@@ -68,16 +68,20 @@ export default function DateTimePickerPopup({ value, onChange, type, onClose, })
             return;
         setTimeInput(prev => ({ ...prev, [unit]: val }));
         handleTimeChange(unit, num);
-    };
-    const onTimeInputBlur = (unit) => {
+    }
+    function onTimeInputBlur(unit) {
         if (timeInput[unit] === '') {
             const num = unit === 'hours' ? (value?.getHours() ?? 0) : (value?.getMinutes() ?? 0);
             setTimeInput(prev => ({ ...prev, [unit]: num.toString() }));
         }
-    };
-    const getDaysInMonth = (year, month) => new Date(year, month + 1, 0).getDate();
-    const getFirstDayOfMonth = (year, month) => new Date(year, month, 1).getDay();
-    const renderCalendar = () => {
+    }
+    function getDaysInMonth(year, month) {
+        return new Date(year, month + 1, 0).getDate();
+    }
+    function getFirstDayOfMonth(year, month) {
+        return new Date(year, month, 1).getDay();
+    }
+    function renderCalendar() {
         const year = currentDate.getFullYear();
         const month = currentDate.getMonth();
         const daysInMonth = getDaysInMonth(year, month);
@@ -103,8 +107,8 @@ export default function DateTimePickerPopup({ value, onChange, type, onClose, })
                     `, children: i }, i));
         }
         return (_jsxs("div", { className: 'p-2', children: [_jsxs("div", { className: 'flex items-center justify-between mb-2', children: [_jsx("button", { type: 'button', onClick: () => setCurrentDate(new Date(year, month - 1)), className: 'p-1 hover:bg-login-500 rounded-full text-login-text', children: _jsx(ChevronLeft, { className: 'w-4 h-4' }) }), _jsxs("span", { className: 'font-medium text-login-text', children: [MONTHS[month], " ", year] }), _jsx("button", { type: 'button', onClick: () => setCurrentDate(new Date(year, month + 1)), className: 'p-1 hover:bg-login-500 rounded-full text-login-text', children: _jsx(ChevronRight, { className: 'w-4 h-4' }) })] }), _jsx("div", { className: 'grid grid-cols-7 gap-1 mb-1', children: DAYS.map(d => (_jsx("div", { className: 'w-8 text-center text-xs text-login-200 font-medium', children: d }, d))) }), _jsx("div", { className: 'grid grid-cols-7 gap-1', children: days })] }));
-    };
-    const renderTimePicker = () => {
+    }
+    function renderTimePicker() {
         return (_jsxs("div", { className: 'p-2 border-t border-login-500 flex justify-center gap-2', children: [_jsxs("div", { className: 'flex flex-col items-center', children: [_jsx("label", { className: 'text-xs text-login-200 mb-1', children: "Hour" }), _jsx("input", { type: 'text', inputMode: 'numeric', value: timeInput.hours, onChange: (e) => onTimeInputChange('hours', e.target.value), onBlur: () => onTimeInputBlur('hours'), className: `
                             w-16 p-1 bg-login-500 rounded text-center text-login-text 
                             border border-login-500 focus:border-login outline-none
@@ -112,6 +116,6 @@ export default function DateTimePickerPopup({ value, onChange, type, onClose, })
                             w-16 p-1 bg-login-500 rounded text-center text-login-text 
                             border border-login-500 focus:border-login outline-none
                         ` })] })] }));
-    };
+    }
     return (_jsxs("div", { className: 'absolute top-full left-0 z-50 mt-1 bg-login-600 border border-login-500 rounded-md shadow-lg p-1 min-w-70', children: [type !== 'time' && renderCalendar(), (type === 'time' || type === 'datetime-local') && renderTimePicker()] }));
 }

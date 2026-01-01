@@ -52,7 +52,7 @@ export default function Select({
 
     const containerRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false))
 
-    const handleSelect = (option: Option) => {
+    function handleSelect(option: Option) {
         if (disabled) return
         setSelectedOption(option)
         setIsOpen(false)
@@ -61,7 +61,7 @@ export default function Select({
         }
     }
 
-    const handleClear = (e: React.MouseEvent) => {
+    function handleClear(e: React.MouseEvent) {
         e.stopPropagation()
         if (disabled) return
         setSelectedOption(undefined)

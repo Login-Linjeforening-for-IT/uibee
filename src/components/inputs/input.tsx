@@ -40,7 +40,7 @@ export default function Input({
 
     const isDateType = ['date', 'datetime-local', 'time'].includes(type as string)
 
-    const handleIconClick = () => {
+    function handleIconClick() {
         if (isDateType && !disabled) {
             setIsOpen(!isOpen)
         } else if (localRef.current && !disabled) {
@@ -48,7 +48,7 @@ export default function Input({
         }
     }
 
-    const handleDateChange = (date: Date) => {
+    function handleDateChange(date: Date) {
         if (!onChange) return
 
         const pad = (n: number) => n.toString().padStart(2, '0')
@@ -82,7 +82,7 @@ export default function Input({
         }
     }
 
-    const getDateValue = () => {
+    function getDateValue() {
         if (!value) return null
         if (type === 'time') {
             const date = new Date(`2000-01-01T${value}`)
