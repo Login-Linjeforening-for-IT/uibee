@@ -8,6 +8,7 @@ interface SelectionWrapperProps {
     children: ReactNode;
     className?: string;
     disabled?: boolean;
+    hideError?: boolean;
 }
-export default function SelectionWrapper({ label, name, required, info, error, children, className, disabled, }: SelectionWrapperProps): import("react/jsx-runtime").JSX.Element;
+export default function SelectionWrapper({ label, name, required, info, error, children, className, disabled, hideError, }: SelectionWrapperProps): import("react/jsx-runtime").JSX.Element;
 export {};

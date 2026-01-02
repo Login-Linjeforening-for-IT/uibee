@@ -9,5 +9,6 @@ export type SwitchProps = {
     error?: string;
     info?: string;
     required?: boolean;
+    switchOnly?: boolean;
 };
-export default function Switch({ label, name, checked, onChange, className, disabled, error, info, required, }: SwitchProps): import("react/jsx-runtime").JSX.Element;
+export default function Switch({ label, name, checked, onChange, className, disabled, error, info, required, switchOnly, }: SwitchProps): import("react/jsx-runtime").JSX.Element;
