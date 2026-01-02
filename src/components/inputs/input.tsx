@@ -133,7 +133,7 @@ export default function Input({
                         text-login-text placeholder-login-200
                         focus:outline-none focus:border-login focus:ring-1 focus:ring-login
                         disabled:opacity-50 disabled:cursor-not-allowed
-                        py-2 ${displayIcon ? 'pl-10 pr-3' : 'px-3'}
+                        h-10.5 py-2 ${displayIcon ? 'pl-10 pr-3' : 'px-3'}
                         transition-all duration-200
                         input-reset
                         ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}

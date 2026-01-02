@@ -35,7 +35,7 @@ export default function Select({ label, name, value, onChange, options, error, c
                         text-login-text text-left
                         focus:outline-none focus:border-login focus:ring-1 focus:ring-login
                         disabled:opacity-50 disabled:cursor-not-allowed
-                        py-2 pl-3 pr-10
+                        h-10.5 py-2 pl-3 pr-10
                         transition-all duration-200
                         flex items-center justify-between
                         ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
