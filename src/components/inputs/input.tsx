@@ -17,6 +17,7 @@ export type InputProps = {
     required?: boolean
     icon?: JSX.Element
     info?: string
+    multiple?: boolean
 }
 
 export default function Input({
@@ -32,6 +33,7 @@ export default function Input({
     required,
     icon,
     info,
+    multiple,
 }: InputProps) {
     const localRef = useRef<HTMLInputElement>(null)
     const [isOpen, setIsOpen] = useState(false)
@@ -126,6 +128,7 @@ export default function Input({
                     readOnly={isDateType}
                     onClick={() => isDateType && !disabled && setIsOpen(true)}
                     title={label}
+                    multiple={multiple}
                     aria-invalid={!!error}
                     aria-describedby={error ? `${name}-error` : undefined}
                     className={`

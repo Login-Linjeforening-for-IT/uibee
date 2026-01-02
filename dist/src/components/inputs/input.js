@@ -4,7 +4,7 @@ import { Calendar, Clock } from 'lucide-react';
 import { FieldWrapper } from './shared';
 import DateTimePickerPopup from './shared/dateTimePickerPopup';
 import useClickOutside from '../../hooks/useClickOutside';
-export default function Input({ label, name, type = 'text', placeholder, value, onChange, error, className, disabled, required, icon, info, }) {
+export default function Input({ label, name, type = 'text', placeholder, value, onChange, error, className, disabled, required, icon, info, multiple, }) {
     const localRef = useRef(null);
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useClickOutside(() => setIsOpen(false));
@@ -64,7 +64,7 @@ export default function Input({ label, name, type = 'text', placeholder, value, 
     return (_jsx(FieldWrapper, { label: label, name: name, required: required, info: info, error: error, className: className, children: _jsxs("div", { className: 'relative flex items-center', ref: containerRef, children: [displayIcon && (_jsx("div", { className: `
                             absolute left-3 text-login-200
                             ${isDateType && !disabled ? 'cursor-pointer hover:text-login-text' : 'pointer-events-none'}
-                        `, onClick: handleIconClick, children: displayIcon })), _jsx("input", { ref: localRef, id: name, name: name, type: isDateType ? 'text' : type, placeholder: placeholder, value: value, onChange: onChange, disabled: disabled, required: required, readOnly: isDateType, onClick: () => isDateType && !disabled && setIsOpen(true), title: label, "aria-invalid": !!error, "aria-describedby": error ? `${name}-error` : undefined, className: `
+                        `, onClick: handleIconClick, children: displayIcon })), _jsx("input", { ref: localRef, id: name, name: name, type: isDateType ? 'text' : type, placeholder: placeholder, value: value, onChange: onChange, disabled: disabled, required: required, readOnly: isDateType, onClick: () => isDateType && !disabled && setIsOpen(true), title: label, multiple: multiple, "aria-invalid": !!error, "aria-describedby": error ? `${name}-error` : undefined, className: `
                         w-full rounded-md bg-login-500/50 border border-login-500 
                         text-login-text placeholder-login-200
                         focus:outline-none focus:border-login focus:ring-1 focus:ring-login

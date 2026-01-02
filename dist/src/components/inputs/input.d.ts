@@ -12,5 +12,6 @@ export type InputProps = {
     required?: boolean;
     icon?: JSX.Element;
     info?: string;
+    multiple?: boolean;
 };
-export default function Input({ label, name, type, placeholder, value, onChange, error, className, disabled, required, icon, info, }: InputProps): import("react/jsx-runtime").JSX.Element;
+export default function Input({ label, name, type, placeholder, value, onChange, error, className, disabled, required, icon, info, multiple, }: InputProps): import("react/jsx-runtime").JSX.Element;
