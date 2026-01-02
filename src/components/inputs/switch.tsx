@@ -11,6 +11,7 @@ export type SwitchProps = {
     error?: string
     info?: string
     required?: boolean
+    switchOnly?: boolean
 }
 
 export default function Switch({
@@ -23,6 +24,7 @@ export default function Switch({
     error,
     info,
     required,
+    switchOnly,
 }: SwitchProps) {
     return (
         <SelectionWrapper
@@ -31,10 +33,11 @@ export default function Switch({
             required={required}
             info={info}
             error={error}
+            hideError={switchOnly}
             className={className}
             disabled={disabled}
         >
-            <label className='relative inline-flex items-center cursor-pointer h-10.5'>
+            <label className={`relative inline-flex items-center cursor-pointer ${switchOnly ? 'h-fit' : 'h-10.5'}`}>
                 <input
                     type='checkbox'
                     id={name}
@@ -48,7 +51,7 @@ export default function Switch({
                 <div className={`
                     w-11 h-6 bg-login-500/50 rounded-full peer 
                     peer-checked:after:translate-x-full peer-checked:after:border-white 
-                    after:content-[''] after:absolute after:top-2.75 after:left-0.5 
+                    after:content-[''] after:absolute ${switchOnly ? 'top-0.5' : 'top-2.75'} after:left-0.5 
                     after:bg-white after:border-gray-300 after:border after:rounded-full 
                     after:h-5 after:w-5 after:transition-all peer-checked:bg-login
                     ${disabled ? 'opacity-50 cursor-not-allowed' : ''}

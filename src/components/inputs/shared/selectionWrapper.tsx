@@ -12,6 +12,7 @@ interface SelectionWrapperProps {
     children: ReactNode
     className?: string
     disabled?: boolean
+    hideError?: boolean
 }
 
 export default function SelectionWrapper({
@@ -23,6 +24,7 @@ export default function SelectionWrapper({
     children,
     className,
     disabled,
+    hideError,
 }: SelectionWrapperProps) {
     return (
         <div className={`flex flex-col gap-1 ${className || ''}`}>
@@ -41,7 +43,7 @@ export default function SelectionWrapper({
                 </div>
                 {info && <InputInfo info={info} />}
             </div>
-            <InputError error={error} />
+            {!hideError && <InputError error={error} />}
         </div>
     )
 }
