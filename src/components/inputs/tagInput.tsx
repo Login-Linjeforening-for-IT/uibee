@@ -99,14 +99,11 @@ export default function TagInput({
                     className='flex-1 bg-transparent outline-none min-w-30 text-login-text placeholder:text-login-200'
                 />
             </div>
-            {value.map((tag, index) => (
-                <input
-                    key={index}
-                    type='hidden'
-                    name={`${name}[${index}]`}
-                    value={tag}
-                />
-            ))}
+            <input
+                type='hidden'
+                name={name}
+                value={value.join(',')}
+            />
         </FieldWrapper>
     )
 }
