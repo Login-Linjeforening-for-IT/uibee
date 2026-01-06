@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { getCookie, setCookie } from 'utilbee/utils'
+import { getCookie, setCookie } from 'utilbee'
 import { useRouter } from 'next/navigation'
 import { Language } from 'uibee/components'
 import { Globe } from 'lucide-react'

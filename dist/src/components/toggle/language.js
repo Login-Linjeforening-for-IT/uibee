@@ -1,7 +1,7 @@
 'use client';
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useState } from 'react';
-import { getCookie, setCookie } from 'utilbee/utils';
+import { getCookie, setCookie } from 'utilbee';
 import { useRouter } from 'next/navigation';
 import { Globe } from 'lucide-react';
 export default function LanguageToggle({ language }) {
