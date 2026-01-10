@@ -1,51 +1,34 @@
-import { type ChangeEvent } from 'react'
 import { SelectionWrapper } from './shared'
 
-export type SwitchProps = {
-    label?: string
+export type SwitchProps = Omit<React.ComponentProps<'input'>, 'name'> & {
     name: string
-    checked?: boolean
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-    className?: string
-    disabled?: boolean
+    label?: string
     error?: string
     info?: string
-    required?: boolean
+    className?: string
     switchOnly?: boolean
 }
 
-export default function Switch({
-    label,
-    name,
-    checked,
-    onChange,
-    className,
-    disabled,
-    error,
-    info,
-    required,
-    switchOnly,
-}: SwitchProps) {
+export default function Switch(props: SwitchProps) {
+    const { name, label, error, info, className, switchOnly, ...inputProps } = props
+
     return (
         <SelectionWrapper
             label={label}
             name={name}
-            required={required}
+            required={inputProps.required}
             info={info}
             error={error}
             hideError={switchOnly}
             className={className}
-            disabled={disabled}
+            disabled={inputProps.disabled}
         >
             <label className={`relative inline-flex items-center cursor-pointer ${switchOnly ? 'h-fit' : 'h-10.5'}`}>
                 <input
+                    {...inputProps}
                     type='checkbox'
                     id={name}
                     name={name}
-                    checked={checked}
-                    onChange={onChange}
-                    disabled={disabled}
-                    required={required}
                     className='sr-only peer'
                 />
                 <div className={`
@@ -54,7 +37,7 @@ export default function Switch({
                     after:content-[''] after:absolute ${switchOnly ? 'after:top-0.5' : 'after:top-2.75'} after:left-0.5 
                     after:bg-white after:border-gray-300 after:border after:rounded-full 
                     after:h-5 after:w-5 after:transition-all peer-checked:bg-login
-                    ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+                    ${inputProps.disabled ? 'opacity-50 cursor-not-allowed' : ''}
                     ${error ? 'ring-1 ring-red-500' : ''}
                 `}></div>
             </label>

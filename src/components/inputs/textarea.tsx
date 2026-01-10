@@ -1,21 +1,15 @@
-import { type ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import ReactMarkdown from 'react-markdown'
 import { Eye, Pencil } from 'lucide-react'
 import { FieldWrapper } from './shared'
 
-export type TextareaProps = {
-    label?: string
+export type TextareaProps = Omit<React.ComponentProps<'textarea'>, 'name'> & {
     name: string
-    placeholder?: string
-    type?: 'markdown' | 'json' | 'text'
-    value?: string
-    onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void
+    label?: string
     error?: string
     className?: string
-    disabled?: boolean
-    required?: boolean
-    rows?: number
     info?: string
+    type?: 'markdown' | 'json' | 'text'
 }
 
 function isValidJson(str: string): string | null {
@@ -27,30 +21,19 @@ function isValidJson(str: string): string | null {
     }
 }
 
-export default function Textarea({
-    label,
-    name,
-    placeholder,
-    value,
-    onChange,
-    error,
-    className,
-    disabled,
-    required,
-    rows = 4,
-    info,
-    type = 'text',
-}: TextareaProps) {
+export default function Textarea(props: TextareaProps) {
+    const { name, label, error, className, info, type = 'text', rows = 4, ...textareaProps } = props
+    const { value } = textareaProps
     const [preview, setPreview] = useState(false)
 
-    const jsonError = type === 'json' && value ? isValidJson(value) : undefined
+    const jsonError = type === 'json' && value ? isValidJson(value as string) : undefined
     const displayError = jsonError || error
 
     return (
         <FieldWrapper
             label={label}
             name={name}
-            required={required}
+            required={textareaProps.required}
             info={info}
             error={displayError}
             className={className}
@@ -80,17 +63,13 @@ export default function Textarea({
                     `}
                         style={{ minHeight: `${rows * 1.5}rem` }}
                     >
-                        <ReactMarkdown>{value || ''}</ReactMarkdown>
+                        <ReactMarkdown>{String(value || '')}</ReactMarkdown>
                     </div>
                 ) : (
                     <textarea
+                        {...textareaProps}
                         id={name}
                         name={name}
-                        placeholder={placeholder}
-                        value={value}
-                        onChange={onChange}
-                        disabled={disabled}
-                        required={required}
                         rows={rows}
                         title={label}
                         aria-invalid={!!error}

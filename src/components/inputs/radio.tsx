@@ -1,52 +1,34 @@
-import { type ChangeEvent } from 'react'
 import { SelectionWrapper } from './shared'
 
-export type RadioProps = {
-    label?: string
+export type RadioProps = Omit<React.ComponentProps<'input'>, 'name'> & {
     name: string
-    value: string | number
-    checked?: boolean
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-    className?: string
-    disabled?: boolean
+    label?: string
     error?: string
     info?: string
-    required?: boolean
+    className?: string
 }
 
-export default function Radio({
-    label,
-    name,
-    value,
-    checked,
-    onChange,
-    className,
-    disabled,
-    error,
-    info,
-    required,
-}: RadioProps) {
+export default function Radio(props: RadioProps) {
+    const { name, label, error, info, className, ...inputProps } = props
+    const { value } = inputProps
     const id = `${name}-${value}`
+
     return (
         <SelectionWrapper
             label={label}
             name={id}
-            required={required}
+            required={inputProps.required}
             info={info}
             error={error}
             className={className}
-            disabled={disabled}
+            disabled={inputProps.disabled}
         >
             <div className='relative flex items-center'>
                 <input
+                    {...inputProps}
                     id={id}
                     name={name}
                     type='radio'
-                    value={value}
-                    checked={checked}
-                    onChange={onChange}
-                    disabled={disabled}
-                    required={required}
                     className={`
                         peer appearance-none h-5 w-5 rounded-full border border-login-500 bg-login-500/50
                         checked:bg-login checked:border-login

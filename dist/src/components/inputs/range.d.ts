@@ -1,17 +1,9 @@
-import { type ChangeEvent } from 'react';
-export type RangeProps = {
-    label?: string;
+export type RangeProps = Omit<React.ComponentProps<'input'>, 'name'> & {
     name: string;
-    min?: number;
-    max?: number;
-    step?: number;
-    value?: number;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    label?: string;
     error?: string;
     className?: string;
-    disabled?: boolean;
-    required?: boolean;
     info?: string;
     showValue?: boolean;
 };
-export default function Range({ label, name, min, max, step, value, onChange, error, className, disabled, required, info, showValue, }: RangeProps): import("react/jsx-runtime").JSX.Element;
+export default function Range(props: RangeProps): import("react/jsx-runtime").JSX.Element;

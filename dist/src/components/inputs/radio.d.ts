@@ -1,14 +1,8 @@
-import { type ChangeEvent } from 'react';
-export type RadioProps = {
-    label?: string;
+export type RadioProps = Omit<React.ComponentProps<'input'>, 'name'> & {
     name: string;
-    value: string | number;
-    checked?: boolean;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    className?: string;
-    disabled?: boolean;
+    label?: string;
     error?: string;
     info?: string;
-    required?: boolean;
+    className?: string;
 };
-export default function Radio({ label, name, value, checked, onChange, className, disabled, error, info, required, }: RadioProps): import("react/jsx-runtime").JSX.Element;
+export default function Radio(props: RadioProps): import("react/jsx-runtime").JSX.Element;

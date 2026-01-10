@@ -1,48 +1,30 @@
-import { type ChangeEvent } from 'react'
 import { FieldWrapper } from './shared'
 
-export type RangeProps = {
-    label?: string
+export type RangeProps = Omit<React.ComponentProps<'input'>, 'name'> & {
     name: string
-    min?: number
-    max?: number
-    step?: number
-    value?: number
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    label?: string
     error?: string
     className?: string
-    disabled?: boolean
-    required?: boolean
     info?: string
     showValue?: boolean
 }
 
-export default function Range({
-    label,
-    name,
-    min = 0,
-    max = 100,
-    step = 1,
-    value = 0,
-    onChange,
-    error,
-    className,
-    disabled,
-    required,
-    info,
-    showValue = true,
-}: RangeProps) {
+export default function Range(props: RangeProps) {
+    const { name, label, error, className, info, showValue = true, ...inputProps } = props
+    const { min = 0, max = 100, step = 1, value = 0 } = inputProps
+
     return (
         <FieldWrapper
             label={label}
             name={name}
-            required={required}
+            required={inputProps.required}
             info={info}
             error={error}
             className={className}
         >
             <div className='flex items-center gap-4'>
                 <input
+                    {...inputProps}
                     id={name}
                     name={name}
                     type='range'
@@ -50,9 +32,6 @@ export default function Range({
                     max={max}
                     step={step}
                     value={value}
-                    onChange={onChange}
-                    disabled={disabled}
-                    required={required}
                     title={label}
                     aria-invalid={!!error}
                     aria-describedby={error ? `${name}-error` : undefined}

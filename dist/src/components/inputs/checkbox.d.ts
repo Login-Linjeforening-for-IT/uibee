@@ -1,13 +1,8 @@
-import { type ChangeEvent } from 'react';
-export type CheckboxProps = {
-    label?: string;
+export type CheckboxProps = Omit<React.ComponentProps<'input'>, 'name'> & {
     name: string;
-    checked?: boolean;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    className?: string;
-    disabled?: boolean;
+    label?: string;
     error?: string;
     info?: string;
-    required?: boolean;
+    className?: string;
 };
-export default function Checkbox({ label, name, checked, onChange, className, disabled, error, info, required, }: CheckboxProps): import("react/jsx-runtime").JSX.Element;
+export default function Checkbox(props: CheckboxProps): import("react/jsx-runtime").JSX.Element;

@@ -1,49 +1,33 @@
-import { type ChangeEvent } from 'react'
 import { Check } from 'lucide-react'
 import { SelectionWrapper } from './shared'
 
-export type CheckboxProps = {
-    label?: string
+export type CheckboxProps = Omit<React.ComponentProps<'input'>, 'name'> & {
     name: string
-    checked?: boolean
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
-    className?: string
-    disabled?: boolean
+    label?: string
     error?: string
     info?: string
-    required?: boolean
+    className?: string
 }
 
-export default function Checkbox({
-    label,
-    name,
-    checked,
-    onChange,
-    className,
-    disabled,
-    error,
-    info,
-    required,
-}: CheckboxProps) {
+export default function Checkbox(props: CheckboxProps) {
+    const { name, label, error, info, className, ...inputProps } = props
+
     return (
         <SelectionWrapper
             label={label}
             name={name}
-            required={required}
+            required={inputProps.required}
             info={info}
             error={error}
             className={className}
-            disabled={disabled}
+            disabled={inputProps.disabled}
         >
             <div className='relative flex items-center'>
                 <input
+                    {...inputProps}
                     id={name}
                     name={name}
                     type='checkbox'
-                    checked={checked}
-                    onChange={onChange}
-                    disabled={disabled}
-                    required={required}
                     className={`
                         peer appearance-none h-5 w-5 rounded border border-login-500 bg-login-500/50
                         checked:bg-login checked:border-login

@@ -4,37 +4,18 @@ import { FieldWrapper } from './shared'
 import DateTimePickerPopup from './shared/dateTimePickerPopup'
 import useClickOutside from '../../hooks/useClickOutside'
 
-export type InputProps = {
-    label?: string
+export type InputProps = Omit<React.ComponentProps<'input'>, 'name'> & {
     name: string
-    type?: React.HTMLInputTypeAttribute
-    placeholder?: string
-    value?: string | number
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void
+    label?: string
     error?: string
     className?: string
-    disabled?: boolean
-    required?: boolean
     icon?: JSX.Element
     info?: string
-    multiple?: boolean
 }
 
-export default function Input({
-    label,
-    name,
-    type = 'text',
-    placeholder,
-    value,
-    onChange,
-    error,
-    className,
-    disabled,
-    required,
-    icon,
-    info,
-    multiple,
-}: InputProps) {
+export default function Input(props: InputProps) {
+    const { name, label, error, className, icon, info, ...inputProps } = props
+    const { type = 'text', value } = inputProps
     const localRef = useRef<HTMLInputElement>(null)
     const [isOpen, setIsOpen] = useState(false)
 
@@ -43,14 +24,15 @@ export default function Input({
     const isDateType = ['date', 'datetime-local', 'time'].includes(type as string)
 
     function handleIconClick() {
-        if (isDateType && !disabled) {
+        if (isDateType && !inputProps.disabled) {
             setIsOpen(!isOpen)
-        } else if (localRef.current && !disabled) {
+        } else if (localRef.current && !inputProps.disabled) {
             localRef.current.focus()
         }
     }
 
     function handleDateChange(date: Date) {
+        const onChange = inputProps.onChange
         if (!onChange) return
 
         const pad = (n: number) => n.toString().padStart(2, '0')
@@ -98,7 +80,7 @@ export default function Input({
         <FieldWrapper
             label={label}
             name={name}
-            required={required}
+            required={inputProps.required}
             info={info}
             error={error}
             className={className}
@@ -108,7 +90,7 @@ export default function Input({
                     <div
                         className={`
                             absolute left-3 text-login-200
-                            ${isDateType && !disabled ? 'cursor-pointer hover:text-login-text' : 'pointer-events-none'}
+                            ${isDateType && !inputProps.disabled ? 'cursor-pointer hover:text-login-text' : 'pointer-events-none'}
                         `}
                         onClick={handleIconClick}
                     >
@@ -116,19 +98,15 @@ export default function Input({
                     </div>
                 )}
                 <input
+                    {...inputProps}
                     ref={localRef}
                     id={name}
                     name={name}
                     type={isDateType ? 'text' : type}
-                    placeholder={placeholder}
                     value={value}
-                    onChange={onChange}
-                    disabled={disabled}
-                    required={required}
                     readOnly={isDateType}
-                    onClick={() => isDateType && !disabled && setIsOpen(true)}
+                    onClick={() => isDateType && !inputProps.disabled && setIsOpen(true)}
                     title={label}
-                    multiple={multiple}
                     aria-invalid={!!error}
                     aria-describedby={error ? `${name}-error` : undefined}
                     className={`
@@ -140,10 +118,10 @@ export default function Input({
                         transition-all duration-200
                         input-reset
                         ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                        ${isDateType && !disabled ? 'cursor-pointer' : ''}
+                        ${isDateType && !inputProps.disabled ? 'cursor-pointer' : ''}
                     `}
                 />
-                {isOpen && isDateType && !disabled && (
+                {isOpen && isDateType && !inputProps.disabled && (
                     <DateTimePickerPopup
                         value={getDateValue()}
                         onChange={handleDateChange}

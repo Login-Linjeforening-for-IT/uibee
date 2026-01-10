@@ -1,16 +1,9 @@
-import { type ChangeEvent } from 'react';
-export type TextareaProps = {
-    label?: string;
+export type TextareaProps = Omit<React.ComponentProps<'textarea'>, 'name'> & {
     name: string;
-    placeholder?: string;
-    type?: 'markdown' | 'json' | 'text';
-    value?: string;
-    onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+    label?: string;
     error?: string;
     className?: string;
-    disabled?: boolean;
-    required?: boolean;
-    rows?: number;
     info?: string;
+    type?: 'markdown' | 'json' | 'text';
 };
-export default function Textarea({ label, name, placeholder, value, onChange, error, className, disabled, required, rows, info, type, }: TextareaProps): import("react/jsx-runtime").JSX.Element;
+export default function Textarea(props: TextareaProps): import("react/jsx-runtime").JSX.Element;

@@ -1,14 +1,9 @@
-import { type ChangeEvent } from 'react';
-export type SwitchProps = {
-    label?: string;
+export type SwitchProps = Omit<React.ComponentProps<'input'>, 'name'> & {
     name: string;
-    checked?: boolean;
-    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
-    className?: string;
-    disabled?: boolean;
+    label?: string;
     error?: string;
     info?: string;
-    required?: boolean;
+    className?: string;
     switchOnly?: boolean;
 };
-export default function Switch({ label, name, checked, onChange, className, disabled, error, info, required, switchOnly, }: SwitchProps): import("react/jsx-runtime").JSX.Element;
+export default function Switch(props: SwitchProps): import("react/jsx-runtime").JSX.Element;
