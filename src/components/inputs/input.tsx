@@ -2,6 +2,7 @@ import { type ChangeEvent, type JSX, useRef, useState } from 'react'
 import { Calendar, Clock } from 'lucide-react'
 import { FieldWrapper } from './shared'
 import DateTimePickerPopup from './shared/dateTimePickerPopup'
+import ColorPickerPopup from './shared/colorPickerPopup'
 import useClickOutside from '../../hooks/useClickOutside'
 
 export type InputProps = Omit<React.ComponentProps<'input'>, 'name'> & {
@@ -22,9 +23,11 @@ export default function Input(props: InputProps) {
     const containerRef = useClickOutside<HTMLDivElement>(() => setIsOpen(false))
 
     const isDateType = ['date', 'datetime-local', 'time'].includes(type as string)
+    const isColorType = type === 'color'
+    const isClickableType = isDateType || isColorType
 
     function handleIconClick() {
-        if (isDateType && !inputProps.disabled) {
+        if (isClickableType && !inputProps.disabled) {
             setIsOpen(!isOpen)
         } else if (localRef.current && !inputProps.disabled) {
             localRef.current.focus()
@@ -57,6 +60,20 @@ export default function Input(props: InputProps) {
         onChange(event)
     }
 
+    function handleColorChange(color: string) {
+        const onChange = inputProps.onChange
+        if (!onChange) return
+
+        const event = {
+            target: {
+                name,
+                value: color,
+                type,
+            },
+        } as unknown as ChangeEvent<HTMLInputElement>
+        onChange(event)
+    }
+
     let displayIcon = icon
     if (!displayIcon && isDateType) {
         if (type === 'time') {
@@ -64,6 +81,13 @@ export default function Input(props: InputProps) {
         } else {
             displayIcon = <Calendar className='w-4 h-4' />
         }
+    } else if (!displayIcon && isColorType) {
+        displayIcon = (
+            <div
+                className='w-4 h-4 rounded border border-login-200'
+                style={{ backgroundColor: value as string || '#000000' }}
+            />
+        )
     }
 
     function getDateValue() {
@@ -90,7 +114,7 @@ export default function Input(props: InputProps) {
                     <div
                         className={`
                             absolute left-3 text-login-200
-                            ${isDateType && !inputProps.disabled ? 'cursor-pointer hover:text-login-text' : 'pointer-events-none'}
+                            ${isClickableType && !inputProps.disabled ? 'cursor-pointer hover:text-login-text' : 'pointer-events-none'}
                         `}
                         onClick={handleIconClick}
                     >
@@ -102,10 +126,10 @@ export default function Input(props: InputProps) {
                     ref={localRef}
                     id={name}
                     name={name}
-                    type={isDateType ? 'text' : type}
+                    type={isClickableType ? 'text' : type}
                     value={value}
-                    readOnly={isDateType}
-                    onClick={() => isDateType && !inputProps.disabled && setIsOpen(true)}
+                    readOnly={isClickableType}
+                    onClick={() => isClickableType && !inputProps.disabled && setIsOpen(true)}
                     title={label}
                     aria-invalid={!!error}
                     aria-describedby={error ? `${name}-error` : undefined}
@@ -118,7 +142,7 @@ export default function Input(props: InputProps) {
                         transition-all duration-200
                         input-reset
                         ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                        ${isDateType && !inputProps.disabled ? 'cursor-pointer' : ''}
+                        ${isClickableType && !inputProps.disabled ? 'cursor-pointer' : ''}
                     `}
                 />
                 {isOpen && isDateType && !inputProps.disabled && (
@@ -126,6 +150,13 @@ export default function Input(props: InputProps) {
                         value={getDateValue()}
                         onChange={handleDateChange}
                         type={type as 'date' | 'time' | 'datetime-local'}
+                        onClose={() => setIsOpen(false)}
+                    />
+                )}
+                {isOpen && isColorType && !inputProps.disabled && (
+                    <ColorPickerPopup
+                        value={value as string || ''}
+                        onChange={handleColorChange}
                         onClose={() => setIsOpen(false)}
                     />
                 )}

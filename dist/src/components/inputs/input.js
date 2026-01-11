@@ -3,6 +3,7 @@ import { useRef, useState } from 'react';
 import { Calendar, Clock } from 'lucide-react';
 import { FieldWrapper } from './shared';
 import DateTimePickerPopup from './shared/dateTimePickerPopup';
+import ColorPickerPopup from './shared/colorPickerPopup';
 import useClickOutside from '../../hooks/useClickOutside';
 export default function Input(props) {
     const { name, label, error, className, icon, info, ...inputProps } = props;
@@ -11,8 +12,10 @@ export default function Input(props) {
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useClickOutside(() => setIsOpen(false));
     const isDateType = ['date', 'datetime-local', 'time'].includes(type);
+    const isColorType = type === 'color';
+    const isClickableType = isDateType || isColorType;
     function handleIconClick() {
-        if (isDateType && !inputProps.disabled) {
+        if (isClickableType && !inputProps.disabled) {
             setIsOpen(!isOpen);
         }
         else if (localRef.current && !inputProps.disabled) {
@@ -45,6 +48,19 @@ export default function Input(props) {
         };
         onChange(event);
     }
+    function handleColorChange(color) {
+        const onChange = inputProps.onChange;
+        if (!onChange)
+            return;
+        const event = {
+            target: {
+                name,
+                value: color,
+                type,
+            },
+        };
+        onChange(event);
+    }
     let displayIcon = icon;
     if (!displayIcon && isDateType) {
         if (type === 'time') {
@@ -53,6 +69,9 @@ export default function Input(props) {
         else {
             displayIcon = _jsx(Calendar, { className: 'w-4 h-4' });
         }
+    }
+    else if (!displayIcon && isColorType) {
+        displayIcon = (_jsx("div", { className: 'w-4 h-4 rounded border border-login-200', style: { backgroundColor: value || '#000000' } }));
     }
     function getDateValue() {
         if (!value)
@@ -66,8 +85,8 @@ export default function Input(props) {
     }
     return (_jsx(FieldWrapper, { label: label, name: name, required: inputProps.required, info: info, error: error, className: className, children: _jsxs("div", { className: 'relative flex items-center', ref: containerRef, children: [displayIcon && (_jsx("div", { className: `
                             absolute left-3 text-login-200
-                            ${isDateType && !inputProps.disabled ? 'cursor-pointer hover:text-login-text' : 'pointer-events-none'}
-                        `, onClick: handleIconClick, children: displayIcon })), _jsx("input", { ...inputProps, ref: localRef, id: name, name: name, type: isDateType ? 'text' : type, value: value, readOnly: isDateType, onClick: () => isDateType && !inputProps.disabled && setIsOpen(true), title: label, "aria-invalid": !!error, "aria-describedby": error ? `${name}-error` : undefined, className: `
+                            ${isClickableType && !inputProps.disabled ? 'cursor-pointer hover:text-login-text' : 'pointer-events-none'}
+                        `, onClick: handleIconClick, children: displayIcon })), _jsx("input", { ...inputProps, ref: localRef, id: name, name: name, type: isClickableType ? 'text' : type, value: value, readOnly: isClickableType, onClick: () => isClickableType && !inputProps.disabled && setIsOpen(true), title: label, "aria-invalid": !!error, "aria-describedby": error ? `${name}-error` : undefined, className: `
                         w-full rounded-md bg-login-500/50 border border-login-500 
                         text-login-text placeholder-login-200
                         focus:outline-none focus:border-login focus:ring-1 focus:ring-login
@@ -76,6 +95,6 @@ export default function Input(props) {
                         transition-all duration-200
                         input-reset
                         ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
-                        ${isDateType && !inputProps.disabled ? 'cursor-pointer' : ''}
-                    ` }), isOpen && isDateType && !inputProps.disabled && (_jsx(DateTimePickerPopup, { value: getDateValue(), onChange: handleDateChange, type: type, onClose: () => setIsOpen(false) }))] }) }));
+                        ${isClickableType && !inputProps.disabled ? 'cursor-pointer' : ''}
+                    ` }), isOpen && isDateType && !inputProps.disabled && (_jsx(DateTimePickerPopup, { value: getDateValue(), onChange: handleDateChange, type: type, onClose: () => setIsOpen(false) })), isOpen && isColorType && !inputProps.disabled && (_jsx(ColorPickerPopup, { value: value || '', onChange: handleColorChange, onClose: () => setIsOpen(false) }))] }) }));
 }
