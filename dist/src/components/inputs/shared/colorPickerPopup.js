@@ -88,7 +88,7 @@ function hsvToHex(h, s, v) {
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
 const PRESET_COLORS = [
-    '#f87171', '#fb923c', '#fbbf24', '#facc15', '#a3e635', '#4ade80', '#34d399', '#2dd4bf',
+    '#f87171', '#fd8738', '#fbbf24', '#facc15', '#a3e635', '#4ade80', '#34d399', '#2dd4bf',
     '#38bdf8', '#60a5fa', '#818cf8', '#a78bfa', '#c084fc', '#e879f9', '#f472b6', '#fb7185'
 ];
 function SaturationPicker({ hsv, onChange }) {
