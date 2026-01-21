@@ -34,3 +34,6 @@ export { default as Toaster, toast } from './toast/toaster'
 
 // Buttons
 export { default as Button } from './buttons/button'
+
+// Alert
+export { default as Alert } from './alert/alert'

@@ -19,3 +19,4 @@ export { default as VersionTag } from './version/version';
 export { default as LoginPage } from './login/loginPage';
 export { default as Toaster, toast } from './toast/toaster';
 export { default as Button } from './buttons/button';
+export { default as Alert } from './alert/alert';
