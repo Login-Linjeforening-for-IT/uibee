@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useClickOutside } from '../../hooks'
-import { ChevronDown, X } from 'lucide-react'
+import { ChevronDown, X, Search } from 'lucide-react'
 import { FieldWrapper } from './shared'
 
 export type Option = {
@@ -25,6 +25,7 @@ export type SelectProps = {
     placeholder?: string
     info?: string
     clearable?: boolean
+    searchable?: boolean
 }
 
 export default function Select({
@@ -40,11 +41,19 @@ export default function Select({
     placeholder = 'Select an option',
     info,
     clearable = true,
+    searchable = true,
 }: SelectProps) {
     const [isOpen, setIsOpen] = useState(false)
+    const [searchTerm, setSearchTerm] = useState('')
     const [selectedOption, setSelectedOption] = useState<Option | undefined>(
         options.find(opt => opt.value === value)
     )
+
+    useEffect(() => {
+        if (!isOpen) {
+            setSearchTerm('')
+        }
+    }, [isOpen])
 
     useEffect(() => {
         setSelectedOption(options.find(opt => opt.value === value))
@@ -69,6 +78,10 @@ export default function Select({
             onChange(null)
         }
     }
+
+    const filteredOptions = options.filter(option =>
+        option.label.toLowerCase().includes(searchTerm.toLowerCase())
+    )
 
     return (
         <FieldWrapper
@@ -141,41 +154,62 @@ export default function Select({
                 {isOpen && (
                     <div className={`
                         absolute z-50 w-full mt-1 bg-login-600 border border-login-500
-                        rounded-md shadow-lg max-h-60 overflow-auto noscroll
+                        rounded-md shadow-lg max-h-60 overflow-hidden flex flex-col
                     `}>
-                        {options.length > 0 ? (
-                            <ul className='py-1' role='listbox'>
-                                {options.map((option) => (
-                                    <li key={option.value} role='option' aria-selected={selectedOption?.value === option.value}>
-                                        <button
-                                            type='button'
-                                            onClick={() => handleSelect(option)}
-                                            className={`
-                                                w-full text-left px-3 py-2 text-sm
-                                                hover:bg-login-500 transition-colors duration-150
-                                                flex items-center gap-2
-                                                ${selectedOption?.value === option.value ? 'bg-login-500 text-login' : 'text-login-text'}
-                                            `}
-                                        >
-                                            {option.image && (
-                                                <Image
-                                                    src={option.image}
-                                                    alt=''
-                                                    width={75}
-                                                    height={25}
-                                                    className='rounded-md object-cover shrink-0'
-                                                />
-                                            )}
-                                            <span className='truncate'>{option.label}</span>
-                                        </button>
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <div className='px-3 py-2 text-sm text-login-200'>
-                                No options available
+                        {searchable && (
+                            <div className='p-2 sticky top-0 bg-login-600 border-b border-login-500 z-10'>
+                                <div className='relative'>
+                                    <Search className='absolute left-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-login-200' />
+                                    <input
+                                        type='text'
+                                        value={searchTerm}
+                                        onChange={(e) => setSearchTerm(e.target.value)}
+                                        placeholder='Search...'
+                                        autoFocus
+                                        className={`
+                                            w-full bg-login-500/50 border border-login-500 rounded-md 
+                                            py-1.5 pl-9 pr-3 text-sm text-login-text 
+                                            focus:outline-none focus:border-login focus:ring-1 focus:ring-login
+                                        `}
+                                    />
+                                </div>
                             </div>
                         )}
+                        <div className='overflow-auto noscroll'>
+                            {filteredOptions.length > 0 ? (
+                                <ul className='py-1' role='listbox'>
+                                    {filteredOptions.map((option) => (
+                                        <li key={option.value} role='option' aria-selected={selectedOption?.value === option.value}>
+                                            <button
+                                                type='button'
+                                                onClick={() => handleSelect(option)}
+                                                className={`
+                                                    w-full text-left px-3 py-2 text-sm
+                                                    hover:bg-login-500 transition-colors duration-150
+                                                    flex items-center gap-2
+                                                    ${selectedOption?.value === option.value ? 'bg-login-500 text-login': 'text-login-text'}
+                                                `}
+                                            >
+                                                {option.image && (
+                                                    <Image
+                                                        src={option.image}
+                                                        alt=''
+                                                        width={75}
+                                                        height={25}
+                                                        className='rounded-md object-cover shrink-0'
+                                                    />
+                                                )}
+                                                <span className='truncate'>{option.label}</span>
+                                            </button>
+                                        </li>
+                                    ))}
+                                </ul>
+                            ) : (
+                                <div className='px-3 py-2 text-sm text-login-200'>
+                                    {searchTerm ? 'No results found' : 'No options available'}
+                                </div>
+                            )}
+                        </div>
                     </div>
                 )}
             </div>
