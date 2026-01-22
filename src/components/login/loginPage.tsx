@@ -3,7 +3,16 @@ import { LogIn } from 'lucide-react'
 import Logo from '@components/logo/logo'
 import Link from 'next/link'
 
-export default function LoginPage({ title, description, redirectURL, version, btg, handleSubmit }: LoginPageProps) {
+export default function LoginPage({
+    title,
+    description,
+    redirectURL,
+    version,
+    btg,
+    handleSubmit,
+    guestRedirectURL,
+    guestText
+}: LoginPageProps) {
     return (
         <main className='w-full h-full flex items-center justify-center bg-login-800 p-8'>
             <div
@@ -69,6 +78,14 @@ export default function LoginPage({ title, description, redirectURL, version, bt
                         <LogIn className='w-6 h-6' />
                     </Link>
                 )}
+                {guestRedirectURL &&
+                    <Link
+                        href={guestRedirectURL}
+                        className='text-sm font-semibold cursor-pointer opacity-50'
+                    >
+                        {guestText || 'Continue as guest'}
+                    </Link>
+                }
                 <span className='text-sm mt-2'>v{version}</span>
             </div>
         </main>

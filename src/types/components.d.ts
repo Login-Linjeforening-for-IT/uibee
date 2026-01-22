@@ -7,6 +7,8 @@ declare module 'uibee/components' {
         version: string
         btg?: boolean
         handleSubmit?: (formData: FormData) => void
+        guestRedirectURL?: string
+        guestText?: string
     }
 
     export type ToastType = 'info' | 'success' | 'warning' | 'error'
