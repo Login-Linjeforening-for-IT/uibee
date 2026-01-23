@@ -83,10 +83,32 @@ export default function Input(props) {
         const date = new Date(value);
         return isNaN(date.getTime()) ? null : date;
     }
+    function getDateDisplayValue() {
+        if (!value || !isDateType)
+            return value;
+        const date = getDateValue();
+        if (!date)
+            return value;
+        function pad(n) {
+            return n.toString().padStart(2, '0');
+        }
+        const yyyy = date.getFullYear();
+        const MM = pad(date.getMonth() + 1);
+        const dd = pad(date.getDate());
+        const hh = pad(date.getHours());
+        const mm = pad(date.getMinutes());
+        if (type === 'date')
+            return `${dd}.${MM}.${yyyy}`;
+        if (type === 'time')
+            return `${hh}:${mm}`;
+        if (type === 'datetime-local')
+            return `${dd}.${MM}.${yyyy} ${hh}:${mm}`;
+        return value;
+    }
     return (_jsx(FieldWrapper, { label: label, name: name, required: inputProps.required, info: info, error: error, className: className, children: _jsxs("div", { className: 'relative flex items-center', ref: containerRef, children: [displayIcon && (_jsx("div", { className: `
                             absolute left-3 text-login-200
                             ${isClickableType && !inputProps.disabled ? 'cursor-pointer hover:text-login-text' : 'pointer-events-none'}
-                        `, onClick: handleIconClick, children: displayIcon })), _jsx("input", { ...inputProps, ref: localRef, id: name, name: name, type: isClickableType ? 'text' : type, value: value, readOnly: isClickableType, onClick: () => isClickableType && !inputProps.disabled && setIsOpen(true), title: label, "aria-invalid": !!error, "aria-describedby": error ? `${name}-error` : undefined, className: `
+                        `, onClick: handleIconClick, children: displayIcon })), _jsx("input", { ...inputProps, ref: localRef, id: name, name: isClickableType ? undefined : name, type: isClickableType ? 'text' : type, value: isDateType ? getDateDisplayValue() : value, readOnly: isClickableType, onClick: () => isClickableType && !inputProps.disabled && setIsOpen(true), title: label, "aria-invalid": !!error, "aria-describedby": error ? `${name}-error` : undefined, className: `
                         w-full rounded-md bg-login-500/50 border border-login-500 
                         text-login-text placeholder-login-200
                         focus:outline-none focus:border-login focus:ring-1 focus:ring-login
@@ -96,5 +118,5 @@ export default function Input(props) {
                         input-reset
                         ${error ? 'border-red-500 focus:border-red-500 focus:ring-red-500' : ''}
                         ${isClickableType && !inputProps.disabled ? 'cursor-pointer' : ''}
-                    ` }), isOpen && isDateType && !inputProps.disabled && (_jsx(DateTimePickerPopup, { value: getDateValue(), onChange: handleDateChange, type: type, onClose: () => setIsOpen(false) })), isOpen && isColorType && !inputProps.disabled && (_jsx(ColorPickerPopup, { value: value || '', onChange: handleColorChange, onClose: () => setIsOpen(false) }))] }) }));
+                    ` }), isClickableType && (_jsx("input", { type: 'hidden', name: name, value: value })), isOpen && isDateType && !inputProps.disabled && (_jsx(DateTimePickerPopup, { value: getDateValue(), onChange: handleDateChange, type: type, onClose: () => setIsOpen(false) })), isOpen && isColorType && !inputProps.disabled && (_jsx(ColorPickerPopup, { value: value || '', onChange: handleColorChange, onClose: () => setIsOpen(false) }))] }) }));
 }

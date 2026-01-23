@@ -1,7 +1,7 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-const DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+const DAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
 const MONTHS = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -87,7 +87,8 @@ export default function DateTimePickerPopup({ value, onChange, type, onClose, })
         const daysInMonth = getDaysInMonth(year, month);
         const firstDay = getFirstDayOfMonth(year, month);
         const days = [];
-        for (let i = 0; i < firstDay; i++) {
+        const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1;
+        for (let i = 0; i < adjustedFirstDay; i++) {
             days.push(_jsx("div", { className: 'w-8 h-8' }, `empty-${i}`));
         }
         for (let i = 1; i <= daysInMonth; i++) {

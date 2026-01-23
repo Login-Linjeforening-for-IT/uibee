@@ -100,6 +100,29 @@ export default function Input(props: InputProps) {
         return isNaN(date.getTime()) ? null : date
     }
 
+    function getDateDisplayValue() {
+        if (!value || !isDateType) return value as string
+
+        const date = getDateValue()
+        if (!date) return value as string
+
+        function pad(n: number) {
+            return n.toString().padStart(2, '0')
+        }
+
+        const yyyy = date.getFullYear()
+        const MM = pad(date.getMonth() + 1)
+        const dd = pad(date.getDate())
+        const hh = pad(date.getHours())
+        const mm = pad(date.getMinutes())
+
+        if (type === 'date') return `${dd}.${MM}.${yyyy}`
+        if (type === 'time') return `${hh}:${mm}`
+        if (type === 'datetime-local') return `${dd}.${MM}.${yyyy} ${hh}:${mm}`
+
+        return value as string
+    }
+
     return (
         <FieldWrapper
             label={label}
@@ -125,9 +148,9 @@ export default function Input(props: InputProps) {
                     {...inputProps}
                     ref={localRef}
                     id={name}
-                    name={name}
+                    name={isClickableType ? undefined : name}
                     type={isClickableType ? 'text' : type}
-                    value={value}
+                    value={isDateType ? getDateDisplayValue() : value}
                     readOnly={isClickableType}
                     onClick={() => isClickableType && !inputProps.disabled && setIsOpen(true)}
                     title={label}
@@ -145,6 +168,9 @@ export default function Input(props: InputProps) {
                         ${isClickableType && !inputProps.disabled ? 'cursor-pointer' : ''}
                     `}
                 />
+                {isClickableType && (
+                    <input type='hidden' name={name} value={value as string} />
+                )}
                 {isOpen && isDateType && !inputProps.disabled && (
                     <DateTimePickerPopup
                         value={getDateValue()}

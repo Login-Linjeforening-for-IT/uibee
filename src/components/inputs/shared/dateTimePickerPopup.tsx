@@ -8,7 +8,7 @@ type DateTimePickerPopupProps = {
     onClose?: () => void
 }
 
-const DAYS = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']
+const DAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 const MONTHS = [
     'January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
@@ -112,7 +112,9 @@ export default function DateTimePickerPopup({
         const firstDay = getFirstDayOfMonth(year, month)
         const days = []
 
-        for (let i = 0; i < firstDay; i++) {
+        const adjustedFirstDay = firstDay === 0 ? 6 : firstDay - 1
+
+        for (let i = 0; i < adjustedFirstDay; i++) {
             days.push(<div key={`empty-${i}`} className='w-8 h-8' />)
         }
 
