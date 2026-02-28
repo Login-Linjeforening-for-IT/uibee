@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
-export default async function authCallback({ req, tokenURL, clientID, clientSecret, redirectURL, userInfoURL, tokenRedirectURL }) {
+import { getDomain } from './getDomain';
+export default async function authCallback({ req, tokenURL, clientID, clientSecret, redirectPath, userInfoURL, tokenRedirectPath }) {
+    const domain = getDomain(req);
     const searchParams = new URL(req.url).searchParams;
     if (!searchParams) {
         return NextResponse.json({ error: 'No search parameters found.' }, { status: 400 });
@@ -17,7 +19,7 @@ export default async function authCallback({ req, tokenURL, clientID, clientSecr
                 client_id: clientID,
                 client_secret: clientSecret,
                 code: code,
-                redirect_uri: redirectURL,
+                redirect_uri: `${domain}${redirectPath}`,
                 grant_type: 'authorization_code',
             }).toString()
         });
@@ -41,7 +43,7 @@ export default async function authCallback({ req, tokenURL, clientID, clientSecr
             });
         }
         const userInfo = await userInfoResponse.json();
-        const redirectUrl = new URL(tokenRedirectURL);
+        const redirectUrl = new URL(`${domain}${tokenRedirectPath}`);
         const params = new URLSearchParams({
             id: userInfo.sub,
             name: userInfo.name,

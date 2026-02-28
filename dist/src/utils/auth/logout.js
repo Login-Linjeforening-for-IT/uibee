@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
-export default async function AuthLogout({ frontendURL, path }) {
-    const response = NextResponse.redirect(new URL(path || '/', frontendURL));
+import { getDomain } from './getDomain';
+export default async function AuthLogout({ req, path }) {
+    const domain = getDomain(req);
+    const response = NextResponse.redirect(new URL(path || '/', domain));
     const cookiesToRemove = [
         'access_token',
         'user_id',

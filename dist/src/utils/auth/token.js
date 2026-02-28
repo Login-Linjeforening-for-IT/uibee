@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
-export default async function AuthToken({ req, frontendURL, redirectPath }) {
+import { getDomain } from './getDomain';
+export default async function AuthToken({ req, redirectPath }) {
+    const domain = getDomain(req);
     const url = new URL(req.url);
     const token = url.searchParams.get('access_token');
     const btg = url.searchParams.get('btg');
@@ -9,7 +11,7 @@ export default async function AuthToken({ req, frontendURL, redirectPath }) {
         return NextResponse.json({ error: 'No access token provided' }, { status: 400 });
     }
     if (btg) {
-        return NextResponse.redirect(new URL(redirect, frontendURL));
+        return NextResponse.redirect(new URL(redirect, domain));
     }
     const accessToken = url.searchParams.get('access_token');
     const userID = url.searchParams.get('id');
@@ -17,7 +19,7 @@ export default async function AuthToken({ req, frontendURL, redirectPath }) {
     const userNickname = url.searchParams.get('username');
     const userEmail = url.searchParams.get('email');
     const userGroups = url.searchParams.get('groups');
-    const response = NextResponse.redirect(new URL(redirect, frontendURL));
+    const response = NextResponse.redirect(new URL(redirect, domain));
     response.cookies.set('access_token', accessToken);
     response.cookies.set('user_id', userID);
     response.cookies.set('user_name', username);
