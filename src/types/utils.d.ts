@@ -2,30 +2,30 @@
 import { NextRequest } from 'next/server'
 declare module 'uibee/utils' {
     export interface AuthLoginProps {
+        req: NextRequest
         clientID: string
-        redirectURL: string
+        redirectPath: string
         authURL: string
     }
 
     export interface AuthCallbackProps {
-        req: Request
+        req: NextRequest
         tokenURL: string
         clientID: string
         clientSecret: string
-        redirectURL: string
+        redirectPath: string
         userInfoURL: string
-        tokenRedirectURL: string
+        tokenRedirectPath: string
     }
 
     export interface AuthTokenProps {
         req: NextRequest
-        frontendURL: string
         redirectPath?: string
     }
+
     export interface AuthLogoutProps {
-        request: NextRequest
+        req: NextRequest
         path?: string
-        frontendURL: string
     }
 
     export default async function authLogin(props: AuthLoginProps): Promise<Response>;

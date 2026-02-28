@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import type { AuthCallbackProps } from 'uibee/utils'
+import { getDomain } from './getDomain'
 
 type UserInfo = {
     sub: string
@@ -14,10 +15,11 @@ export default async function authCallback({
     tokenURL,
     clientID,
     clientSecret,
-    redirectURL,
+    redirectPath,
     userInfoURL,
-    tokenRedirectURL
+    tokenRedirectPath
 }: AuthCallbackProps) {
+    const domain = getDomain(req)
     const searchParams = new URL(req.url).searchParams
 
     if (!searchParams) {
@@ -38,7 +40,7 @@ export default async function authCallback({
                 client_id: clientID,
                 client_secret: clientSecret,
                 code: code as string,
-                redirect_uri: redirectURL,
+                redirect_uri: `${domain}${redirectPath}`,
                 grant_type: 'authorization_code',
             }).toString()
         })
@@ -69,7 +71,7 @@ export default async function authCallback({
 
         const userInfo = await userInfoResponse.json() as UserInfo
 
-        const redirectUrl = new URL(tokenRedirectURL)
+        const redirectUrl = new URL(`${domain}${tokenRedirectPath}`)
         const params = new URLSearchParams({
             id: userInfo.sub,
             name: userInfo.name,
