@@ -24,8 +24,9 @@ export type NavbarProps = {
     theme?: string
     disableThemeToggle?: boolean
     token?: string | null
-    disableAuthButton?: boolean
-    profileURL?: string
+    profilePath?: string
+    loginPath: string
+    logoutPath: string
     className?: string
     innerClassName?: string
     children: React.ReactNode
@@ -37,8 +38,9 @@ export default function Navbar({
     disableLanguageToggle,
     disableThemeToggle,
     token,
-    disableAuthButton,
-    profileURL,
+    profilePath,
+    loginPath,
+    logoutPath,
     className,
     innerClassName,
     children,
@@ -69,9 +71,22 @@ export default function Navbar({
 
                         {/* Controls */}
                         <nav className='flex w-[calc(100vw-8rem)] justify-end h-12 800px:w-fit'>
-                            {!disableThemeToggle && <ThemeToggle />}
-                            {!disableLanguageToggle && <LanguageToggle language={lang} />}
-                            {!disableAuthButton && <AuthButton profileURL={profileURL} token={token} />}
+                            {!disableThemeToggle &&
+                                <ThemeToggle />
+                            }
+                            {!disableLanguageToggle &&
+                                <LanguageToggle
+                                    language={lang}
+                                />
+                            }
+                            {!loginPath && !logoutPath &&
+                                <AuthButton
+                                    profilePath={profilePath}
+                                    token={token}
+                                    loginPath={loginPath}
+                                    logoutPath={logoutPath}
+                                />
+                            }
                         </nav>
 
                         {/* Mobile Menu Button */}
@@ -111,26 +126,35 @@ export default function Navbar({
     )
 }
 
-function AuthButton({ profileURL, token }: { profileURL?: string, token?: string | null }) {
+type AuthButtonProps = {
+    profilePath?: string
+    logoutPath: string
+    loginPath: string
+    token?: string | null
+}
+
+function AuthButton({ profilePath, logoutPath, loginPath, token }: AuthButtonProps) {
 
     return (
         <div className='rounded-[0.3rem] hover:bg-login-300/20 h-12 w-12'>
             {token ? (
                 <>
-                    <Link
-                        href='/api/logout'
-                        prefetch={false}
-                        onClick={(e) => {
-                            e.preventDefault()
-                            window.location.href = '/api/logout'
-                        }}
-                        className='grid items-center justify-center h-full w-full'
-                    >
-                        <LogOut size={24} />
-                    </Link>
-                    {profileURL &&
+                    {logoutPath &&
                         <Link
-                            href={profileURL}
+                            href={logoutPath}
+                            prefetch={false}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                window.location.href = logoutPath
+                            }}
+                            className='grid items-center justify-center h-full w-full'
+                        >
+                            <LogOut size={24} />
+                        </Link>
+                    }
+                    {profilePath &&
+                        <Link
+                            href={profilePath}
                             className='grid items-center justify-center h-full w-full'
                         >
                             <User size={24} />
@@ -139,7 +163,7 @@ function AuthButton({ profileURL, token }: { profileURL?: string, token?: string
                 </>
             ) : (
                 <Link
-                    href='/api/login'
+                    href={loginPath}
                     className='grid items-center justify-center h-full w-full'
                 >
                     <User size={24} />
