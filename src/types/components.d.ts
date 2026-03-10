@@ -45,4 +45,16 @@ declare module 'uibee/components' {
     }
     export default function LanguageToggle(props: { lang: Language }): JSX.Element;
     export default function ThemeSwitch(props: { className?: string }): JSX.Element;
+
+    export interface ConfirmPopupProps {
+        isOpen: boolean
+        header: string
+        description?: string
+        confirmText?: string
+        cancelText?: string
+        onConfirm: () => void
+        onCancel: () => void
+        variant?: 'danger' | 'warning' | 'default'
+    }
+    export function ConfirmPopup(props: ConfirmPopupProps): JSX.Element | null;
 }

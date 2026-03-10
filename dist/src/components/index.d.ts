@@ -20,3 +20,4 @@ export { default as LoginPage } from './login/loginPage';
 export { default as Toaster, toast } from './toast/toaster';
 export { default as Button } from './buttons/button';
 export { default as Alert } from './alert/alert';
+export { default as ConfirmPopup } from './confirm/confirmPopup';

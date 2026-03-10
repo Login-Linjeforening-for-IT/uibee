@@ -37,3 +37,6 @@ export { default as Button } from './buttons/button'
 
 // Alert
 export { default as Alert } from './alert/alert'
+
+// Confirm
+export { default as ConfirmPopup } from './confirm/confirmPopup'
