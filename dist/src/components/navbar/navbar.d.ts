@@ -7,10 +7,11 @@ export type NavbarProps = {
     theme?: string;
     disableThemeToggle?: boolean;
     token?: string | null;
-    disableAuthButton?: boolean;
-    profileURL?: string;
+    profilePath?: string;
+    loginPath: string;
+    logoutPath: string;
     className?: string;
     innerClassName?: string;
     children: React.ReactNode;
 };
-export default function Navbar({ lang, onlyLogo, disableLanguageToggle, disableThemeToggle, token, disableAuthButton, profileURL, className, innerClassName, children, }: NavbarProps): import("react/jsx-runtime").JSX.Element;
+export default function Navbar({ lang, onlyLogo, disableLanguageToggle, disableThemeToggle, token, profilePath, loginPath, logoutPath, className, innerClassName, children, }: NavbarProps): import("react/jsx-runtime").JSX.Element;
