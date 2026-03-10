@@ -79,7 +79,7 @@ export default function Navbar({
                                     language={lang}
                                 />
                             }
-                            {!loginPath && !logoutPath &&
+                            {loginPath && logoutPath &&
                                 <AuthButton
                                     profilePath={profilePath}
                                     token={token}
