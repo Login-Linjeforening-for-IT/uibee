@@ -6,11 +6,11 @@ import Link from 'next/link'
 export default function LoginPage({
     title,
     description,
-    redirectURL,
+    redirectPath,
     version,
     btg,
     handleSubmit,
-    guestRedirectURL,
+    guestRedirectPath,
     guestText
 }: LoginPageProps) {
     return (
@@ -66,7 +66,7 @@ export default function LoginPage({
                     </form>
                 ) : (
                     <Link
-                        href={redirectURL}
+                        href={redirectPath}
                         className={`
                             flex items-center justify-center gap-2 w-full
                             max-w-xs py-3 px-6 rounded-xl bg-login font-bold
@@ -78,9 +78,9 @@ export default function LoginPage({
                         <LogIn className='w-6 h-6' />
                     </Link>
                 )}
-                {guestRedirectURL &&
+                {guestRedirectPath &&
                     <Link
-                        href={guestRedirectURL}
+                        href={guestRedirectPath}
                         className='text-sm font-semibold cursor-pointer opacity-50'
                     >
                         {guestText || 'Continue as guest'}
