@@ -7,9 +7,18 @@ type ButtonProps = {
     icon: string | JSX.Element
     path?: string
     type?: 'button' | 'submit' | 'reset'
-    color?: 'primary' | 'secondary'
+    variant?: 'primary' | 'secondary' | 'warning' | 'danger' | 'success' | 'info'
     onClick?: (_: object | string) => void
     disabled?: boolean
+}
+
+const variants = {
+    primary: 'bg-login/70 outline-login hover:bg-login/90',
+    secondary: 'bg-login-500/70 outline-login-500 hover:bg-login-500/90',
+    warning: 'bg-yellow-500/70 outline-yellow-500 hover:bg-yellow-500/90',
+    danger: 'bg-red-600/70 outline-red-600 hover:bg-red-600/90',
+    success: 'bg-green-600/70 outline-green-600 hover:bg-green-600/90',
+    info: 'bg-blue-600/70 outline-blue-600 hover:bg-blue-600/90'
 }
 
 export default function Button({
@@ -17,14 +26,12 @@ export default function Button({
     className,
     icon,
     path,
-    color,
+    variant = 'primary',
     type,
     onClick,
     disabled
 }: ButtonProps) {
-    const bg = color === 'secondary'
-        ? 'bg-login-500/70 outline-login-500 hover:bg-login-500/90'
-        : 'bg-login/70 outline-login hover:bg-login/90'
+    const bg = variants[variant]
 
     if (!path) {
         return (

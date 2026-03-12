@@ -5,9 +5,9 @@ type ButtonProps = {
     icon: string | JSX.Element;
     path?: string;
     type?: 'button' | 'submit' | 'reset';
-    color?: 'primary' | 'secondary';
+    variant?: 'primary' | 'secondary' | 'warning' | 'danger' | 'success' | 'info';
     onClick?: (_: object | string) => void;
     disabled?: boolean;
 };
-export default function Button({ text, className, icon, path, color, type, onClick, disabled }: ButtonProps): import("react/jsx-runtime").JSX.Element;
+export default function Button({ text, className, icon, path, variant, type, onClick, disabled }: ButtonProps): import("react/jsx-runtime").JSX.Element;
 export {};

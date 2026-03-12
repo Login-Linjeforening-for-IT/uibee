@@ -1,9 +1,15 @@
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import Link from 'next/link';
-export default function Button({ text, className, icon, path, color, type, onClick, disabled }) {
-    const bg = color === 'secondary'
-        ? 'bg-login-500/70 outline-login-500 hover:bg-login-500/90'
-        : 'bg-login/70 outline-login hover:bg-login/90';
+const variants = {
+    primary: 'bg-login/70 outline-login hover:bg-login/90',
+    secondary: 'bg-login-500/70 outline-login-500 hover:bg-login-500/90',
+    warning: 'bg-yellow-500/70 outline-yellow-500 hover:bg-yellow-500/90',
+    danger: 'bg-red-600/70 outline-red-600 hover:bg-red-600/90',
+    success: 'bg-green-600/70 outline-green-600 hover:bg-green-600/90',
+    info: 'bg-blue-600/70 outline-blue-600 hover:bg-blue-600/90'
+};
+export default function Button({ text, className, icon, path, variant = 'primary', type, onClick, disabled }) {
+    const bg = variants[variant];
     if (!path) {
         return (_jsxs("button", { type: type || 'button', disabled: disabled, onClick: onClick, "aria-label": text, className: `
                     ${bg} cursor-pointer px-4 rounded-md min-h-8 h-8 flex
