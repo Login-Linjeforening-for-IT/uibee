@@ -34,6 +34,27 @@ declare module 'uibee/components' {
 
     export type Language = 'no' | 'en'
 
+    export type TableColor = 'green' | 'yellow' | 'red' | 'blue' | 'gray'
+
+    export type HighlightMap = {
+        [key: string]: TableColor
+    }
+
+    export type Column = {
+        key: string
+        label?: string
+        highlight?: HighlightMap
+    }
+
+    export type TableProps = {
+        data: object[]
+        columns: Column[]
+        menuItems?: (data: object, id: string) => React.ReactNode
+        redirectPath?: string | { path: string, key?: string }
+        variant?: 'default' | 'minimal'
+        idKey?: string
+    }
+
     export default function LoginPage(props: LoginPageProps): JSX.Element;
     export function Toaster(): JSX.Element;
     export function toast(message: string, type: ToastType, duration?: number): void;
@@ -57,4 +78,15 @@ declare module 'uibee/components' {
         variant?: 'danger' | 'warning' | 'default'
     }
     export function ConfirmPopup(props: ConfirmPopupProps): JSX.Element | null;
+
+    export default function Table(props: TableProps): JSX.Element;
+    export function Pagination(props: { pageSize?: number; totalRows?: number }): JSX.Element;
+
+    export function MenuButton(props: {
+        icon: React.ReactNode
+        text: string
+        hotKey?: string
+        onClick: () => void
+        className?: string
+    }): JSX.Element;
 }
