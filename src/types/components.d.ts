@@ -55,7 +55,7 @@ declare module 'uibee/components' {
         idKey?: string
     }
 
-    export default function LoginPage(props: LoginPageProps): JSX.Element;
+    export function LoginPage(props: LoginPageProps): JSX.Element;
     export function Toaster(): JSX.Element;
     export function toast(message: string, type: ToastType, duration?: number): void;
     export namespace toast {
@@ -64,8 +64,8 @@ declare module 'uibee/components' {
         export function warning(message: string, duration?: number): void;
         export function error(message: string, duration?: number): void;
     }
-    export default function LanguageToggle(props: { lang: Language }): JSX.Element;
-    export default function ThemeSwitch(props: { className?: string }): JSX.Element;
+    export function LanguageToggle(props: { lang: Language }): JSX.Element;
+    export function ThemeSwitch(props: { className?: string }): JSX.Element;
 
     export interface ConfirmPopupProps {
         isOpen: boolean
@@ -79,7 +79,7 @@ declare module 'uibee/components' {
     }
     export function ConfirmPopup(props: ConfirmPopupProps): JSX.Element | null;
 
-    export default function Table(props: TableProps): JSX.Element;
+    export function Table(props: TableProps): JSX.Element;
     export function Pagination(props: { pageSize?: number; totalRows?: number }): JSX.Element;
 
     export function MenuButton(props: {
