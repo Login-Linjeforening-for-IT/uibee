@@ -29,5 +29,9 @@ export { default as Toaster, toast } from './toast/toaster';
 export { default as Button } from './buttons/button';
 // Alert
 export { default as Alert } from './alert/alert';
+// Table
+export { default as MenuButton } from './table/menu';
+export { default as Table } from './table/table';
+export { default as Pagination } from './table/pagination';
 // Confirm
 export { default as ConfirmPopup } from './confirm/confirmPopup';
