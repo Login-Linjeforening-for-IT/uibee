@@ -144,13 +144,13 @@ export default function Body({ list, columns, menuItems, redirectPath, variant =
                         })}
                         {menuItems && (
                             <td
-                                className='shrink-0 w-16 flex flex-row justify-end p-2 px-4
+                                className='shrink-0 w-16 flex flex-row items-center justify-end p-2 px-4
                                     whitespace-nowrap text-right text-sm font-medium'
                             >
                                 <div className='relative'>
                                     <button
                                         type='button'
-                                        className={`p-1.5 rounded flex items-start justify-center transition-colors ${buttonClass}`}
+                                        className={`p-1.5 rounded flex items-center justify-center transition-colors ${buttonClass}`}
                                         onMouseDown={(e) => e.nativeEvent.stopImmediatePropagation()}
                                         onClick={(e) => {
                                             e.stopPropagation()
