@@ -30,7 +30,7 @@ export { default as Button } from './buttons/button';
 // Alert
 export { default as Alert } from './alert/alert';
 // Table
-export { default as MenuButton } from './table/menu';
+export { MenuButton } from './table/menu';
 export { default as Table } from './table/table';
 export { default as Pagination } from './table/pagination';
 // Confirm
