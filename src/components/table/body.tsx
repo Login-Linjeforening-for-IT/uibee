@@ -131,7 +131,7 @@ export default function Body({ list, columns, menuItems, redirectPath, variant =
                                     key={col.key}
                                     className={`
                                         flex-1 px-6 py-4 whitespace-nowrap text-sm min-w-40 flex items-center text-login-100
-                                        ${variant === 'minimal' ? 'py-3' : ''}
+                                        ${variant === 'minimal' ? 'px-4! py-2!' : ''}
                                     `}
                                 >
                                     <div className='relative'>

@@ -55,6 +55,7 @@ export default function Header({ columns, hideMenu, variant = 'default' }: Heade
                             className={`
                                 flex-1 px-6 py-3 text-xs font-medium uppercase tracking-wider text-left
                                 ${variant === 'default' ? 'text-login-200' : 'text-login-100'}
+                                ${variant === 'minimal' ? 'px-4!!' : ''}
                             `}
                         >
                             <button
