@@ -103,7 +103,7 @@ export default function Body({ list, columns, menuItems, redirectPath, variant =
                         }
                         return (_jsx("td", { className: `
                                         flex-1 px-6 py-4 whitespace-nowrap text-sm min-w-40 flex items-center text-login-100
-                                        ${variant === 'minimal' ? 'py-3' : ''}
+                                        ${variant === 'minimal' ? 'px-4! py-2!' : ''}
                                     `, children: _jsx("div", { className: 'relative', children: _jsx("h1", { className: badgeClass, children: formatValue(col.key, value) }) }) }, col.key));
                     }), menuItems && (_jsx("td", { className: 'shrink-0 w-16 flex flex-row items-center justify-end p-2 px-4\n                                    whitespace-nowrap text-right text-sm font-medium', children: _jsxs("div", { className: 'relative', children: [_jsx("button", { type: 'button', className: `p-1.5 rounded flex items-center justify-center transition-colors ${buttonClass}`, onMouseDown: (e) => e.nativeEvent.stopImmediatePropagation(), onClick: (e) => {
                                         e.stopPropagation();
